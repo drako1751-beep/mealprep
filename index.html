@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meal Prep Hub — recettes détaillées pas-à-pas, planificateur de journée et liste d'épicerie intelligente.">
+  <meta name="theme-color" content="#040813">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
+  <title>Meal Prep Hub • Recettes Détaillées • ~2300 kcal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at 15% 10%, #0d1e38 0%, #080f1e 50%, #040813 100%);
+      --surface: rgba(15, 23, 42, 0.75);
+      --surface-card: rgba(22, 33, 58, 0.7);
+      --surface-card-hover: rgba(28, 43, 75, 0.9);
+      --border: rgba(56, 189, 248, 0.12);
+      --border-hover: rgba(56, 189, 248, 0.4);
+      --primary: #38bdf8;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+      --shadow-hover: 0 20px 35px -10px rgba(14, 165, 233, 0.18), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; padding: 2rem 1.5rem 8rem 1.5rem; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1280px; margin: 0 auto; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .brand { display: flex; align-items: center; gap: 0.85rem; }
+    .brand-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35); }
+    .brand-title { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-sub { font-size: 0.8rem; color: var(--primary); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+    .nav-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn-top { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 0.65rem 1.25rem; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.88rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; backdrop-filter: blur(8px); }
+    .btn-top:hover { border-color: var(--primary); background: rgba(30, 41, 59, 0.9); transform: translateY(-1px); }
+    .btn-top.active-plan { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border-color: var(--primary); box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35); }
+    .btn-gen { background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important; border-color: transparent !important; color: #040813 !important; }
+    .btn-gen:hover { box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35); }
+    .dashboard { background: var(--surface); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: 20px; padding: 1.75rem; margin-bottom: 2.25rem; box-shadow: var(--shadow-card); position: relative; }
+    .dash-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem; }
+    .dash-label { font-size: 0.75rem; font-weight: 800; color: var(--primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.25rem; }
+    .dash-heading { font-size: 1.45rem; font-weight: 800; }
+    .dash-actions-right { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .btn-reset { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.35rem; transition: color 0.2s; }
+    .btn-reset:hover { color: var(--accent-rose); }
+    .macro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+    .macro-box { background: rgba(10, 17, 34, 0.65); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 14px; padding: 1rem 1.15rem; }
+    .macro-box-title { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem; gap: 0.5rem; }
+    .macro-numbers { font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; }
+    .macro-numbers strong { font-size: 1.25rem; color: #fff; }
+    .progress-track { width: 100%; height: 8px; background: #1e293b; border-radius: 999px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0%; border-radius: 999px; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .bar-cal { background: linear-gradient(90deg, #0284c7, #38bdf8); }
+    .bar-prot { background: linear-gradient(90deg, #059669, #10b981); }
+    .bar-carb { background: linear-gradient(90deg, #d97706, #f59e0b); }
+    .bar-fat { background: linear-gradient(90deg, #e11d48, #f43f5e); }
+    .progress-bar.over { background: linear-gradient(90deg, #e11d48, #f43f5e) !important; }
+    .macro-rem { font-size: 0.74rem; color: var(--text-dim); margin-top: 0.45rem; font-weight: 600; }
+    .macro-rem.over { color: var(--accent-rose); }
+    .week-wrap { margin-top: 1.35rem; border-top: 1px dashed rgba(255, 255, 255, 0.08); padding-top: 1.1rem; }
+    .week-title { font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.85rem; }
+    .week-title em { font-style: normal; color: var(--text-dim); font-weight: 500; text-transform: none; letter-spacing: 0; }
+    .week-chart { display: flex; gap: 0.6rem; align-items: flex-end; }
+    .wk-day { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; min-width: 0; cursor: default; }
+    .wk-bar { width: 70%; max-width: 42px; min-height: 4px; border-radius: 6px 6px 2px 2px; background: linear-gradient(180deg, #38bdf8, #0284c7); }
+    .wk-bar.over { background: linear-gradient(180deg, #fb7185, #be123c); }
+    .wk-bar.today { box-shadow: 0 0 12px rgba(56, 189, 248, 0.55); }
+    .wk-day span { font-size: 0.7rem; color: var(--text-dim); text-transform: capitalize; }
+    .wk-day i { font-style: normal; font-size: 0.62rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+    .controls-wrapper { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
+    .search-input-group { position: relative; width: 100%; }
+    .search-icon { position: absolute; left: 1.1rem; top: 50%; transform: translateY(-50%); color: var(--text-dim); font-size: 1rem; }
+    .search-input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 0.9rem 1.2rem 0.9rem 2.85rem; color: #fff; font-family: inherit; font-size: 0.95rem; outline: none; transition: all 0.2s; }
+    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12); }
+    .nav-pills { display: flex; gap: 0.65rem; flex-wrap: wrap; }
+    .pill-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); padding: 0.65rem 1.35rem; border-radius: 999px; font-size: 0.9rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.2s; }
+    .pill-btn:hover { color: #fff; border-color: var(--primary); }
+    .pill-btn.active { background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); color: #040813; border-color: transparent; font-weight: 700; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35); }
+    .pill-badge { background: rgba(0, 0, 0, 0.18); padding: 0.15rem 0.45rem; border-radius: 999px; font-size: 0.78rem; }
+    .toolbar-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .filter-chips { display: flex; gap: 0.55rem; flex-wrap: wrap; }
+    .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); padding: 0.45rem 1rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .chip:hover { color: #fff; border-color: var(--primary); }
+    .chip.active { background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff; border-color: transparent; box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3); }
+    .sort-group { display: flex; align-items: center; gap: 0.6rem; }
+    .sort-group label { font-size: 0.82rem; color: var(--text-dim); font-weight: 600; }
+    .sort-select, .meal-ctrl select { background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 0.45rem 0.7rem; font-size: 0.85rem; font-family: inherit; font-weight: 600; cursor: pointer; outline: none; transition: border 0.2s; }
+    .sort-select:hover, .meal-ctrl select:hover { border-color: var(--primary); }
+    .sort-select option, .meal-ctrl select option, .rating-select option { background: #0f172a; color: #fff; }
+    .result-count { font-size: 0.8rem; color: var(--text-dim); font-weight: 600; }
+    .recipes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+    .recipe-card { background: var(--surface-card); border: 1px solid var(--border); border-radius: 18px; padding: 1.4rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: var(--shadow-card); transition: all 0.25s; }
+    .recipe-card:hover { background: var(--surface-card-hover); border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .card-head { display: flex; flex-direction: column; gap: 0.45rem; }
+    .card-top-bar { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+    .badge-type { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--primary); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 6px; text-transform: uppercase; display: inline-block; }
+    .card-chips { display: flex; gap: 0.4rem; }
+    .icon-btn { background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border); color: var(--text-dim); width: 34px; height: 34px; border-radius: 9px; cursor: pointer; font-size: 1rem; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .icon-btn:hover { border-color: var(--primary); color: #fff; }
+    .icon-btn.fav.on { color: #f43f5e; border-color: rgba(244, 63, 94, 0.45); background: rgba(244, 63, 94, 0.12); }
+    .icon-btn.del.armed { color: #fff; background: rgba(244, 63, 94, 0.85); border-color: var(--accent-rose); }
+    .card-title { font-size: 1.18rem; font-weight: 700; line-height: 1.35; color: #fff; }
+    mark { background: rgba(56, 189, 248, 0.3); color: #fff; border-radius: 3px; padding: 0 2px; }
+    .card-macro-strip { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #38bdf8; background: rgba(15, 23, 42, 0.6); padding: 0.45rem 0.75rem; border-radius: 8px; border-left: 3px solid var(--primary); }
+    .preview-box { background: rgba(8, 15, 30, 0.45); border-radius: 10px; padding: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.03); }
+    .preview-title { font-size: 0.72rem; font-weight: 800; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.45rem; }
+    .preview-list { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .preview-list li { font-size: 0.86rem; color: var(--text-muted); line-height: 1.35; }
+    .preview-list li::before { content: '• '; color: var(--primary); }
+    .preview-list li.more-li { color: var(--text-dim); font-style: italic; }
+    .rating-row { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border); padding: 0.35rem 0.65rem; border-radius: 8px; }
+    .rating-label { font-size: 0.72rem; color: var(--text-dim); font-weight: 700; }
+    .rating-select { background: transparent; border: none; color: #fbbf24; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 700; outline: none; cursor: pointer; }
+    .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; margin-top: auto; }
+    .btn-card { border: none; padding: 0.7rem 0.9rem; border-radius: 10px; font-weight: 700; font-size: 0.84rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; transition: all 0.2s; font-family: inherit; }
+    .btn-cook { background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); color: #040813; }
+    .btn-cook:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(56, 189, 248, 0.3); }
+    .btn-add { background: rgba(30, 41, 59, 0.8); color: #fff; border: 1px solid var(--border); }
+    .btn-add:hover { border-color: var(--primary); }
+    .btn-add.in-plan { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: #040813; border-color: transparent; }
+    .empty-state { text-align: center; padding: 4rem 1rem; background: var(--surface); border: 1px dashed var(--border); border-radius: 18px; color: var(--text-muted); }
+    .empty-state .big { font-size: 3rem; display: block; margin-bottom: 1rem; }
+    .empty-state h3 { color: #fff; margin-bottom: 0.4rem; }
+    .empty-state p { font-size: 0.92rem; margin-bottom: 1.2rem; line-height: 1.6; }
+    .empty-state button { background: linear-gradient(135deg, #0284c7, #38bdf8); color: #040813; border: none; padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.88rem; font-family: inherit; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 999; padding: 1.5rem; }
+    .modal-overlay.show { display: flex; }
+    .modal-window { background: #0f172a; border: 1px solid var(--border); border-radius: 20px; width: 100%; max-width: 820px; max-height: 90vh; overflow-y: auto; padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6); }
+    .modal-window::-webkit-scrollbar { width: 10px; }
+    .modal-window::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 8px; }
+    .modal-header-row { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 1.25rem; gap: 1rem; }
+    .modal-title { font-size: 1.45rem; font-weight: 800; color: #fff; }
+    .modal-sub { font-size: 0.88rem; color: var(--primary); font-family: 'JetBrains Mono', monospace; margin-top: 0.25rem; }
+    .btn-close-modal { background: rgba(255, 255, 255, 0.06); border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 10px; font-size: 1.3rem; cursor: pointer; flex-shrink: 0; }
+    .btn-close-modal:hover { color: var(--accent-rose); }
+    .modal-actions-row { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .step-prog { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent-green); font-weight: 700; margin-left: auto; }
+    .timer-ribbon { background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 0.85rem 1.15rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+    .ribbon-btns { display: flex; gap: 0.45rem; flex-wrap: wrap; align-items: center; }
+    .timer-chip { background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border); color: #fff; padding: 0.4rem 0.75rem; border-radius: 8px; cursor: pointer; font-size: 0.82rem; font-weight: 600; font-family: inherit; transition: all 0.2s; }
+    .timer-chip:hover { border-color: var(--primary); }
+    .timer-input { width: 74px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border); color: #fff; border-radius: 8px; padding: 0.4rem 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; outline: none; text-align: center; }
+    .timer-input:focus { border-color: var(--primary); }
+    .custom-timer-row { display: flex; gap: 0.5rem; align-items: center; }
+    .modal-section-title { font-size: 0.82rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+    .checklist-container { display: flex; flex-direction: column; gap: 0.75rem; }
+    .check-row { display: flex; align-items: flex-start; gap: 0.85rem; padding: 0.85rem 1rem; border-radius: 10px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.04); cursor: pointer; line-height: 1.5; transition: background 0.15s; }
+    .check-row:hover { background: rgba(56, 189, 248, 0.05); }
+    .check-row input[type="checkbox"] { width: 1.25rem; height: 1.25rem; accent-color: var(--primary); margin-top: 0.15rem; flex-shrink: 0; cursor: pointer; }
+    .check-row input:checked + span { text-decoration: line-through; color: var(--text-dim); }
+    .plan-hint { font-size: 0.78rem; color: var(--text-dim); margin-bottom: 0.9rem; line-height: 1.5; }
+    .slot-block { margin-bottom: 1.1rem; }
+    .slot-title { font-size: 0.78rem; font-weight: 800; color: var(--accent-green); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+    .meal-row { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); padding: 0.6rem 0.85rem; border-radius: 10px; margin-bottom: 0.45rem; flex-wrap: wrap; }
+    .meal-name { font-size: 0.92rem; font-weight: 600; }
+    .meal-qty { background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: var(--primary); font-size: 0.7rem; font-weight: 800; padding: 0.1rem 0.4rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; vertical-align: middle; white-space: nowrap; }
+    .meal-ctrl { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
+    .portion-mini { display: flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; color: var(--text-dim); font-weight: 800; cursor: default; }
+    .portion-mini input { width: 48px; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border); color: var(--primary); border-radius: 8px; padding: 0.35rem 0.15rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 800; text-align: center; outline: none; transition: border 0.2s; }
+    .portion-mini input:focus, .portion-mini:hover input { border-color: var(--primary); }
+    .mini-btn { background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border); color: #fff; border-radius: 8px; width: 34px; height: 34px; cursor: pointer; font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .mini-btn:hover { border-color: var(--primary); }
+    .mini-btn.del:hover { border-color: var(--accent-rose); color: var(--accent-rose); }
+    .plan-empty { background: rgba(255, 255, 255, 0.02); border: 1px dashed var(--border); border-radius: 12px; padding: 1.4rem; text-align: center; color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; }
+    .aisle-block { margin-bottom: 1.1rem; }
+    .aisle-title { font-size: 0.8rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; letter-spacing: 0.04em; }
+    .grocery-row span { font-size: 0.9rem; }
+    .plan-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1rem; margin-top: 0.25rem; flex-wrap: wrap; gap: 0.75rem; }
+    .goals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .goals-grid label { display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+    .goals-grid input { background: rgba(10, 17, 34, 0.65); border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 0.8rem; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 1rem; outline: none; }
+    .goals-grid input:focus { border-color: var(--primary); }
+    .timer-float { position: fixed; bottom: 1.5rem; right: 1.5rem; background: rgba(11, 19, 41, 0.92); border: 1px solid var(--primary); border-radius: 16px; padding: 0.85rem 1.25rem; display: flex; align-items: center; gap: 1rem; z-index: 900; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); }
+    .timer-clock { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+    .timer-stop-btn { background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); color: var(--accent-rose); padding: 0.4rem 0.85rem; border-radius: 8px; font-weight: 700; font-size: 0.8rem; cursor: pointer; font-family: inherit; }
+    #toasts { position: fixed; left: 1.5rem; bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; z-index: 1200; }
+    .toast { background: rgba(11, 19, 41, 0.95); border: 1px solid var(--border-hover); border-left: 4px solid var(--primary); border-radius: 12px; padding: 0.8rem 1.1rem; font-size: 0.88rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); animation: toastIn 0.25s ease; max-width: 360px; backdrop-filter: blur(8px); line-height: 1.5; }
+    .toast.success { border-left-color: var(--accent-green); }
+    .toast.warn { border-left-color: var(--accent-amber); }
+    .toast.out { opacity: 0; transform: translateX(-10px); transition: all 0.35s; }
+    @keyframes toastIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .app-footer { margin-top: 3rem; text-align: center; color: var(--text-dim); font-size: 0.78rem; line-height: 1.7; }
+    #printArea { display: none; }
+    @media print {
+      body { background: #fff !important; }
+      body > * { display: none !important; }
+      #printArea { display: block !important; color: #000; padding: 2rem; font-family: Georgia, serif; }
+      #printArea h1 { font-size: 1.5rem; margin-bottom: 0.3rem; }
+      #printArea .p-sub { color: #444; margin-bottom: 1rem; }
+      #printArea h3 { margin: 1rem 0 0.4rem; border-bottom: 2px solid #000; padding-bottom: 0.2rem; }
+      #printArea ul, #printArea ol { margin-left: 1.4rem; }
+      #printArea li { margin-bottom: 0.35rem; line-height: 1.45; }
+    }
+    @media (max-width: 640px) {
+      body { padding: 1.25rem 1rem 7rem; }
+      .recipes-grid { grid-template-columns: 1fr; }
+      .dashboard { padding: 1.1rem; }
+      .modal-window { padding: 1.25rem; }
+      .dash-heading { font-size: 1.2rem; }
+      .nav-actions { width: 100%; }
+      .btn-top { flex: 1; justify-content: center; }
+      .toolbar-row { flex-direction: column; align-items: stretch; }
+      .sort-group { justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="navbar">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-title">Meal Prep Hub</div>
+          <div class="brand-sub">Objectif : <span id="goalCalBrand">~2300</span> kcal • <span id="brandCount">…</span></div>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-top" onclick="surpriseMe()">🎲 Surprise</button>
+        <button class="btn-top" onclick="openGoals()">⚙️ Objectifs</button>
+        <button class="btn-top" onclick="triggerQuickTimer()">⏱️ Minuteur</button>
+        <button class="btn-top active-plan" onclick="openGroceryModal()">
+          <span>📅 Mon Plan Jour</span>
+          <span class="pill-badge" id="planBadge">0</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="dashboard">
+      <div class="dash-top">
+        <div>
+          <div class="dash-label">Suivi en direct — <span id="dashDate"></span></div>
+          <h2 class="dash-heading">Équilibre Nutritionnel Journalier</h2>
+        </div>
+        <div class="dash-actions-right">
+          <button class="btn-top btn-gen" onclick="generateDay()">✨ Composer ma journée</button>
+          <button class="btn-reset" onclick="restoreDeletedRecipes()">↺ Restaurer recettes masquées</button>
+          <button class="btn-reset" onclick="resetDayPlan()">↺ Réinitialiser la journée</button>
+        </div>
+      </div>
+      <div class="macro-grid">
+        <div class="macro-box">
+          <div class="macro-box-title"><span>Calories</span><span class="macro-numbers"><strong id="valCal">0</strong> / <span id="goalCal">2300 kcal</span></span></div>
+          <div class="progress-track"><div id="barCal" class="progress-bar bar-cal"></div></div>
+          <div class="macro-rem" id="remCal"></div>
+        </div>
+        <div class="macro-box">
+          <div class="macro-box-title"><span>Protéines</span><span class="macro-numbers"><strong id="valProt">0</strong> / <span id="goalProt">170 g</span></span></div>
+          <div class="progress-track"><div id="barProt" class="progress-bar bar-prot"></div></div>
+          <div class="macro-rem" id="remProt"></div>
+        </div>
+        <div class="macro-box">
+          <div class="macro-box-title"><span>Glucides</span><span class="macro-numbers"><strong id="valCarb">0</strong> / <span id="goalCarb">235 g</span></span></div>
+          <div class="progress-track"><div id="barCarb" class="progress-bar bar-carb"></div></div>
+          <div class="macro-rem" id="remCarb"></div>
+        </div>
+        <div class="macro-box">
+          <div class="macro-box-title"><span>Lipides</span><span class="macro-numbers"><strong id="valFat">0</strong> / <span id="goalFat">65 g</span></span></div>
+          <div class="progress-track"><div id="barFat" class="progress-bar bar-fat"></div></div>
+          <div class="macro-rem" id="remFat"></div>
+        </div>
+      </div>
+      <div class="week-wrap">
+        <div class="week-title">📈 7 derniers jours <em>— kcal enregistrées automatiquement à chaque visite</em></div>
+        <div class="week-chart" id="weekChart"></div>
+      </div>
+    </section>
+
+    <section class="controls-wrapper">
+      <div class="search-input-group">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Rechercher par nom ou ingrédient (ex : porc, patate douce, riz…) — raccourci : /" oninput="filterCards()">
+      </div>
+      <nav class="nav-pills">
+        <button class="pill-btn active" data-cat="dejeuners" onclick="switchCategory('dejeuners')"><span>Déjeuners</span> <span class="pill-badge" id="count-dejeuners">0</span></button>
+        <button class="pill-btn" data-cat="diners" onclick="switchCategory('diners')"><span>Dîners</span> <span class="pill-badge" id="count-diners">0</span></button>
+        <button class="pill-btn" data-cat="soupers" onclick="switchCategory('soupers')"><span>Soupers</span> <span class="pill-badge" id="count-soupers">0</span></button>
+        <button class="pill-btn" data-cat="shakes" onclick="switchCategory('shakes')"><span>Shakes Protéinés</span> <span class="pill-badge" id="count-shakes">0</span></button>
+        <button class="pill-btn" data-cat="smoothies" onclick="switchCategory('smoothies')"><span>Smoothies Santé</span> <span class="pill-badge" id="count-smoothies">0</span></button>
+      </nav>
+      <div class="toolbar-row">
+        <div class="filter-chips">
+          <button class="chip" id="chipFav" onclick="toggleFilter('onlyFav', this)">❤️ Favoris</button>
+          <button class="chip" id="chipProt" onclick="toggleFilter('highProt', this)">💪 40 g+ Protéines</button>
+        </div>
+        <div class="sort-group">
+          <label for="sortSelect">Trier :</label>
+          <select id="sortSelect" class="sort-select" onchange="setSort(this.value)">
+            <option value="pertinence">Pertinence</option>
+            <option value="prot">Protéines ↓</option>
+            <option value="calDesc">Calories ↓</option>
+            <option value="calAsc">Calories ↑</option>
+            <option value="note">Ma note ↓</option>
+            <option value="az">A → Z</option>
+          </select>
+          <span class="result-count" id="resultCount"></span>
+        </div>
+      </div>
+    </section>
+
+    <div id="cardsContainer" class="recipes-grid"></div>
+
+    <div id="emptyState" class="empty-state" style="display:none;">
+      <span class="big">🍳</span>
+      <h3>Aucune recette trouvée</h3>
+      <p id="emptyMsg">Essaie un autre mot-clé, ou désactive les filtres actifs.</p>
+      <button id="emptyResetBtn" onclick="clearFilters()">Réinitialiser les filtres</button>
+    </div>
+
+    <footer class="app-footer">
+      Tes données (plan, favoris, notes, objectifs, historique) sont sauvegardées automatiquement dans ton navigateur — rien ne quitte cet appareil.<br>
+      Astuce : appuie sur <strong>/</strong> pour chercher, <strong>Échap</strong> pour fermer les fenêtres, et ajuste les portions <strong>(×N)</strong> de chaque repas dans ton plan — l'épicerie se recalcule toute seule.
+    </footer>
+  </div>
+
+  <div class="modal-overlay" id="cookModal" onclick="if(event.target===this)closeModal('cookModal')">
+    <div class="modal-window">
+      <div class="modal-header-row">
+        <div>
+          <h2 class="modal-title" id="mTitle">Recette</h2>
+          <div class="modal-sub" id="mMacros">Macros</div>
+        </div>
+        <button class="btn-close-modal" onclick="closeModal('cookModal')">&times;</button>
+      </div>
+      <div class="modal-actions-row">
+        <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(15,23,42,0.8); padding:0.3rem 0.8rem; border-radius:8px; border:1px solid var(--border);">
+          <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Portions :</span>
+          <input type="number" id="portionInput" value="1" min="1" max="20" style="width:50px; background:transparent; border:none; color:var(--primary); font-family:'JetBrains Mono', monospace; font-size:1rem; font-weight:800; outline:none; text-align:center;" oninput="updatePortions()">
+        </div>
+        <button class="timer-chip" onclick="printRecipe()">🖨️ Imprimer</button>
+        <button class="timer-chip" onclick="copyRecipe()">📋 Copier</button>
+        <span class="step-prog" id="stepProg">0/0 étapes</span>
+      </div>
+      <div class="timer-ribbon">
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Minuteurs :</span>
+        <div class="ribbon-btns">
+          <button class="timer-chip" onclick="startTimer(5*60)">5 min</button>
+          <button class="timer-chip" onclick="startTimer(10*60)">10 min</button>
+          <button class="timer-chip" onclick="startTimer(15*60)">15 min</button>
+          <button class="timer-chip" onclick="startTimer(20*60)">20 min</button>
+          <button class="timer-chip" onclick="startTimer(25*60)">25 min</button>
+          <input type="number" id="customMin" min="1" max="180" placeholder="min" class="timer-input" onkeydown="if(event.key==='Enter')customTimer()">
+          <button class="timer-chip" onclick="customTimer()">▶</button>
+        </div>
+      </div>
+      <div>
+        <div class="modal-section-title">Ingrédients Requis (Checklist)</div>
+        <div class="checklist-container" id="mIngredients"></div>
+      </div>
+      <div>
+        <div class="modal-section-title">Étapes de Préparation Détaillées (Guide Pas-à-Pas)</div>
+        <div class="checklist-container" id="mSteps"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="groceryModal" onclick="if(event.target===this)closeModal('groceryModal')">
+    <div class="modal-window">
+      <div class="modal-header-row">
+        <div>
+          <h2 class="modal-title">📅 Mon Plan du Jour</h2>
+          <div class="modal-sub" id="planTotals">0 kcal</div>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <button class="btn-top" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="generateDay()">✨ Générer auto</button>
+          <button class="btn-top" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="copyGroceryToClipboard()">📋 Copier la liste</button>
+          <button class="btn-close-modal" onclick="closeModal('groceryModal')">&times;</button>
+        </div>
+      </div>
+      <div id="planMeals"></div>
+      <div>
+        <div class="modal-section-title">Liste d'Épicerie Consolidée <span id="groceryCount" style="color:var(--text-dim);text-transform:none;letter-spacing:0;"></span></div>
+        <div id="gList"></div>
+      </div>
+      <div class="plan-footer">
+        <button class="btn-reset" onclick="resetDayPlan(); renderPlanModal();">🧹 Vider le plan</button>
+        <button class="btn-reset" onclick="toggleGroceryClearChecks()">☐ Décocher tout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="quickTimerModal" onclick="if(event.target===this)closeModal('quickTimerModal')">
+    <div class="modal-window" style="max-width:480px;">
+      <div class="modal-header-row">
+        <div>
+          <h2 class="modal-title">⏱️ Minuteur Rapide</h2>
+          <div class="modal-sub">Trois bips sonores à la fin</div>
+        </div>
+        <button class="btn-close-modal" onclick="closeModal('quickTimerModal')">&times;</button>
+      </div>
+      <div class="ribbon-btns">
+        <button class="timer-chip" onclick="startTimer(60)">1 min</button>
+        <button class="timer-chip" onclick="startTimer(3*60)">3 min</button>
+        <button class="timer-chip" onclick="startTimer(5*60)">5 min</button>
+        <button class="timer-chip" onclick="startTimer(10*60)">10 min</button>
+        <button class="timer-chip" onclick="startTimer(15*60)">15 min</button>
+        <button class="timer-chip" onclick="startTimer(20*60)">20 min</button>
+        <button class="timer-chip" onclick="startTimer(30*60)">30 min</button>
+      </div>
+      <div class="custom-timer-row">
+        <input type="number" id="customMinQuick" min="1" max="180" placeholder="min" class="timer-input" onkeydown="if(event.key==='Enter')customTimerQuick()">
+        <button class="timer-chip" onclick="customTimerQuick()">▶ Démarrer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="goalsModal" onclick="if(event.target===this)closeModal('goalsModal')">
+    <div class="modal-window" style="max-width:480px;">
+      <div class="modal-header-row">
+        <div>
+          <h2 class="modal-title">⚙️ Mes Objectifs</h2>
+          <div class="modal-sub">Ajuste tes cibles quotidiennes</div>
+        </div>
+        <button class="btn-close-modal" onclick="closeModal('goalsModal')">&times;</button>
+      </div>
+      <div class="goals-grid">
+        <label>Calories (kcal)<input type="number" id="gCal" min="1000" max="6000"></label>
+        <label>Protéines (g)<input type="number" id="gProt" min="40" max="400"></label>
+        <label>Glucides (g)<input type="number" id="gCarb" min="40" max="800"></label>
+        <label>Lipides (g)<input type="number" id="gFat" min="20" max="300"></label>
+      </div>
+      <div class="plan-footer" style="justify-content:flex-end;">
+        <button class="btn-top" onclick="saveGoals()">💾 Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="timer-float" id="timerBar" style="display:none;">
+    <span class="timer-clock" id="timerClock">00:00</span>
+    <button class="timer-chip" onclick="addTimerSeconds(60)" title="Ajouter une minute">+1 min</button>
+    <button class="timer-stop-btn" onclick="stopTimer()">Arrêter</button>
+  </div>
+
+  <div id="toasts"></div>
+  <div id="printArea"></div>
+
+  <script>
+    // ============================================================
+    // 1) DONNÉES
+    //    Format : {"nom":"…","type":"…","macros":"~XXX kcal | XXg Protéines | XXg Glucides | XXg Lipides","ingredients":["…"],"instructions":["…"]}
+    //    Colle tes recettes aux endroits marqués ▼ — tout le reste
+    //    de l'application (compteurs, recherche, épicerie, plan,
+    //    générateur) s'adapte automatiquement.
+    // ============================================================
+const DATA_STORE = {
+  "dejeuners": [
+    {"nom":"Omelette Western","type":"Protéiné","macros":"~450 kcal | 40g Protéines | 30g Glucides | 18g Lipides","ingredients":["2 gros œufs + 3 c. à s. blancs d œufs","40 g jambon maigre en dés","1/3 poivron vert en dés","1/4 oignon jaune émincé","15 g cheddar râpé léger","2 tranches pain de blé entier","Sel, poivre, spray d huile"],"instructions":["1. Chauffe une poêle à feu moyen avec un spray d huile.","2. Dans un bol, fouette vigoureusement les œufs et les blancs d œufs.","3. Fais revenir le jambon, le poivron et l oignon pendant 2 minutes en remuant.","4. Verse les œufs sur les légumes et saupoudre immédiatement le cheddar.","5. Laisse cuire jusqu à ce que le centre soit ferme, plie en deux avec une spatule et sers avec le pain grillé."]},
+    {"nom":"Burrito Déjeuner","type":"Sur le pouce","macros":"~460 kcal | 35g Protéines | 42g Glucides | 16g Lipides","ingredients":["1 grande tortilla de blé entier","2 gros œufs","50 g bœuf haché extra-maigre","1 c. à soupe salsa","15 g fromage marbré râpé","Poudre d ail, sel, poivre"],"instructions":["1. Cuis le bœuf haché dans une poêle à feu moyen avec les épices jusqu à ce qu il soit bien brun. Réserve dans une assiette.","2. Dans la même poêle, verse les œufs battus et remue doucement pour faire des œufs brouillés tendres.","3. ATTENTION : Laisse tiédir la viande et les œufs 10 minutes. Les mettre chauds dans un plat fermé va créer de la condensation et détremper la tortilla.","4. Chauffe la tortilla 10 secondes au micro-ondes pour l assouplir. Dépose la garniture tiède, la salsa et le fromage au centre.","5. Rabats les côtés vers l intérieur et roule très serré.","6. Option croustillante : Vaporise un spray d huile sur le burrito et passe-le 10 minutes au four à 400 F (200 C)."]},
+    {"nom":"Baked Oatmeal Banane et Pacanes","type":"Sans Cuisson Matin","macros":"~490 kcal | 36g Protéines | 58g Glucides | 11g Lipides","ingredients":["50 g flocons d avoine","1 scoop protéine chocolat-noisette","1/2 banane mûre écrasée","100 ml boisson d amande","7 g pacanes hachées","Pincée cannelle et levure chimique"],"instructions":["1. Préchauffe ton four à 350 F (180 C).","2. Dans un petit plat allant au four, écrase la banane à la fourchette pour en faire une purée lisse.","3. Ajoute l avoine, la protéine, la cannelle et la levure. Mélange à sec.","4. Verse la boisson d amande et remue jusqu à obtenir une texture homogène.","5. Dépose les pacanes sur le dessus et cuis au four pendant 20 minutes."]},
+    {"nom":"Sandwich Matinal Double Œuf et Dinde","type":"Transportable","macros":"~495 kcal | 38g Protéines | 40g Glucides | 18g Lipides","ingredients":["1 muffin anglais blé entier","2 gros œufs","3 tranches bacon de dinde","1 tranche suisse allégé","1 pomme moyenne"],"instructions":["1. Fais dorer le bacon de dinde à la poêle à feu moyen (environ 2 minutes par côté).","2. Dans la même poêle, cuis les 2 œufs au plat.","3. ATTENTION : Laisse la chaleur s échapper des œufs et du bacon sur une assiette quelques minutes. Un assemblage brûlant mis au frigo rendra le pain pâteux.","4. Fais griller le muffin anglais au grille-pain.","5. Monte le sandwich : pain du bas, œufs, tranche de fromage suisse, bacon, puis referme. Emballe dans du papier aluminium. Sers avec la pomme."]},
+    {"nom":"Bol Brunch Cottage et Avocat Toast","type":"Sans Cuisson","macros":"~480 kcal | 36g Protéines | 48g Glucides | 14g Lipides","ingredients":["1 tasse (250g) fromage cottage 1%","1/2 tasse petits fruits","2 tranches pain de blé entier","1/4 avocat écrasé","Sel, poivre"],"instructions":["1. Remplis la moitié de ton bol ou plat hermétique avec le fromage cottage.","2. Rince les petits fruits à l eau froide et dépose-les à côté du fromage.","3. Fais griller les tranches de pain au grille-pain.","4. Dans une petite assiette, écrase la chair de l avocat avec une fourchette, ajoute du sel et du poivre.","5. Tartine la purée d avocat sur tes pains chauds juste avant de manger."]},
+    {"nom":"Frittata Épinards Champignons et Féta","type":"Lunchbox","macros":"~485 kcal | 39g Protéines | 41g Glucides | 16g Lipides","ingredients":["2 gros œufs","1/3 tasse champignons tranchés","1 grosse poignée d épinards frais","20 g féta émiettée","2 tranches pain de blé entier"],"instructions":["1. Chauffe une poêle à feu moyen. Fais revenir les champignons et les épinards jusqu à ce qu ils réduisent de taille (environ 3 minutes).","2. Bats les œufs dans un bol et verse-les directement sur les légumes dans la poêle.","3. Émiette le fromage féta avec tes doigts et répartis-le sur les œufs.","4. Baisse le feu au minimum, mets un couvercle et laisse cuire jusqu à ce que le centre soit solide. Sers avec le pain."]},
+    {"nom":"Bagel Thon Fondu au Fromage","type":"Chaud","macros":"~515 kcal | 42g Protéines | 48g Glucides | 15g Lipides","ingredients":["1 bagel blé entier","1 boîte thon blanc (120g) égoutté","1 c. à soupe yogourt grec 0%","30 g mozzarella râpée légère","Rondelles de tomate"],"instructions":["1. Ouvre la boîte de thon, vide bien toute l eau dans l évier et émiette la chair dans un bol.","2. Ajoute le yogourt grec, le sel et le poivre. Mélange bien à la fourchette pour remplacer la mayonnaise.","3. Coupe le bagel en deux et place les moitiés sur une plaque allant au four.","4. Tartine le mélange de thon sur chaque moitié, ajoute une rondelle de tomate et couvre de mozzarella.","5. Cuis au four à la fonction Broil (gril) pendant 4 minutes en surveillant pour dorer le fromage."]},
+    {"nom":"Crêpes Protéinées Cottage","type":"Sucré","macros":"~505 kcal | 39g Protéines | 60g Glucides | 8g Lipides","ingredients":["1/2 tasse flocons d avoine","1/2 tasse cottage 1%","2 gros œufs","1/2 banane","1 c. à soupe sirop d érable"],"instructions":["1. Verse l avoine, le fromage cottage, les œufs et la banane dans le mélangeur (blender).","2. Mixe à vitesse maximale pendant 45 secondes pour obtenir une pâte lisse sans grumeaux.","3. Chauffe une poêle à feu moyen avec un léger spray d huile.","4. Verse des petits ronds de pâte. Quand des bulles apparaissent à la surface (environ 2 minutes), retourne-les avec une spatule.","5. Cuis l autre face 1 minute et sers avec le sirop d érable."]},
+    {"nom":"Gruau Frigo Choco-Banane","type":"Froid","macros":"~495 kcal | 37g Protéines | 64g Glucides | 9g Lipides","ingredients":["1/2 tasse flocons d avoine","1 scoop protéine chocolat-noisette","1/2 c. à soupe graines de chia","150 ml boisson d amande","1/2 banane en rondelles"],"instructions":["1. Dans un contenant hermétique ou un pot en verre, dépose l avoine, la protéine en poudre et les graines de chia.","2. Verse la boisson d amande et mélange vigoureusement le fond pendant 30 secondes pour dissoudre la poudre.","3. Coupe la banane en rondelles et dépose-les sur le dessus du mélange.","4. Referme le couvercle et place au frigo toute la nuit. Prêt à manger froid le lendemain."]},
+    {"nom":"Omelette Dinde et Poivrons","type":"Salé","macros":"~490 kcal | 41g Protéines | 45g Glucides | 14g Lipides","ingredients":["2 gros œufs + 3 c. à soupe blancs d œufs","100 g poitrine dinde fumée en dés","1/2 poivron rouge émincé","2 tranches pain de blé entier","1 c. à soupe confiture"],"instructions":["1. Chauffe une poêle à feu moyen avec un spray d huile. Fais dorer les dés de dinde et les lanières de poivron pendant 3 minutes.","2. Dans un bol, bats les œufs et les blancs avec une fourchette. Verse le mélange sur la viande et les légumes.","3. Laisse cuire sans toucher jusqu à ce que les bords soient fermes. Passe une spatule en dessous et plie l omelette en deux.","4. Fais griller le pain et tartine la confiture pour accompagner."]},
+    {"nom":"Breakfast Bowl Quinoa et Œufs","type":"Fibreux","macros":"~510 kcal | 36g Protéines | 56g Glucides | 16g Lipides","ingredients":["1 tasse quinoa cuit","2 gros œufs","1/2 tasse haricots noirs rincés","Salsa fraîche","1/4 avocat en dés"],"instructions":["1. Place le quinoa préalablement cuit au fond d un bol (chauffe-le un peu si désiré).","2. Rince abondamment les haricots noirs sous l eau froide dans une passoire, puis ajoute-les au bol.","3. Cuis 2 œufs au plat dans une poêle à feu moyen pendant environ 3 minutes (le blanc doit être ferme et le jaune coulant).","4. Glisse les œufs sur le quinoa, ajoute la salsa et les cubes d avocat."]},
+    {"nom":"English Muffin Smash Burger","type":"Gourmand","macros":"~525 kcal | 42g Protéines | 38g Glucides | 21g Lipides","ingredients":["1 muffin anglais blé entier","100 g bœuf haché extra-maigre","1 gros œuf","1 tranche cheddar canadien","1 tranche tomate"],"instructions":["1. Façonne la viande hachée en une galette très plate avec tes mains. Ajoute sel et poivre.","2. Chauffe une poêle à feu vif. Dépose la galette et presse-la très fort contre le fond avec une spatule. Cuis 2 minutes par face.","3. Pose la tranche de cheddar sur la viande lors de la dernière minute de cuisson pour la faire fondre. Dans la même poêle, cuis l œuf au plat.","4. Fais griller le muffin anglais au grille-pain.","5. Assemble le sandwich : base du pain, viande fromagée, œuf, tomate, chapeau du pain."]},
+    {"nom":"Scramble Œufs et Dinde Épicée","type":"Protéiné","macros":"~480 kcal | 42g Protéines | 35g Glucides | 18g Lipides","ingredients":["3 gros œufs","100 g dinde hachée maigre cuite","1/2 c. à thé curcuma et paprika","1/2 tasse haricots rouges rincés","2 tranches pain blé entier","1 poignée d épinards"],"instructions":["1. Dans une poêle à feu moyen, réchauffe la dinde hachée déjà cuite avec le curcuma, le paprika, les haricots rouges rincés et les épinards.","2. Remue pendant 2 minutes jusqu à ce que les épinards fondent.","3. Bats les 3 œufs dans un bol et verse-les dans la poêle avec le reste des ingrédients.","4. Brasse lentement avec une spatule pour cuire les œufs brouillés. Sers avec le pain grillé."]},
+    {"nom":"Toast Saumon Fumé et Œuf Poché","type":"Oméga-3","macros":"~485 kcal | 37g Protéines | 42g Glucides | 17g Lipides","ingredients":["2 tranches pain de blé entier","90 g saumon fumé","2 gros œufs","2 c. à soupe yogourt grec 0% citronné","Concombre croquant"],"instructions":["1. Fais frémir de l eau dans une petite casserole avec une goutte de vinaigre. Casse tes œufs dedans et laisse pocher 3 minutes. Sors-les avec une cuillère trouée.","2. Fais griller le pain. Mélange le yogourt grec avec un filet de jus de citron et tartine-le sur les toasts.","3. Dépose les tranches de saumon fumé par-dessus, puis ajoute délicatement les œufs pochés.","4. Sers immédiatement avec des rondelles de concombre frais en accompagnement."]},
+    {"nom":"Parfait Grec Pommes Cannelle","type":"Frais","macros":"~475 kcal | 38g Protéines | 58g Glucides | 8g Lipides","ingredients":["1 tasse yogourt grec 0%","1 pomme en dés","1/3 tasse avoine","1 c. à soupe sirop d érable","1/2 c. à thé cannelle"],"instructions":["1. Chauffe une poêle à sec (sans huile) à feu moyen. Ajoute l avoine et remue constamment pendant 3 minutes pour la faire griller. Laisse refroidir.","2. Coupe la pomme en petits cubes en retirant le cœur.","3. Dans un bol ou un pot en verre, étale une couche de yogourt, ajoute la moitié des pommes et saupoudre de cannelle.","4. Répète avec le reste du yogourt et des pommes. Termine en ajoutant l avoine grillée sur le dessus et verse le sirop d érable."]},
+    {"nom":"Burrito Dinde et Patate Douce","type":"Gourmand","macros":"~515 kcal | 40g Protéines | 52g Glucides | 15g Lipides","ingredients":["1 grande tortilla de blé entier","100 g purée de patates douces","70 g poitrine de dinde hachée cuite","2 gros œufs brouillés","15 g cheddar léger"],"instructions":["1. Dans une poêle à feu moyen, réchauffe la dinde hachée et cuis tes œufs brouillés juste à côté.","2. Étale la tortilla à plat sur le comptoir. Tartine la purée de patates douces au centre.","3. Ajoute la viande, les œufs cuits et le cheddar par-dessus la purée.","4. Laisse refroidir avant de rouler si tu prépares d avance pour éviter un pain détrempé. Pour rouler, replie les deux côtés et roule serré de bas en haut."]},
+    {"nom":"Bol Quinoa Cannelle et Amandes","type":"Chaud","macros":"~490 kcal | 35g Protéines | 55g Glucides | 14g Lipides","ingredients":["1 tasse quinoa cuit","1 scoop protéine chocolat-noisette","150 ml boisson d amande chaude","15 g amandes tranchées","1/2 banane"],"instructions":["1. Chauffe la boisson d amande au micro-ondes pendant environ 45 secondes.","2. Dépose le quinoa cuit dans un bol et chauffe-le légèrement s il sort du réfrigérateur.","3. Ajoute la poudre de protéine directement sur le quinoa chaud.","4. Verse la boisson d amande tiède et remue vigoureusement pour lier la poudre en une texture crémeuse.","5. Garnis avec la banane en tranches et les amandes."]},
+    {"nom":"Gaufre Protéinée","type":"Batchable","macros":"~485 kcal | 38g Protéines | 50g Glucides | 13g Lipides","ingredients":["1/3 tasse farine d avoine","1 scoop protéine chocolat-noisette","1 gros œuf","50 ml boisson d amande","1 c. à soupe sirop d érable"],"instructions":["1. Préchauffe ton gaufrier.","2. Dans un bol, fouette énergiquement la farine d avoine, la protéine, l œuf et la boisson d amande jusqu à élimination des gros grumeaux.","3. Vaporise un spray d huile sur les plaques du gaufrier et verse la pâte au centre.","4. Ferme l appareil sans appuyer et laisse cuire 4 minutes complètes.","5. Retire la gaufre délicatement avec une spatule et sers avec le sirop d érable."]},
+    {"nom":"Muffins Œufs Jambon Brocoli","type":"Sur le pouce","macros":"~490 kcal | 42g Protéines | 35g Glucides | 18g Lipides","ingredients":["2 gros œufs + 1 blanc","50 g jambon maigre en dés","1/3 tasse brocoli haché cuit","20 g cheddar râpé","2 tranches pain grillé"],"instructions":["1. Préchauffe le four à 375 F (190 C). Vaporise d huile deux cavités d un moule à muffins standard.","2. Répartis les petits morceaux de brocoli et les dés de jambon au fond des deux cavités.","3. Bats les œufs et le blanc avec sel et poivre, puis verse le liquide sur la garniture sans remplir jusqu au bord.","4. Saupoudre le cheddar râpé sur chaque muffin.","5. Cuis au four 20 minutes. Démoule avec une cuillère et sers avec le pain grillé."]},
+    {"nom":"Tartine Ricotta Miel et Shaker","type":"Express","macros":"~500 kcal | 38g Protéines | 52g Glucides | 16g Lipides","ingredients":["2 tranches pain blé","1/2 tasse ricotta allégée","1 c. à soupe miel","15 g noix concassées","1 scoop protéine (en shaker avec eau)"],"instructions":["1. Fais griller les tranches de pain au grille-pain pour qu elles soient bien croustillantes.","2. Tartine la ricotta allégée sur les tranches encore chaudes.","3. Fais couler le miel en filet sur le fromage et parsème les noix concassées.","4. Remplis ton shaker d eau très froide, ajoute la poudre de protéine et secoue vigoureusement pendant 20 secondes. Déguste le tout ensemble."]},
+    {"nom":"Bol Avoine Salé Bacon et Œuf","type":"Salé","macros":"~495 kcal | 37g Protéines | 48g Glucides | 17g Lipides","ingredients":["1/2 tasse avoine","1 tasse bouillon poulet","2 tranches bacon de dinde","2 gros œufs","Ciboulette"],"instructions":["1. Dans une petite casserole, verse l avoine et le bouillon de poulet. Porte à ébullition, puis baisse le feu et laisse mijoter 4 minutes jusqu à absorption. Verse dans un bol.","2. Cuis le bacon de dinde dans une poêle à feu moyen jusqu à ce qu il soit croustillant, puis hache-le.","3. Dans la même poêle, cuis les deux œufs au plat en gardant le jaune liquide.","4. Dépose les œufs sur l avoine chaude, ajoute les miettes de bacon et saupoudre de ciboulette fraîche."]},
+    {"nom":"Quesadilla Matinale","type":"Chaud","macros":"~510 kcal | 39g Protéines | 50g Glucides | 16g Lipides","ingredients":["1 grande tortilla de blé entier","2 gros œufs brouillés","1/4 tasse haricots noirs","20 g fromage râpé","2 c. à soupe salsa"],"instructions":["1. Dépose la tortilla à plat dans une grande poêle froide.","2. Sur une seule moitié de la tortilla, répartis uniformément les œufs brouillés, les haricots noirs rincés, la salsa et le fromage.","3. Replie l autre moitié par-dessus pour former une demi-lune et presse légèrement.","4. Allume le feu à moyen et fais dorer la quesadilla 2 minutes de chaque côté (retourne-la prudemment avec une grande spatule). Coupe en triangles."]},
+    {"nom":"Bol Cottage et Poire","type":"Frais","macros":"~475 kcal | 36g Protéines | 46g Glucides | 15g Lipides","ingredients":["1 tasse cottage 1%","1 poire en dés","20 g noix de Grenoble","1 tranche pain de blé entier","Cannelle"],"instructions":["1. Place le fromage cottage au centre d un bol.","2. Retire le cœur de la poire, coupe la chair en dés et dispose-les autour du fromage.","3. Écrase grossièrement les noix de Grenoble avec tes doigts et parsème-les sur le dessus.","4. Saupoudre d une pincée de cannelle.","5. Fais griller la tranche de pain de blé entier pour accompagner le bol."]},
+    {"nom":"Toast Arachide Banane et Blancs","type":"Classique","macros":"~520 kcal | 39g Protéines | 58g Glucides | 16g Lipides","ingredients":["2 tranches pain blé entier","2 c. à soupe beurre d arachide","1 banane en tranches","3 gros œufs durs (blancs uniquement)"],"instructions":["1. Fais cuire 3 œufs dans l eau bouillante pendant 9 minutes pour les avoir durs. Écale-les, coupe-les en deux et retire le jaune.","2. Fais griller les tranches de pain.","3. Tartine généreusement le beurre d arachide sur le pain chaud.","4. Coupe la banane en rondelles et dispose-les sur le beurre d arachide.","5. Mange les toasts d un côté et les blancs d œufs salés de l autre pour maximiser l apport en protéines."]},
+    {"nom":"Pain Doré Protéiné","type":"Réconfort","macros":"~500 kcal | 40g Protéines | 56g Glucides | 12g Lipides","ingredients":["3 tranches pain de blé entier","1 œuf + 2 blancs","1/2 scoop protéine chocolat","Un filet de lait","1 c. à soupe sirop d érable"],"instructions":["1. Dans une assiette creuse, fouette l œuf entier, les deux blancs, le filet de lait et la poudre de protéine jusqu à obtenir un liquide homogène.","2. Chauffe une grande poêle à feu moyen avec un spray d huile.","3. Plonge chaque tranche de pain dans le mélange environ 15 secondes par côté pour bien les imbiber.","4. Transfère le pain dans la poêle et cuis 3 minutes de chaque côté pour les faire gonfler et dorer. Sers avec le sirop d érable."]},
+    {"nom":"Riz Brun Poulet et Œuf Miroir","type":"Satiété","macros":"~530 kcal | 44g Protéines | 52g Glucides | 14g Lipides","ingredients":["1 tasse riz brun cuit","100 g poulet cuit effiloché","2 gros œufs miroir","Sauce soya, oignon vert"],"instructions":["1. Dans un contenant allant au micro-ondes, dépose le riz brun cuit et le poulet effiloché. Chauffe le tout 1 minute.","2. Chauffe une poêle à feu moyen et cuis les deux œufs au plat, en veillant à garder les jaunes bien liquides.","3. Fais glisser délicatement les œufs sur la préparation de riz et poulet.","4. Arrose de quelques gouttes de sauce soya et garnis d oignons verts ciselés. Perce les jaunes avant de mélanger."]},
+    {"nom":"Wrap Salade d Œufs","type":"Froid","macros":"~485 kcal | 36g Protéines | 44g Glucides | 17g Lipides","ingredients":["1 grande tortilla blé entier","3 gros œufs durs écrasés","2 c. à soupe yogourt grec 0%","1 c. à thé Dijon","Céleri haché, laitue"],"instructions":["1. Dans un bol, écrase fermement les 3 œufs durs froids avec une fourchette.","2. Ajoute le yogourt grec, la moutarde de Dijon, le céleri finement haché, le sel et le poivre. Mélange intimement.","3. Étale la tortilla à plat et dépose une feuille de laitue propre au centre.","4. Verse la préparation aux œufs sur la laitue.","5. Rabats les bords gauche et droit, puis roule la tortilla très serré pour finaliser le wrap."]},
+    {"nom":"Mug Cake Avoine Choco","type":"Gâteau Minute","macros":"~480 kcal | 38g Protéines | 54g Glucides | 12g Lipides","ingredients":["1/2 tasse farine d avoine","1 scoop protéine chocolat-noisette","1 gros œuf","1/2 banane écrasée","60 ml boisson d amande","1/2 c. à thé levure chimique"],"instructions":["1. Choisis une très grande tasse allant au micro-ondes.","2. Écrase la demi-banane en purée directement au fond de la tasse.","3. Ajoute la farine d avoine, la protéine en poudre, l œuf, la boisson d amande et la levure chimique.","4. Mélange très rigoureusement à la fourchette en t assurant qu il n y a pas de poudre sèche collée au fond.","5. Cuis au micro-ondes à puissance maximale pendant 90 secondes. Laisse tiédir avant de déguster."]},
+    {"nom":"Croque-Matin Dinde Pomme","type":"Sucré-Salé","macros":"~505 kcal | 40g Protéines | 48g Glucides | 16g Lipides","ingredients":["2 tranches pain blé entier","120 g dinde fumée tranchée","1/2 pomme tranchée mince","35 g cheddar léger"],"instructions":["1. Dispose la tranche de fromage cheddar sur l une des tranches de pain.","2. Ajoute les tranches de dinde fumée en les pliant légèrement pour donner du volume.","3. Coupe la demi-pomme en tranches très fines et superpose-les sur la dinde. Referme avec le deuxième pain.","4. Place le sandwich dans une poêle à feu doux. Pose un poids dessus (comme une petite assiette) et laisse dorer 3 minutes.","5. Retourne prudemment et cuis l autre face jusqu à ce que le fromage soit totalement fondu."]},
+    {"nom":"Toast Dinde Fumée Tomate","type":"Express","macros":"~450 kcal | 38g Protéines | 45g Glucides | 14g Lipides","ingredients":["2 tranches pain de blé entier","80 g dinde fumée tranchée","1 tomate en rondelles","1 c. à soupe moutarde à l ancienne","Quelques feuilles de laitue","Poivre"],"instructions":["1. Fais griller les deux tranches de pain au grille-pain.","2. Tartine la moutarde à l ancienne sur la base des pains.","3. Ajoute quelques feuilles de laitue, superpose les tranches de dinde fumée et termine par les rondelles de tomate.","4. Ajoute une généreuse pincée de poivre noir et déguste immédiatement."]}
+  ],
+  "diners": [
+    {"nom":"Burrito-Wrap Smash Big Mac","type":"Chaud","macros":"~610 kcal | 48g Protéines | 52g Glucides | 18g Lipides","ingredients":["1 grande tortilla blé entier","150 g bœuf haché extra-maigre","1 tranche cheddar léger","Laitue, cornichons, oignon","SAUCE : 2 c. à s. yogourt grec, 1 c. à thé mayo, relish, moutarde, paprika"],"instructions":["1. Cuis le bœuf haché dans une poêle à feu moyen-fort. En fin de cuisson, dépose la tranche de cheddar sur la viande pour la faire fondre.","2. Dans un petit contenant, prépare la sauce en mélangeant le yogourt, la mayo, la relish, la moutarde et le paprika.","3. ATTENTION : Pour un repas préparé d avance, laisse refroidir la viande avant de l emballer pour éviter la condensation.","4. Au moment du repas, chauffe la tortilla et la viande.","5. Dépose la viande chaude, la laitue, les cornichons, les oignons et la sauce sur la tortilla, puis roule fermement."]},
+    {"nom":"Salade Cobb Poulet et Bacon","type":"Froid","macros":"~615 kcal | 48g Protéines | 52g Glucides | 18g Lipides","ingredients":["150 g poitrine poulet cuite","2 tranches bacon dinde cuit émietté","1 œuf dur","1/2 tasse couscous perlé cuit","Romaine, chou rouge, tomates","Vinaigrette : yogourt, Dijon, érable, vinaigre"],"instructions":["1. Dispose le couscous perlé cuit et refroidi au fond d un grand contenant.","2. Ajoute le poulet cuit en morceaux, l œuf dur coupé en quartiers et le bacon de dinde croustillant émietté.","3. Complète avec la laitue romaine hachée, le chou rouge émincé et les tomates en dés.","4. Prépare la vinaigrette dans un petit pot en mélangeant le yogourt, la moutarde de Dijon, le sirop d érable et un filet de vinaigre.","5. Conserve au froid et verse la sauce en secouant le pot juste avant de manger."]},
+    {"nom":"Smash Burger Bowl et Patates Douces","type":"Réchauffable","macros":"~630 kcal | 49g Protéines | 56g Glucides | 17g Lipides","ingredients":["150 g bœuf haché (1 ou 2 galettes)","1 tranche cheddar","150 g patate douce en frites rôties","Cornichons, oignon, salade","Sauce : yogourt grec, relish, moutarde"],"instructions":["1. Façonne le bœuf en galettes minces et cuis-les à la poêle à feu vif. Pose le cheddar dessus pour le faire fondre.","2. Place les galettes et les frites de patates douces précuites dans un contenant allant au micro-ondes.","3. Conserve la salade, les oignons hachés, les cornichons et la sauce dans des compartiments séparés au froid.","4. Au moment de manger, réchauffe la viande et les frites pendant environ 2 minutes.","5. Ajoute la garniture froide et la sauce sur la viande chaude avant de déguster."]},
+    {"nom":"Salade Grecque Souvlaki Poulet","type":"Froid","macros":"~595 kcal | 47g Protéines | 54g Glucides | 16g Lipides","ingredients":["150 g poulet grillé froid","1/2 tasse orzo cuit","30 g féta","Concombre, poivrons, tomates","2 c. à soupe tzatzíki"],"instructions":["1. Dans un bol, dépose les pâtes orzo préalablement cuites et refroidies.","2. Ajoute le poulet grillé coupé en cubes.","3. Incorpore les légumes coupés en dés : concombre, tomates et poivrons.","4. Émiette grossièrement le fromage féta sur le dessus avec les doigts.","5. Conserve le tzatziki dans un pot à part et utilise-le comme vinaigrette épaisse au moment du repas."]},
+    {"nom":"Sandwich Focaccia Dinde Pesto","type":"Froid","macros":"~605 kcal | 45g Protéines | 54g Glucides | 19g Lipides","ingredients":["1 portion pain focaccia ou ciabatta","120 g dinde fumée","30 g mozzarella allégée","1 c. à soupe pesto","Poivrons rôtis, roquette"],"instructions":["1. Tranche le pain focaccia en deux dans le sens de l épaisseur.","2. Étale uniformément le pesto sur la mie inférieure.","3. Plie les tranches de dinde fumée en accordéon pour donner de l épaisseur au sandwich et dépose-les sur le pain.","4. Ajoute les poivrons rôtis bien égouttés et les tranches de mozzarella allégée.","5. Couronne le tout avec une poignée de roquette, referme le sandwich et presse légèrement."]},
+    {"nom":"Salade Nouilles Soba Teriyaki","type":"Froid","macros":"~620 kcal | 46g Protéines | 66g Glucides | 15g Lipides","ingredients":["150 g bœuf émincé cuit froid","60 g nouilles soba (poids cru) cuites","Carottes, edamames","SAUCE : 1 c. à s. soya, sésame, miel, gingembre"],"instructions":["1. Cuis les nouilles soba, rince-les abondamment à l eau glacée pour retirer l amidon, et dépose-les dans un contenant.","2. Ajoute les lanières de bœuf cuit et refroidi.","3. Incorpore les carottes râpées et les edamames écossés.","4. Dans un petit pot hermétique, prépare la sauce en combinant la sauce soya, l huile de sésame, le miel et le gingembre râpé. Secoue vigoureusement.","5. Verse la sauce sur la préparation froide et mélange bien avant de consommer."]},
+    {"nom":"Burrito Bowl Poulet Fajita","type":"Chaud","macros":"~610 kcal | 48g Protéines | 62g Glucides | 14g Lipides","ingredients":["150 g poulet émincé sauté aux épices","1/2 tasse riz jasmin cuit","1/3 tasse haricots noirs","Poivrons et oignons cuits","SAUCE : yogourt grec, salsa, lime"],"instructions":["1. Place le riz jasmin, le poulet sauté aux épices mexicaines et le mélange de poivrons et oignons cuits dans un contenant pour micro-ondes.","2. Ajoute les haricots noirs préalablement rincés à l eau.","3. Prépare la sauce dans un récipient séparé en mélangeant le yogourt grec, la salsa et le jus de lime.","4. Fais chauffer le bol contenant le riz et la viande au micro-ondes.","5. Verse la sauce froide sur la préparation chaude juste avant de manger."]},
+    {"nom":"Salade Pâtes Thon Câpres","type":"Froid","macros":"~590 kcal | 47g Protéines | 58g Glucides | 14g Lipides","ingredients":["1 boîte thon pâle égoutté","60 g rotinis blé entier (poids cru) cuits","Tomates, olives","SAUCE : yogourt grec, citron, moutarde, câpres"],"instructions":["1. Dépose les rotinis cuits et complètement refroidis dans un grand bol.","2. Égoutte fermement la boîte de thon et émiette la chair sur les pâtes à l aide d une fourchette.","3. Ajoute les tomates cerises coupées en deux et les olives tranchées.","4. Prépare la vinaigrette dans un pot en mélangeant le yogourt grec, le jus de citron, la moutarde et les câpres hachées.","5. Verse la sauce sur la salade et brasse soigneusement pour enrober les pâtes."]},
+    {"nom":"Bowl Poulet Shawarma","type":"Chaud/Froid","macros":"~605 kcal | 49g Protéines | 54g Glucides | 16g Lipides","ingredients":["150 g poulet shawarma cuit","1/2 tasse quinoa cuit","Tomate, concombre, persil","SAUCE : 2 c. à s. hummus avec un peu d eau et citron"],"instructions":["1. Mélange le quinoa froid avec des dés de tomate, de concombre et beaucoup de persil haché pour créer une base de taboulé. Place-le dans le contenant principal.","2. Conserve le poulet shawarma cuit dans un petit compartiment séparé pour le réchauffer sans chauffer la salade.","3. Délaie le hummus avec un trait d eau et de jus de citron dans un petit pot jusqu à obtenir une texture fluide.","4. Au moment du repas, réchauffe la viande seule au micro-ondes.","5. Dépose la viande chaude sur le taboulé froid et nappe avec la sauce au hummus."]},
+    {"nom":"Wrap Poulet César Bacon","type":"Transportable","macros":"~595 kcal | 48g Protéines | 48g Glucides | 18g Lipides","ingredients":["1 grande tortilla blé entier","150 g poulet rôti","2 tranches bacon de dinde émiettées","Laitue romaine","SAUCE : yogourt grec, parmesan, ail, citron"],"instructions":["1. Étale la grande tortilla à plat sur le comptoir.","2. Hache grossièrement la laitue romaine et dispose-la au centre.","3. Ajoute le poulet rôti coupé en morceaux et émiette le bacon de dinde croustillant par-dessus.","4. Prépare la vinaigrette dans un pot séparé : yogourt, parmesan râpé, jus de citron et une touche d ail.","5. Au moment de consommer, verse la sauce sur la garniture, rabats les côtés et roule le wrap très fermement."]},
+    {"nom":"Salade Thaï Poulet Vermicelles","type":"Froid","macros":"~615 kcal | 47g Protéines | 52g Glucides | 17g Lipides","ingredients":["150 g poulet haché cuit","40 g vermicelles riz crus (cuits et rincés)","Chou, carottes, coriandre","SAUCE : 1 c. à s. beurre d arachide, soya, lime, sriracha"],"instructions":["1. Cuis les vermicelles de riz, rince-les longuement à l eau froide et place-les dans un bol.","2. Ajoute le poulet haché préalablement cuit et refroidi.","3. Incorpore le chou émincé, les carottes râpées et les feuilles de coriandre fraîche.","4. Dans un petit pot hermétique, mélange le beurre d arachide, la sauce soya, le jus de lime et la sriracha pour obtenir une sauce onctueuse. Secoue fort.","5. Verse la sauce sur les nouilles et mélange vigoureusement avant de déguster."]},
+    {"nom":"Bowl Riz Poulet Piri-Piri","type":"Chaud","macros":"~620 kcal | 48g Protéines | 65g Glucides | 13g Lipides","ingredients":["150 g poulet piri-piri cuit","1/2 tasse riz basmati cuit","1/3 tasse maïs rôti","1/3 tasse haricots rouges","SAUCE : yogourt grec + sriracha/lime"],"instructions":["1. Dispose le riz basmati cuit, le poulet piri-piri tranché, les grains de maïs rôtis et les haricots rouges rincés dans un plat allant au micro-ondes.","2. Dans un contenant à part, prépare une sauce froide en fouettant le yogourt grec avec la sriracha et un filet de lime.","3. Réchauffe le plat principal au micro-ondes pendant environ 2 minutes jusqu à ce qu il soit bien chaud.","4. Nappe le plat fumant avec la sauce au yogourt épicée juste avant de consommer."]},
+    {"nom":"Salade Mexicaine Bœuf Orzo","type":"Chaud/Froid","macros":"~630 kcal | 46g Protéines | 58g Glucides | 19g Lipides","ingredients":["150 g bœuf haché épicé cuit","1/2 tasse orzo cuit","Tomates, maïs","1/6 avocat en dés","SAUCE : salsa, filet huile, lime"],"instructions":["1. Mélange l orzo cuit et le bœuf haché aux épices mexicaines dans un grand bol. Cette base peut se manger froide ou être réchauffée.","2. Ajoute les tomates en dés et les grains de maïs croquants.","3. Coupe la portion d avocat en petits cubes et dépose-les sur la préparation.","4. Prépare la vinaigrette dans un pot hermétique en combinant la salsa, l huile et le jus de lime. Secoue bien.","5. Verse la vinaigrette salsa sur le bol et mélange avant de déguster."]},
+    {"nom":"Wrap Poulet Buffalo","type":"Chaud/Froid","macros":"~590 kcal | 47g Protéines | 46g Glucides | 16g Lipides","ingredients":["1 grande tortilla","150 g poulet effiloché + sauce RedHot","Carottes, céleri, romaine","SAUCE : 2 c. à s. yogourt grec + 10g fromage bleu"],"instructions":["1. Chauffe légèrement le poulet effiloché mélangé à la sauce piquante type RedHot.","2. Étale la tortilla à plat et garnis-la avec la laitue romaine, les carottes râpées et le céleri finement tranché.","3. Prépare la sauce en écrasant les miettes de fromage bleu dans le yogourt grec.","4. Dépose la viande chaude sur les légumes croquants.","5. Ajoute la sauce au fromage bleu par-dessus, rabats les bords et roule le wrap fermement."]},
+    {"nom":"Pâtes Poulet Tomates Séchées","type":"Froid","macros":"~605 kcal | 48g Protéines | 56g Glucides | 16g Lipides","ingredients":["150 g poulet grillé froid","60 g penne crus (cuits et rincés)","20 g tomates séchées","20 g féta","SAUCE : huile olive, balsamique blanc, origan"],"instructions":["1. Dépose les penne cuits et refroidis dans un contenant hermétique.","2. Ajoute les morceaux de poulet grillé froid et les tomates séchées grossièrement hachées.","3. Émiette manuellement le fromage féta sur l ensemble des ingrédients.","4. Dans un petit récipient étanche, prépare la vinaigrette en mélangeant l huile d olive, le vinaigre balsamique blanc et l origan séché.","5. Secoue vigoureusement la vinaigrette et verse-la sur les pâtes. Brasse pour répartir les saveurs."]},
+    {"nom":"Riz Jasmin, Porc Ail-Soya","type":"Chaud","macros":"~615 kcal | 48g Protéines | 60g Glucides | 14g Lipides","ingredients":["150 g porc en lanières cuit","1/2 tasse riz jasmin cuit","Brocoli vapeur","SAUCE : 1 c. à s. soya, miel, ail, huile sésame"],"instructions":["1. Place le riz jasmin, les lanières de porc cuites et les bouquets de brocoli cuits à la vapeur dans un plat pour le micro-ondes.","2. Prépare la sauce dans un petit pot en mélangeant la sauce soya, le miel, l huile de sésame et un peu d ail finement haché.","3. Chauffes le plat principal pendant environ 2 minutes jusqu à ce que le repas soit très chaud.","4. Secoue fermement le pot de sauce pour bien lier le miel.","5. Verse la sauce sirupeuse directement sur le porc et le brocoli fumants."]},
+    {"nom":"Lentilles, Dinde et Dijon","type":"Froid","macros":"~580 kcal | 46g Protéines | 58g Glucides | 12g Lipides","ingredients":["1/2 tasse lentilles vertes cuites","120 g dinde fumée en cubes","Carottes râpées","SAUCE : 1 c. à s. Dijon, vinaigre cidre, filet huile"],"instructions":["1. Rince abondamment les lentilles vertes en boîte, égoutte-les bien et place-les dans un grand bol.","2. Ajoute les cubes épais de poitrine de dinde fumée.","3. Incorpore une généreuse quantité de carottes râpées pour apporter de la texture.","4. Prépare la vinaigrette dans un pot en mélangeant la moutarde de Dijon, le vinaigre de cidre et l huile. Secoue jusqu à obtenir une émulsion homogène.","5. Verse la vinaigrette sur la salade de lentilles, mélange intimement et consomme froid."]},
+    {"nom":"Patate Pilée, Bœuf et Ranch","type":"Chaud","macros":"~625 kcal | 49g Protéines | 58g Glucides | 15g Lipides","ingredients":["150 g bœuf haché cuit","200 g purée patate douce","100 g haricots verts","SAUCE : yogourt grec, aneth, ail, citron"],"instructions":["1. Dispose la purée de patates douces, le bœuf haché cuit et les haricots verts dans un plat allant au micro-ondes.","2. Prépare la sauce style 'Ranch' allégée dans un pot distinct en mélangeant le yogourt grec, l aneth, la poudre d ail et un filet de jus de citron. Conserve-la au froid.","3. Réchauffe le plat principal jusqu à ce que la purée et la viande soient très chaudes.","4. Retire le plat du four et nappe immédiatement la viande de la sauce fraîche pour créer un contraste de température."]},
+    {"nom":"Wrap Souvlaki Porc","type":"Chaud","macros":"~600 kcal | 47g Protéines | 48g Glucides | 16g Lipides","ingredients":["1 grande tortilla","150 g porc lanières cuit (origan/citron)","Tomates, oignon","2 c. à s. tzatzíki"],"instructions":["1. Réchauffe les lanières de porc marinées et la tortilla au micro-ondes ou à la poêle.","2. ATTENTION : Garde les tomates et les oignons tranchés au réfrigérateur jusqu au dernier moment pour préserver leur croquant.","3. Étale généreusement le tzatziki sur la surface de la tortilla chaude.","4. Dépose la viande chaude, puis ajoute immédiatement les légumes froids par-dessus.","5. Roule le wrap fermement en repliant les extrémités pour sceller la garniture."]},
+    {"nom":"Macaronis Poulet Rosé","type":"Chaud","macros":"~620 kcal | 48g Protéines | 64g Glucides | 13g Lipides","ingredients":["150 g poulet en dés cuit","60 g macaronis crus (cuits)","1/3 tasse coulis tomate","2 c. à s. yogourt grec","Épinards"],"instructions":["1. Place les macaronis cuits, les dés de poulet et les épinards dans un contenant micro-ondable.","2. Conserve le coulis de tomate et le yogourt grec dans un petit récipient séparé.","3. Au moment du repas, chauffe le coulis de tomate seul pendant environ 20 secondes. Incorpore ensuite le yogourt grec et fouette rapidement pour obtenir une sauce rosée lisse.","4. Réchauffe le plat de pâtes et de viande.","5. Nappe les pâtes chaudes avec la sauce rosée tiède et mélange avant de déguster."]},
+    {"nom":"Riz Basmati, Saumon Aneth","type":"Froid","macros":"~610 kcal | 45g Protéines | 58g Glucides | 17g Lipides","ingredients":["150 g saumon cuit froid émietté","1/2 tasse riz basmati froid","Concombre, aneth","SAUCE : citron, 1 c. à c. huile olive, Dijon"],"instructions":["1. Dans un bol, dépose le riz basmati préalablement cuit et complètement refroidi.","2. Émiette grossièrement le filet de saumon froid à l aide d une fourchette et ajoute-le au riz.","3. Incorpore des dés de concombre croquants.","4. Prépare la vinaigrette dans un pot en émulsionnant le jus de citron, l huile d olive et une pointe de moutarde de Dijon. Secoue vigoureusement.","5. Verse la vinaigrette sur la salade et parsème d aneth frais."]},
+    {"nom":"Bol Quinoa, Bœuf Chipotle","type":"Chaud","macros":"~630 kcal | 48g Protéines | 64g Glucides | 15g Lipides","ingredients":["150 g bœuf haché cuit","1/2 tasse quinoa cuit","1/3 tasse haricots noirs","1/3 tasse maïs","SAUCE : yogourt grec, sauce chipotle, lime"],"instructions":["1. Dispose le quinoa, le bœuf haché cuit, les haricots noirs et le maïs dans un bol allant au micro-ondes.","2. Prépare la sauce dans un contenant séparé en fouettant le yogourt grec, la sauce chipotle et le jus de lime.","3. Réchauffe le bol principal jusqu à ce qu il soit fumant.","4. Sors le plat du micro-ondes et verse immédiatement la sauce onctueuse sur la viande et les grains chauds. Mélange bien."]},
+    {"nom":"Bagel Dinde et Cheddar","type":"Froid","macros":"~590 kcal | 46g Protéines | 54g Glucides | 15g Lipides","ingredients":["1 bagel blé entier","120 g dinde fumée","20 g cheddar léger","Moutarde, épinards"],"instructions":["1. Tranche le bagel de blé entier en deux à l aide d un couteau à pain.","2. Tartine uniformément de la moutarde sur la face intérieure de la base du bagel.","3. Dispose quelques feuilles d épinards frais sur la moutarde pour créer une base.","4. Superpose les tranches de dinde fumée en les pliant pour ajouter du volume, puis insère la tranche de cheddar léger.","5. Referme le sandwich avec la moitié supérieure du bagel. Ce repas se consomme froid."]},
+    {"nom":"Fusilli Poulet Pesto","type":"Froid","macros":"~605 kcal | 47g Protéines | 56g Glucides | 16g Lipides","ingredients":["150 g poulet grillé froid","60 g fusillis crus (cuits froids)","Tomates cerises","SAUCE : 1 c. à s. pesto délayé avec un peu d eau"],"instructions":["1. Place les fusillis cuits et refroidis dans un grand contenant.","2. Ajoute les morceaux de poulet blanc grillé froid et les tomates cerises coupées en deux.","3. Prépare la sauce dans un petit pot en mélangeant le pesto avec une très petite quantité d eau tiède pour le liquéfier légèrement.","4. Ferme le pot hermétiquement et secoue vigoureusement pour obtenir une consistance fluide.","5. Verse le pesto sur les pâtes froides et remue pour bien enrober tous les ingrédients."]},
+    {"nom":"Riz Frit Poulet Sésame","type":"Chaud","macros":"~615 kcal | 48g Protéines | 62g Glucides | 12g Lipides","ingredients":["150 g poulet cuit","1/2 tasse riz jasmin","1 œuf brouillé","Petits pois/carottes","SAUCE : soya, huile sésame, oignon vert"],"instructions":["1. Place le riz (idéalement cuit la veille), les cubes de poulet, l œuf brouillé haché et la garniture de petits pois et carottes dans un plat micro-ondable.","2. Dans un petit récipient étanche, mélange la sauce soya, l huile de sésame et les oignons verts émincés.","3. Réchauffe le plat principal jusqu à ce qu il soit bien chaud et fumant.","4. Secoue la sauce, verse-la immédiatement sur le mélange chaud et brasse pour bien répartir les saveurs."]},
+    {"nom":"Wrap Bœuf Teriyaki","type":"Chaud","macros":"~610 kcal | 46g Protéines | 50g Glucides | 16g Lipides","ingredients":["1 grande tortilla","150 g bœuf haché cuit","Chou, carottes","SAUCE : soya, miel, gingembre"],"instructions":["1. Réchauffe uniquement le bœuf haché cuit dans un contenant pendant environ 1 minute.","2. Étale la grande tortilla à plat sur le plan de travail.","3. Prépare la sauce Teriyaki maison dans un petit pot en combinant la sauce soya, le miel et le gingembre frais râpé. Secoue fermement.","4. Verse la sauce sirupeuse sur la viande chaude et mélange pour bien laquer le bœuf.","5. Transfère la viande sur la tortilla, ajoute une poignée de chou et de carottes râpés très froids, puis roule le wrap le plus serré possible."]},
+    {"nom":"Couscous Porc Érable-Cidre","type":"Chaud","macros":"~625 kcal | 48g Protéines | 62g Glucides | 14g Lipides","ingredients":["150 g porc en dés cuit","1/2 tasse couscous perlé cuit","Poivrons rôtis","SAUCE : érable, vinaigre cidre, Dijon"],"instructions":["1. Dispose le couscous perlé cuit, les dés de porc et les lanières de poivrons rôtis dans un plat pour micro-ondes.","2. Confectionne la vinaigrette dans un pot étanche en émulsionnant la moutarde de Dijon, le vinaigre de cidre et le sirop d érable pur.","3. Réchauffe le plat principal jusqu à ce que le repas soit bien chaud.","4. Secoue la vinaigrette et verse-la sur la viande et le couscous fumants. Mélange bien."]},
+    {"nom":"Pâtes Poulet Grec","type":"Froid","macros":"~595 kcal | 48g Protéines | 54g Glucides | 15g Lipides","ingredients":["150 g poulet cuit froid","60 g penne crus (cuits)","Concombre, tomates, olives","20 g féta","SAUCE : citron, vinaigre, huile olive, origan"],"instructions":["1. Place les penne cuits et complètement refroidis dans un grand contenant.","2. Incorpore le poulet froid en cubes, les rondelles de concombre, les tomates et les olives Kalamata dénoyautées.","3. Émiette finement le fromage féta sur la préparation.","4. Prépare la vinaigrette classique en mélangeant l huile d olive, le jus de citron, le vinaigre de vin et l origan séché dans un pot hermétique.","5. Secoue la vinaigrette vigoureusement et arrose généreusement la salade."]},
+    {"nom":"Patate Poulet Sauce Mac","type":"Chaud","macros":"~600 kcal | 49g Protéines | 55g Glucides | 12g Lipides","ingredients":["150 g poulet rôti","200 g patate douce rôtie","Brocoli vapeur","SAUCE : yogourt grec, relish, moutarde, paprika"],"instructions":["1. Place les cubes de patate douce rôtie, les morceaux de poulet et les bouquets de brocoli dans un plat allant au micro-ondes.","2. Confectionne la sauce spéciale dans un petit récipient en mélangeant le yogourt grec, la relish, la moutarde et le paprika. Conserve-la au froid.","3. Réchauffe le plat principal en veillant à ne pas te brûler à la sortie du four.","4. Dépose de généreuses cuillères de la sauce froide sur les cubes de patates et la viande chaude."]},
+    {"nom":"Wrap Thon Sriracha","type":"Froid","macros":"~590 kcal | 46g Protéines | 48g Glucides | 17g Lipides","ingredients":["1 grande tortilla","1 boîte thon égoutté","1/4 avocat en tranches","Concombre, salade","SAUCE : yogourt grec, sriracha, lime"],"instructions":["1. Égoutte soigneusement la boîte de thon pour en extraire toute l eau.","2. Étale la tortilla à plat et dépose la chair de thon émiettée au centre.","3. Dispose les tranches d avocat et les lanières de concombre par-dessus, accompagnées d une poignée de salade croquante.","4. Prépare la sauce piquante dans un contenant hermétique en mélangeant le yogourt grec, la sauce sriracha et le jus de lime.","5. Nappe la garniture avec la sauce épicée, replie les bords et roule le wrap très fermement."]},
+    {"nom":"Bol Poke Saumon Épicé","type":"Froid","macros":"~550 kcal | 38g Protéines | 55g Glucides | 19g Lipides","ingredients":["150 g saumon cru tartare","1/2 tasse riz sushi cuit","Edamames, avocat","SAUCE : soya, yogourt grec, sriracha"],"instructions":["1. Ce plat se consomme froid. Place le riz à sushi vinaigré et refroidi au fond d un bol.","2. Dépose les cubes de saumon cru d un côté du bol en respectant la chaîne du froid.","3. De l autre côté, ajoute l avocat tranché et les fèves edamames écossées.","4. Prépare une mayonnaise épicée allégée dans un pot en mélangeant le yogourt grec, la sauce soya et la sriracha.","5. Secoue la sauce et verse-la en zigzag sur la surface du bol juste avant de déguster."]},
+    {"nom":"Couscous Bœuf Menthe","type":"Chaud/Froid","macros":"~580 kcal | 42g Protéines | 65g Glucides | 16g Lipides","ingredients":["1/2 tasse couscous cuit","150 g bœuf haché cuit (cumin)","Raisins secs, concombre, menthe","SAUCE : yogourt grec, citron, cumin"],"instructions":["1. Verse le couscous cuit au fond de ton contenant. Ce plat peut être dégusté chaud ou froid.","2. Ajoute le bœuf haché assaisonné au cumin.","3. Incorpore les raisins secs, les dés de concombre et déchire quelques feuilles de menthe fraîche par-dessus.","4. Prépare la sauce blanche dans un récipient séparé en mélangeant le yogourt, le jus de citron et une pincée de cumin.","5. Nappe généreusement le plat avec la sauce au moment de servir."]},
+    {"nom":"Penne Poulet Tomates Séchées","type":"Chaud","macros":"~610 kcal | 46g Protéines | 58g Glucides | 18g Lipides","ingredients":["150 g poulet cuit","60 g penne crus (cuits)","Tomates séchées, épinards","SAUCE : yogourt grec, 1 c. à s. parmesan, ail"],"instructions":["1. Place les penne cuits, les cubes de poulet blanc et les feuilles d épinards dans un plat micro-ondable.","2. Ajoute les tomates séchées grossièrement hachées.","3. Prépare la sauce façon Alfredo allégée dans un pot en combinant le yogourt blanc, le parmesan râpé et l ail en poudre.","4. Réchauffe le plat de pâtes jusqu à ce qu il soit fumant.","5. Verse la sauce blanche épaisse sur les pâtes chaudes et mélange vigoureusement pour lier le tout."]},
+    {"nom":"Mac and Cheese Dinde","type":"Chaud","macros":"~620 kcal | 48g Protéines | 55g Glucides | 20g Lipides","ingredients":["150 g dinde hachée cuite","60 g macaronis crus (cuits)","1/4 tasse lait 1%, 30 g cheddar, fécule","Brocoli"],"instructions":["1. Prépare la sauce fromagère : dans une casserole froide, mélange le lait et une pointe de fécule de maïs. Chauffe à feu doux en remuant jusqu à épaississement. Hors du feu, incorpore le cheddar râpé. Laisse refroidir et place en pot.","2. Place les macaronis cuits, les bouquets de brocoli et la dinde hachée dans un contenant micro-ondable.","3. Au moment du repas, réchauffe le plat de pâtes et viande.","4. Chauffe la sauce fromagère séparément au micro-ondes pendant 20 secondes.","5. Verse la sauce au fromage chaude sur la préparation et mélange rapidement avec une fourchette."]},
+    {"nom":"Salade Pâtes BLT","type":"Froid","macros":"~580 kcal | 44g Protéines | 50g Glucides | 22g Lipides","ingredients":["60 g fusillis crus (cuits froids)","100 g poulet rôti","2 tranches bacon dinde cuit émietté","Tomates, romaine","SAUCE : yogourt grec, mayo allégée, poivre"],"instructions":["1. Dans un grand bol, dépose les fusillis cuits et complètement refroidis.","2. Ajoute la poitrine de poulet rôtie coupée en morceaux.","3. Émiette le bacon de dinde cuit très croustillant sur la viande.","4. Complète avec les quartiers de tomates et la laitue romaine hachée.","5. Prépare une vinaigrette très poivrée dans un pot en mélangeant le yogourt grec et la mayonnaise allégée. Secoue vigoureusement et verse sur la salade au moment de servir."]},
+	{"nom":"Salade Poulet, Fraises et Balsamique","type":"Frais","macros":"~520 kcal | 42g Protéines | 35g Glucides | 16g Lipides","ingredients":["150 g poitrine de poulet grillée en dés","2 tasses laitue romaine hachée","1/2 tasse fraises fraîches tranchées","15 g amandes effilées","SAUCE : 1 c. à s. huile olive, 1 c. à thé vinaigre balsamique, 1 c. à thé sirop d érable, sel, poivre"],"instructions":["1. Mélange la laitue romaine hachée, le poulet en dés et les fraises fraîches tranchées dans ton bol de meal prep. Conserve les amandes effilées dans un petit sachet séparé pour qu elles restent bien croquantes.","2. Prépare la vinaigrette dans un petit pot hermétique en combinant l huile d olive, le vinaigre balsamique, le sirop d érable, le sel et le poivre. Agite vigoureusement.","3. Au moment de manger, ajoute les amandes effilées par-dessus et verse la vinaigrette balsamique. Mélange bien et déguste."]},
+    {"nom":"Salade Mexicaine Poulet et Lime","type":"Chaud/Froid","macros":"~550 kcal | 45g Protéines | 48g Glucides | 15g Lipides","ingredients":["150 g poulet émincé aux épices à tacos","1/2 tasse riz brun cuit","1/3 tasse haricots noirs rincés","1/3 tasse maïs en grains","1/4 avocat en dés","SAUCE : 2 c. à s. yogourt grec 0%, 1 c. à s. salsa, jus d une demi-lime"],"instructions":["1. Assemble le riz brun cuit, le poulet aux épices à tacos, les haricots noirs rincés et le maïs dans ta boîte. Conserve l avocat arrosé d un trait de jus de lime pour éviter qu il ne noircisse.","2. Dans un petit pot, prépare la sauce crémeuse en fouettant le yogourt grec 0%, la salsa, le jus de lime, le sel et le poivre.","3. Tu peux manger ce bol tel quel ou le réchauffer 2 minutes au micro-ondes.","4. Ajoute les dés d avocat frais et nappe le tout avec la sauce crémeuse à la lime juste avant de déguster."]},
+    {"nom":"Salade Saumon Fumé et Aneth","type":"Frais","macros":"~480 kcal | 38g Protéines | 42g Glucides | 16g Lipides","ingredients":["100 g saumon fumé en lanières","1/2 tasse quinoa cuit","1 tasse bébés épinards","1/2 concombre en dés","1 oignon vert émincé","SAUCE : 3 c. à s. yogourt grec 0%, 1 c. à thé moutarde Dijon, filet citron, aneth"],"instructions":["1. Dépose le quinoa cuit et les bébés épinards au fond de ton contenant de meal prep.","2. Ajoute les dés de concombre croquants, l oignon vert émincé et dispose harmonieusement les belles lanières de saumon fumé sur le dessus.","3. Dans un petit pot étanche, prépare la sauce en mélangeant le yogourt grec 0%, la moutarde de Dijon, le filet de jus de citron et l aneth.","4. C'est une salade fraîche qui se consomme entièrement froide. Verse la sauce crémeuse à l aneth et mélange le tout au moment de manger."]}
+  ],
+"soupers": [
+    {"nom":"Côtelette Porc Patate Pilée","type":"Chaud","macros":"~610 kcal | 48g Protéines | 56g Glucides | 14g Lipides","ingredients":["150 g côtelette porc cuite","200 g patate douce pilée","100 g haricots verts","1 c. à s. moutarde, 1/2 c. à s. érable"],"instructions":["1. Dépose la côtelette de porc, la purée de patates douces et les haricots verts dans un plat allant au micro-ondes et réchauffe le tout.","2. Attention à la manipulation à la sortie du four.","3. Dans un petit récipient étanche, mélange vigoureusement la moutarde et le sirop d érable.","4. Remue jusqu à obtenir une texture lisse et brillante.","5. Nappe la viande de porc chaude avec ce mélange aigre-doux juste avant de déguster."]},
+    {"nom":"Poulet Parmesan Patate Douce","type":"Chaud","macros":"~560 kcal | 50g Protéines | 45g Glucides | 18g Lipides","ingredients":["150 g poitrine poulet panée (panko/parmesan)","200 g patate douce cubes rôtis","Salade, vinaigrette"],"instructions":["1. Lave-toi les mains. Préchauffe le four à 400 F (200 C).","2. Trempe la poitrine de poulet dans un peu d eau ou d œuf battu, puis enrobe-la fermement du mélange de chapelure Panko et de parmesan. Lave-toi les mains après la manipulation.","3. Place le poulet pané et les cubes de patate douce sur une plaque recouverte de papier parchemin.","4. Cuis au four pendant 20 minutes jusqu à l obtention d une croûte dorée et croustillante.","5. Sers la viande et les patates chaudes accompagnées d une portion de salade froide."]},
+    {"nom":"Saumon Quinoa Asperges","type":"Chaud","macros":"~570 kcal | 44g Protéines | 42g Glucides | 24g Lipides","ingredients":["150 g pavé saumon cuit","1/2 tasse quinoa cuit","Asperges","Citron, aneth"],"instructions":["1. Réchauffe le plat contenant le quinoa, les asperges et le pavé de saumon au micro-ondes.","2. Assure-toi que les pointes des asperges sont préalablement parées (en cassant la base dure).","3. Coupe une belle tranche de citron frais.","4. Presse le jus de citron uniformément sur le saumon chaud.","5. Saupoudre d aneth séché et déguste."]},
+    {"nom":"Hachis Bœuf Patate Douce","type":"Chaud","macros":"~555 kcal | 44g Protéines | 48g Glucides | 19g Lipides","ingredients":["150 g bœuf haché cuit","200 g cubes patate douce","1/2 tasse haricots verts","Oignon, paprika"],"instructions":["1. Chauffe une grande poêle à feu moyen-fort.","2. Fais revenir l oignon émincé avec un filet d huile pendant 2 minutes.","3. Ajoute la viande de bœuf hachée, brise les grumeaux avec une spatule et laisse dorer pendant 6 minutes.","4. Incorpore les cubes de patates douces précuits, les haricots verts, le sel et le poivre.","5. Saupoudre de paprika, remue constamment pendant 4 minutes pour caraméliser légèrement, puis transfère dans un bol."]},
+    {"nom":"Tacos Porc Sauté","type":"Chaud/Froid","macros":"~545 kcal | 42g Protéines | 50g Glucides | 18g Lipides","ingredients":["3 petites tortillas maïs","150 g porc tranché fin sauté","Chou râpé","2 c. à s. yogourt grec, lime"],"instructions":["1. Tranche finement le porc et fais-le mariner brièvement avec du cumin, de l ail et un filet d huile.","2. Saisis la viande dans une poêle très chaude pendant 4 minutes en remuant continuellement jusqu à ce que les bords soient croustillants.","3. Prépare une sauce d accompagnement en mélangeant le chou râpé, le yogourt grec, le jus de lime et une pincée de sel. Conserve au froid.","4. Fais tiédir les tortillas de maïs à sec dans une poêle à feu moyen.","5. Monte les tacos : dépose la viande chaude sur les tortillas et garnis de la préparation au chou froide."]},
+    {"nom":"Poulet Croustillant Sésame","type":"Chaud","macros":"~535 kcal | 44g Protéines | 58g Glucides | 14g Lipides","ingredients":["150 g poulet enrobé fécule et doré","1/2 tasse riz brun cuit","Légumes sautés","1 c. à s. soya, miel, sésame"],"instructions":["1. Éponge la poitrine de poulet avec du papier absorbant et coupe-la en cubes de 2 cm.","2. Place les cubes dans un sac hermétique avec 2 cuillères à soupe de fécule de maïs. Secoue vigoureusement pour bien enrober les morceaux.","3. Fais dorer le poulet dans une poêle avec de l huile chaude pendant environ 5 minutes pour obtenir une surface croustillante.","4. Réchauffe le riz brun et les légumes sautés dans ton bol.","5. Ajoute le poulet chaud, verse le miel et la sauce soya, remue pendant 1 minute, puis saupoudre de graines de sésame."]},
+    {"nom":"Chili Con Carne Doux","type":"Chaud","macros":"~540 kcal | 40g Protéines | 60g Glucides | 16g Lipides","ingredients":["150 g bœuf haché","1/3 boîte haricots rouges","1/3 boîte tomates dés","Oignon, poivron, poudre chili"],"instructions":["1. Place une grande casserole sur la cuisinière à feu moyen.","2. Fais revenir le bœuf haché pendant environ 6 minutes en séparant bien la viande.","3. Ajoute l oignon émincé et les dés de poivron. Poursuis la cuisson 4 minutes.","4. Incorpore la poudre de chili et le cumin. Brasse à sec pendant 30 secondes pour libérer les arômes.","5. Ajoute les tomates en dés et les haricots rouges rincés. Baisse le feu, couvre et laisse mijoter doucement pendant 20 minutes."]},
+    {"nom":"Crevettes Ail Riz Brocoli","type":"Chaud","macros":"~525 kcal | 44g Protéines | 55g Glucides | 12g Lipides","ingredients":["150 g crevettes cuites","1/2 tasse riz brun cuit","1 tasse brocoli vapeur","Ail, huile olive, citron"],"instructions":["1. Cuis les bouquets de brocoli au micro-ondes avec un peu d eau pendant 4 minutes pour les attendrir.","2. Dans une poêle à feu moyen-fort, fais revenir l ail finement haché et une pincée de piment dans l huile pendant 30 secondes sans laisser noircir l ail.","3. Ajoute les crevettes crues décortiquées en une seule couche. Laisse cuire 2 minutes sans remuer.","4. Retourne les crevettes (elles doivent devenir opaques et rosées).","5. Ajoute le brocoli égoutté, remue pour l enrober d ail et sers sur le riz brun avec un trait de jus de citron frais."]},
+    {"nom":"Boulettes Dinde Érable","type":"Chaud","macros":"~560 kcal | 46g Protéines | 55g Glucides | 17g Lipides","ingredients":["150 g dinde hachée en boulettes (cuites)","1/2 tasse riz brun cuit","Carottes rondelles","1 c. à s. érable, 1/2 c. à s. soya"],"instructions":["1. Lave-toi les mains. Dans un bol, mélange intimement la dinde hachée, la chapelure, un œuf battu, du sel et du poivre.","2. Façonne 12 petites boulettes de taille égale. Lave-toi les mains.","3. Fais dorer les boulettes dans une poêle chaude légèrement huilée en les retournant régulièrement pendant 5 minutes.","4. Baisse le feu, couvre la poêle et poursuis la cuisson à l étouffée pendant 8 minutes. Fais bouillir les rondelles de carottes séparément.","5. Dans ton contenant, dispose les boulettes, les carottes et le riz chaud. Prépare un mélange de sirop d érable et de sauce soya et nappe la viande au moment du repas."]},
+    {"nom":"Steak Pommes Rôties","type":"Chaud","macros":"~575 kcal | 46g Protéines | 42g Glucides | 25g Lipides","ingredients":["150 g bifteck cuit","200 g cubes pomme de terre rôtis","Mesclun, vinaigrette"],"instructions":["1. Sors le bifteck du réfrigérateur 15 minutes avant la cuisson. Assaisonne généreusement de sel et de poivre des deux côtés.","2. Fais chauffer une poêle épaisse à feu vif jusqu à ce qu elle soit très chaude.","3. Dépose le steak dans la poêle et ne le touche plus pendant 2 minutes 30.","4. Retourne la viande et cuis l autre face pendant 2 minutes 30. Retire de la poêle, couvre de papier aluminium et laisse reposer 5 minutes pour redistribuer les jus.","5. Tranche finement la viande contre le grain. Sers avec les cubes de pommes de terre rôtis chauds et la salade mesclun en accompagnement."]},
+    {"nom":"Burger Four Coleslaw","type":"Chaud","macros":"~560 kcal | 43g Protéines | 45g Glucides | 23g Lipides","ingredients":["150 g bœuf (1 grosse galette cuite)","1 pain burger blé entier","1 tranche cheddar","1 tasse chou, 1 c. à s. yogourt grec"],"instructions":["1. Lave-toi les mains. Façonne le bœuf haché extra-maigre en une galette plus large que le pain.","2. Presse légèrement le centre de la galette avec ton pouce pour éviter qu elle ne gonfle pendant la cuisson. Cuis au four à 410 F (210 C) sur une plaque recouverte de papier parchemin pendant 12 minutes.","3. Dépose la tranche de cheddar sur la viande dans la dernière minute de cuisson pour la faire fondre.","4. Prépare la salade Coleslaw dans un bol en mélangeant le chou émincé, le yogourt grec, un trait de vinaigre de cidre et du sel. Conserve au froid.","5. Fais griller le pain. Assemble le burger avec la galette chaude et les condiments de ton choix. Sers avec la salade de chou en accompagnement."]},
+    {"nom":"Poulet Teriyaki Edamame","type":"Chaud","macros":"~555 kcal | 46g Protéines | 60g Glucides | 13g Lipides","ingredients":["150 g poulet cubes cuits","1/2 tasse riz brun cuit","1/3 tasse edamames","1 c. à s. sauce teriyaki, sésame"],"instructions":["1. Fais bouillir de l eau dans une petite casserole, plonge les fèves edamames surgelées et cuis pendant 4 minutes. Égoutte et rince à l eau très froide.","2. Fais chauffer l huile de sésame dans un wok ou une poêle creuse à feu moyen-fort. Fais sauter les cubes de poitrine de poulet pendant environ 6 minutes jusqu à ce qu ils soient dorés et cuits à cœur.","3. Verse la sauce teriyaki dans la poêle chaude. Laisse réduire environ 2 minutes en remuant constamment pour bien laquer la viande.","4. Dépose la viande caramélisée sur le riz chaud.","5. Garnis avec les edamames en périphérie, saupoudre de graines de sésame et ajoute des oignons verts ciselés."]},
+    {"nom":"Soupe Nouilles Poulet","type":"Chaud","macros":"~495 kcal | 40g Protéines | 58g Glucides | 11g Lipides","ingredients":["500 ml bouillon poulet","100 g poulet effiloché","50 g nouilles œufs sèches","Carotte, céleri"],"instructions":["1. Dans une grande casserole, verse le bouillon de poulet à feu moyen-vif.","2. Ajoute les rondelles de carotte et les dés de céleri. Porte à ébullition.","3. Baisse le feu (intensité moyenne) et laisse mijoter doucement pendant environ 6 minutes jusqu à ce que les légumes soient tendres sous la fourchette.","4. Brise les nouilles aux œufs et ajoute-les dans le bouillon bouillonnant. Laisse cuire 6 minutes.","5. Incorpore le poulet effiloché, ajoute du poivre et du persil frais, puis poursuis la cuisson 2 minutes. Sers très chaud."]},
+    {"nom":"Curry Poulet Lait Coco","type":"Chaud","macros":"~560 kcal | 48g Protéines | 52g Glucides | 16g Lipides","ingredients":["150 g poulet cuit","1/3 boîte lait coco léger","1/3 boîte tomates dés","1 c. à s. pâte cari","1/2 tasse riz basmati"],"instructions":["1. Fais dorer les dés de poulet dans une grande poêle avec un filet d huile d olive à feu moyen.","2. Incorpore la pâte de cari et remue vigoureusement pendant 1 minute avec la viande pour libérer les arômes des épices.","3. Ajoute les tomates en dés et verse le lait de coco léger.","4. Mélange bien pour homogénéiser la sauce. Baisse le feu et laisse mijoter à petits bouillons pendant 15 minutes pour faire épaissir la sauce.","5. Sers la préparation chaude en la versant généreusement sur le riz basmati."]},
+    {"nom":"Crevettes Courgettes Ail","type":"Chaud","macros":"~410 kcal | 42g Protéines | 15g Glucides | 18g Lipides","ingredients":["150 g crevettes","1 grosse courgette en spaghettis","Ail, huile d olive, citron"],"instructions":["1. Transforme la courgette en spaghettis (zoodles) à l aide d un spiraliseur ou coupe-la en très fines lanières au couteau.","2. Dans une grande poêle, fais fondre un peu de beurre ou chauffe de l huile à feu moyen-doux. Ajoute l ail finement haché dès que le corps gras est chaud.","3. Incorpore les crevettes décortiquées crues et fais-les sauter 3 minutes jusqu à ce qu elles soient fermes et opaques. Retire-les de la poêle.","4. Place les spaghettis de courgette dans la même poêle pendant 2 minutes maximum pour les attendrir tout en conservant leur croquant. Ajoute un trait de jus de citron.","5. Remets les crevettes dans la poêle, mélange rapidement pendant quelques secondes, puis retire du feu. Ce plat ne nécessite qu un réchauffage minimal."]},
+    {"nom":"Risotto Orge Poulet","type":"Chaud","macros":"~540 kcal | 38g Protéines | 65g Glucides | 15g Lipides","ingredients":["1/3 tasse orge sec (cuit dans bouillon)","150 g poulet en dés","Champignons sautés","15 g parmesan"],"instructions":["1. Cuis l orge perlé en le faisant bouillir dans un bouillon pendant environ 30 minutes.","2. L orge est prêt lorsqu il est gonflé et tendre à l extérieur, mais conserve un léger croquant au centre.","3. Dans la préparation chaude, incorpore les dés de poulet préalablement cuits et les champignons rôtis à la poêle.","4. Ajoute le parmesan râpé.","5. Mélange vigoureusement avec une spatule en bois pour lier les ingrédients et créer une texture onctueuse semblable à un risotto classique."]},
+    {"nom":"Aubergines Farcies Bœuf","type":"Chaud","macros":"~595 kcal | 45g Protéines | 35g Glucides | 28g Lipides","ingredients":["1 demi-aubergine vidée","150 g bœuf haché cuit (tomate/origan)","30 g mozzarella"],"instructions":["1. Coupe l aubergine en deux dans le sens de la longueur. Évide soigneusement la chair avec une cuillère sans percer la peau. Cuis la coque vide au four à 400 F (200 C) pendant 15 minutes.","2. Hache finement la chair retirée. Dans une poêle, fais dorer le bœuf haché et la chair d aubergine. Ajoute du coulis de tomate et de l origan.","3. Remplis généreusement la coque d aubergine précuite avec le mélange de viande en formant un petit dôme.","4. Répartis la mozzarella uniformément sur le dôme de viande.","5. Place sous le gril du four (Broil) pendant environ 5 minutes en surveillant attentivement jusqu à ce que le fromage soit gratiné et bouillonnant."]},
+    {"nom":"Saumon Papillote Poireaux","type":"Chaud","macros":"~510 kcal | 42g Protéines | 25g Glucides | 24g Lipides","ingredients":["150 g saumon","1/2 blanc de poireau émincé","Citron","1/2 tasse riz basmati cuit"],"instructions":["1. Prépare une feuille carrée de papier parchemin.","2. Fais fondre les poireaux émincés dans une poêle avec un fond d eau pendant 5 minutes à feu moyen, puis égoutte. Dispose cette fondue au centre du papier parchemin.","3. Dépose le filet de saumon cru par-dessus, assaisonne de sel et poivre, et place une tranche de citron sur la chair.","4. Ferme la papillote en repliant les bords hermétiquement pour emprisonner la vapeur. Cuis au four à 400 F (200 C) pendant environ 15 à 18 minutes selon l épaisseur du filet.","5. Ouvre prudemment la papillote pour laisser s échapper la vapeur brûlante et sers le contenu chaud sur le riz basmati."]},
+    {"nom":"Porc Herbes Riz Pilaf","type":"Chaud","macros":"~625 kcal | 47g Protéines | 62g Glucides | 13g Lipides","ingredients":["150 g porc cuit","1/2 tasse riz basmati cuit (avec carotte/courgette râpées)","SAUCE : 1 c. à s. soya, miel, huile sésame"],"instructions":["1. Râpe finement la carotte et la courgette. Incorpore-les au riz basmati chaud pour l aromatiser.","2. Saisis la côtelette de porc assaisonnée (paprika, thym) dans une poêle à feu moyen-fort pour la faire dorer de chaque côté.","3. Prépare une sauce dans un récipient étanche en mélangeant la sauce soya, une touche de miel et l huile de sésame. Agite vigoureusement pour bien lier les ingrédients.","4. Dans un contenant, dispose le riz aux légumes et la viande chaude.","5. Nappe le porc chaud avec la sauce sirupeuse au sésame juste avant de manger."]},
+    {"nom":"Lemon Chicken Grelots","type":"Chaud","macros":"~595 kcal | 48g Protéines | 52g Glucides | 15g Lipides","ingredients":["160 g poulet rôti citron/origan","160 g grelots rôtis","Légumes rôtis","2 c. à s. tzatzíki"],"instructions":["1. Réchauffe le plat contenant les pommes de terre grelots rôties, la poitrine de poulet (parfumée au citron et à l origan) et les légumes rôtis (courgettes, poivrons) au micro-ondes pendant 2 minutes.","2. Assure-toi que la préparation est bien chaude.","3. Conserve la sauce tzatziki (à base de yogourt, concombre et ail) bien au froid jusqu au moment du repas.","4. Ne chauffe pas la sauce tzatziki.","5. Sers la sauce très froide en l ajoutant généreusement sur le poulet et les légumes brûlants pour créer un contraste de température."]},
+    {"nom":"Filet Porc Carottes","type":"Chaud","macros":"~585 kcal | 47g Protéines | 55g Glucides | 13g Lipides","ingredients":["160 g filet porc rôti","160 g grelots rôtis","Carottes rôties","SAUCE : Dijon, érable, romarin"],"instructions":["1. Tranche finement le filet de porc préalablement rôti et repose. Dispose la viande dans le plat avec les grelots et les bâtonnets de carottes rôtis. Réchauffe le tout.","2. Dans un petit pot hermétique, prépare la sauce en combinant la moutarde de Dijon, le sirop d érable, le romarin séché et un très léger filet d eau.","3. Ferme le récipient et secoue fermement pendant 20 secondes pour créer une émulsion sirupeuse.","4. Sors le plat chaud du micro-ondes.","5. Verse la sauce à l érable et à la moutarde uniformément sur les tranches de porc chaud et les carottes."]},
+    {"nom":"Boulettes Firecracker Bœuf","type":"Chaud","macros":"~640 kcal | 48g Protéines | 62g Glucides | 15g Lipides","ingredients":["150 g bœuf en boulettes (cuites)","1/2 tasse riz jasmin cuit","Brocoli vapeur","SAUCE : 1 c. à s. sriracha, miel, soya"],"instructions":["1. Réchauffe le contenant avec les boulettes de bœuf cuites, le riz jasmin et les bouquets de brocoli.","2. Prépare la sauce 'Firecracker' dans un récipient étanche en mélangeant la sauce soya, le miel pur et la sriracha.","3. Assure-toi que le récipient est bien fermé et agite vigoureusement pour que le miel s intègre parfaitement et forme un liquide homogène. (Si le miel est trop figé, passe le récipient fermé sous l eau tiède).","4. Ouvre prudemment le contenant chaud.","5. Nappe les boulettes de bœuf avec la sauce piquante-douce et remue légèrement pour laquer la viande."]},
+    {"nom":"Penne Poulet Épinards","type":"Chaud","macros":"~630 kcal | 49g Protéines | 64g Glucides | 14g Lipides","ingredients":["150 g poulet cuit","60 g penne crus (cuits)","Épinards frais","SAUCE : 1/3 tasse coulis tomate, 1 c. à s. yogourt grec"],"instructions":["1. Place les penne cuits, les dés de poulet et les feuilles d épinards fraîches dans un contenant allant au micro-ondes.","2. Prépare le coulis de tomate et le yogourt grec dans un petit récipient séparé.","3. Réchauffe uniquement le coulis de tomate pendant 20 secondes au micro-ondes.","4. Incorpore immédiatement le yogourt grec dans la sauce tomate chaude et fouette rapidement pour obtenir une sauce rosée onctueuse.","5. Verse la sauce chaude sur les pâtes fumantes, mélange bien pour enrober l ensemble et déguste."]},
+    {"nom":"Saumon Asperges Riz","type":"Chaud","macros":"~625 kcal | 46g Protéines | 50g Glucides | 19g Lipides","ingredients":["150 g saumon rôti","Asperges rôties","1/2 tasse riz basmati cuit","SAUCE : soya, miel, sésame"],"instructions":["1. Réchauffe le contenant avec le filet de saumon rôti, les asperges et le riz basmati au micro-ondes.","2. Dans un récipient étanche à part, prépare une sauce teriyaki en mélangeant la sauce soya, le miel et les graines de sésame.","3. Sors le plat principal lorsqu il est bien chaud.","4. Secoue fermement le récipient de sauce pour bien lier les ingrédients.","5. Arrose le saumon et les asperges avec le sirop doré au sésame avant de déguster."]},
+    {"nom":"Sauté Bœuf Wok","type":"Chaud","macros":"~610 kcal | 48g Protéines | 54g Glucides | 14g Lipides","ingredients":["150 g bavette émincée cuite","Légumes sautés","1/2 tasse riz basmati cuit","SAUCE : soya, ail, gingembre, sésame"],"instructions":["1. Place les lanières de bavette cuites, les légumes sautés (poivrons, pois) et le riz basmati dans un contenant pour le réchauffage.","2. Prépare la sauce dans un petit pot en mélangeant la sauce soya, l ail en poudre, le gingembre et l huile de sésame.","3. Assure-toi que le couvercle de la sauce est bien fermé et agite vigoureusement.","4. Fais chauffer le contenant principal au micro-ondes jusqu à ce que les éléments soient bien chauds.","5. Verse la sauce asiatique foncée sur le bœuf et le riz chauds, puis mélange à la fourchette."]},
+    {"nom":"Saucisses Dinde Grelots","type":"Chaud","macros":"~580 kcal | 44g Protéines | 48g Glucides | 18g Lipides","ingredients":["150 g saucisses dinde rôties","160 g grelots rôtis","Poivrons rôtis","SAUCE : Dijon, miel, vinaigre cidre"],"instructions":["1. Réchauffe le plat contenant les rondelles de saucisse de dinde grillée, les pommes de terre grelots et les poivrons rouges rôtis.","2. Dans un récipient distinct, prépare une sauce aigre-douce en mélangeant la moutarde, le miel et le vinaigre de cidre.","3. Attends que le repas principal soit bien chaud (attention à la vapeur).","4. Secoue vigoureusement le récipient de sauce pour créer une émulsion homogène.","5. Verse la vinaigrette moutarde-miel sur les saucisses chaudes et mélange légèrement."]},
+    {"nom":"Bœuf Coréenne Brocoli","type":"Chaud","macros":"~615 kcal | 48g Protéines | 58g Glucides | 14g Lipides","ingredients":["150 g bœuf haché cuit","1/2 tasse riz jasmin cuit","Brocoli vapeur","SAUCE : soya, miel, sriracha, ail"],"instructions":["1. Dispose le bœuf haché cuit, le riz jasmin et les bouquets de brocoli dans le plat principal et réchauffe au micro-ondes.","2. Prépare la sauce 'Bulgogi' dans un récipient étanche en mélangeant la sauce soya, le miel, l ail et une pointe de sriracha.","3. Secoue le récipient de sauce fermement pour bien dissoudre le miel.","4. Retire le plat chaud du micro-ondes avec précaution.","5. Verse la sauce foncée sur la viande et le riz, puis mélange pour lier les saveurs."]},
+    {"nom":"Casserole Poulet Buffalo","type":"Chaud","macros":"~630 kcal | 50g Protéines | 60g Glucides | 15g Lipides","ingredients":["150 g poulet effiloché","60 g macaronis crus (cuits)","2 c. à s. RedHot, 2 c. à s. yogourt grec","30 g cheddar"],"instructions":["1. Préchauffe le four à haute température (400 F / 200 C).","2. Dans un plat allant au four, mélange les macaronis préalablement cuits, le poulet effiloché, la sauce RedHot et le yogourt grec.","3. Lisse la surface et répartis uniformément le cheddar râpé sur le dessus.","4. Cuis au four pendant environ 15 minutes jusqu à ce que le fromage soit fondu et doré.","5. Laisse tiédir quelques instants avant de servir."]},
+    {"nom":"Porc Maïs BBQ","type":"Chaud","macros":"~620 kcal | 47g Protéines | 60g Glucides | 15g Lipides","ingredients":["150 g côtelette porc cuite","160 g grelots cuits","1/3 tasse maïs rôti","1.5 c. à s. sauce BBQ délayée"],"instructions":["1. Place la côtelette de porc, les pommes de terre grelots et les grains de maïs rôtis dans un contenant allant au micro-ondes.","2. Prépare la sauce en délayant légèrement la sauce BBQ avec un filet d eau ou de vinaigre dans un petit récipient.","3. Réchauffe le plat principal jusqu à ce qu il soit fumant.","4. Sors le contenant du micro-ondes (utilise une protection si nécessaire).","5. Nappe uniformément la viande chaude avec la sauce BBQ."]},
+    {"nom":"Spaghettis Boulettes Dinde","type":"Chaud","macros":"~630 kcal | 49g Protéines | 66g Glucides | 14g Lipides","ingredients":["150 g dinde hachée en boulettes (cuites)","60 g spaghettis crus (cuits)","1/3 tasse sauce tomate basilic","10 g parmesan"],"instructions":["1. Place les spaghettis cuits et les boulettes de dinde dans un contenant micro-ondable.","2. Ajoute la sauce tomate au basilic par-dessus la préparation.","3. Réchauffe le tout au micro-ondes jusqu à ce que la sauce bouillonne légèrement sur les bords.","4. Retire le plat avec précaution.","5. Saupoudre généreusement de parmesan râpé juste avant de manger."]},
+    {"nom":"Croquettes Poulet Pilées","type":"Chaud","macros":"~560 kcal | 48g Protéines | 55g Glucides | 16g Lipides","ingredients":["150 g poulet cubes panés (panko) cuits","200 g purée pomme de terre","2 c. à s. yogourt grec (trempette)"],"instructions":["1. Dispose les croquettes de poulet (idéalement cuites au four pour le croustillant) et la purée de pommes de terre dans un plat allant au micro-ondes et réchauffe-les.","2. Attention à la température de la purée qui conserve fortement la chaleur au centre.","3. Place le yogourt grec dans un petit récipient séparé.","4. Ne réchauffe pas le yogourt grec. Il doit rester bien froid.","5. Utilise le yogourt froid comme trempette pour les morceaux de poulet chaud à chaque bouchée."]},
+    {"nom":"Ailes Buffalo Four","type":"Chaud","macros":"~580 kcal | 46g Protéines | 30g Glucides | 24g Lipides","ingredients":["150 g hauts cuisse poulet cuits croustillants (poudre à pâte)","1 c. à s. sauce Frank s","Céleri, trempette fromage bleu allégée"],"instructions":["1. Assure-toi d avoir les mains propres pour ce repas qui se mange avec les doigts.","2. Réchauffe les hauts de cuisse de poulet (préparés avec de la poudre à pâte pour maximiser le croustillant) idéalement au four.","3. Verse la sauce piquante type Frank s sur le poulet chaud et mélange bien pour créer une couche épicée.","4. Sers accompagné de bâtonnets de céleri crus et d une trempette allégée au fromage bleu.","5. Utilise la trempette froide pour adoucir le piquant de la viande."]},
+    {"nom":"Double Smash Burger Frites","type":"Chaud","macros":"~640 kcal | 52g Protéines | 50g Glucides | 24g Lipides","ingredients":["150 g bœuf extra-maigre (2 galettes minces)","2 tranches cheddar","1 pain burger","200 g frites patate douce rôties"],"instructions":["1. Lave-toi les mains. Façonne deux boules de viande hachée, puis aplatis-les fermement pour créer des disques minces.","2. Saisis les disques dans une poêle très chaude pendant 2 minutes de chaque côté. Pose une tranche de cheddar sur chaque galette en fin de cuisson.","3. Réchauffe les frites de patates douces au four pour préserver leur croustillant (ou au micro-ondes).","4. Fais griller légèrement les pains à hamburger.","5. Assemble le burger : pain, moutarde, cornichons, les deux galettes au fromage, et le pain supérieur. Sers avec les frites chaudes."]},
+    {"nom":"Spaghettis Boulettes Porc-Bœuf","type":"Chaud","macros":"~620 kcal | 44g Protéines | 65g Glucides | 22g Lipides","ingredients":["75 g bœuf haché + 75 g porc haché (boulettes cuites)","60 g spaghettis crus (cuits)","1/3 tasse sauce tomate","Épices"],"instructions":["1. Lave-toi les mains. Dans un grand bol, mélange uniformément la viande de porc et de bœuf hachés avec les épices.","2. Façonne des boulettes de taille moyenne en roulant le mélange entre les paumes de tes mains.","3. Fais cuire les boulettes dans une poêle, puis ajoute la sauce tomate et laisse mijoter.","4. Réchauffe les spaghettis préalablement cuits.","5. Nappe les pâtes chaudes avec la sauce tomate et les boulettes fumantes."]},
+    {"nom":"Bavette Frites Patate Douce","type":"Chaud","macros":"~590 kcal | 48g Protéines | 45g Glucides | 20g Lipides","ingredients":["150 g bavette cuite tranchée","200 g frites patate douce rôties","Asperges vapeur"],"instructions":["1. Réchauffe la bavette de bœuf coupée en lanières de manière très brève (environ 30 secondes au micro-ondes) afin de conserver un cœur saignant et tendre. Évite de surcuire la viande.","2. Réchauffe simultanément les asperges cuites à la vapeur.","3. Réchauffe les frites de patates douces rôties, de préférence au four pour conserver la texture.","4. Saupoudre généreusement la viande chaude de poivre fraîchement concassé avant de servir."]}
+  ],
+  "shakes": [
+    {"nom":"Ferrero Rocher Gourmand","type":"Post-Workout","macros":"~365 kcal | 35g Protéines | 30g Glucides | 11g Lipides","ingredients":["1 scoop protéine chocolat-noisette","250 ml boisson d amande","1 c. à soupe beurre d arachide","1/2 banane congelée","Glaçons"],"instructions":["1. Verse 250 ml de boisson d amande dans le fond du mélangeur.","2. Ajoute 1 cuillère à soupe de beurre d arachide et la demi-banane congelée.","3. Incorpore la poudre de protéine et quelques glaçons.","4. Ferme le couvercle hermétiquement.","5. Mixe à pleine puissance pendant 45 secondes pour obtenir une texture lisse."]},
+    {"nom":"Black Forest Choco-Cerises","type":"Antioxydant","macros":"~340 kcal | 34g Protéines | 36g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse cerises surgelées","1/3 tasse yogourt grec 0%","200 ml eau très froide"],"instructions":["1. Verse l eau très froide et le yogourt grec dans le récipient du mélangeur.","2. Ajoute les cerises surgelées.","3. Incorpore la protéine en poudre.","4. Ferme bien le couvercle.","5. Utilise la fonction Pulse quelques fois pour briser la glace, puis mixe en continu pendant 45 secondes."]},
+    {"nom":"Banana-Bread Nutella Avoine","type":"Énergie Lente","macros":"~390 kcal | 36g Protéines | 48g Glucides | 7g Lipides","ingredients":["1 scoop protéine chocolat-noisette","30g flocons d avoine","1 banane mûre","250 ml boisson d amande","Cannelle"],"instructions":["1. Place d abord les flocons d avoine seuls dans le mélangeur sec. Mixe à haute vitesse pendant 10 secondes pour les réduire en farine.","2. Ajoute la boisson d amande, la banane épluchée et une pincée de cannelle.","3. Incorpore la poudre de protéine.","4. Assure-toi que le couvercle est bien fermé.","5. Mixe pendant 50 secondes."]},
+    {"nom":"Café Glacé Noisette Mocha","type":"Pré-Workout","macros":"~320 kcal | 34g Protéines | 24g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","120 ml café fort refroidi","150 ml boisson d amande","1/2 banane","Glaçons"],"instructions":["1. Verse le café préalablement refroidi et la boisson d amande dans le mélangeur.","2. Ajoute les glaçons et la demi-banane mûre.","3. Incorpore la poudre de protéine chocolat-noisette.","4. Vérifie la fermeture du couvercle.","5. Mixe à vitesse rapide pendant 40 secondes pour broyer la glace."]},
+    {"nom":"Chocolat-Framboise Intense","type":"Acidulé","macros":"~330 kcal | 34g Protéines | 32g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse framboises surgelées","1/2 tasse yogourt grec 0%","200 ml eau froide"],"instructions":["1. Verse l eau très froide et le yogourt grec dans le mélangeur.","2. Ajoute les framboises surgelées.","3. Incorpore la poudre de protéine.","4. Visse ou bloque bien le couvercle.","5. Mixe à pleine puissance pendant 45 secondes pour lisser la préparation."]},
+    {"nom":"Pâte à Biscuits Choco-Noisette","type":"Satiété","macros":"~385 kcal | 35g Protéines | 42g Glucides | 9g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/4 tasse flocons d avoine","1 c. à soupe graines lin","1/2 banane","250 ml boisson d amande"],"instructions":["1. Verse la boisson d amande dans le fond du mélangeur.","2. Ajoute les graines de lin, la demi-banane et les flocons d avoine.","3. Incorpore la poudre de protéine au chocolat.","4. Mixe à haute intensité pendant 45 secondes.","5. Laisse reposer la préparation dans le mélangeur pendant 2 minutes sans y toucher pour permettre à l avoine d épaissir le liquide."]},
+    {"nom":"Chocolat Noir Pur et Noisettes","type":"Cacao Brut","macros":"~345 kcal | 35g Protéines | 26g Glucides | 8g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe cacao noir pur","1/2 banane congelée","250 ml boisson d amande","Glaçons"],"instructions":["1. Verse la boisson d amande dans le récipient du mélangeur.","2. Ajoute la cuillère de cacao pur, les glaçons et la demi-banane congelée.","3. Incorpore la poudre de protéine.","4. Assure-toi que le couvercle est bien fixé.","5. Mixe à puissance maximale pendant 45 secondes pour obtenir une consistance lisse."]},
+    {"nom":"Double Nut Arachide Choco","type":"Crémeux","macros":"~390 kcal | 37g Protéines | 28g Glucides | 13g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe beurre d arachide naturel","250 ml boisson d amande","1/2 banane","Glaçons"],"instructions":["1. Verse la boisson d amande dans le fond du mélangeur.","2. Ajoute la demi-banane, les glaçons et la cuillère de beurre d arachide.","3. Incorpore la poudre de protéine.","4. Ferme le couvercle hermétiquement.","5. Mixe jusqu à ce que le mélange devienne mousseux et lisse."]},
+    {"nom":"Choco-Noisette Bleuets Sauvages","type":"Digeste","macros":"~335 kcal | 34g Protéines | 34g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse bleuets surgelés","1/3 tasse yogourt grec 0%","200 ml eau très froide"],"instructions":["1. Verse l eau très froide et le yogourt grec dans le mélangeur.","2. Ajoute la tasse de bleuets surgelés.","3. Incorpore la poudre de protéine au chocolat.","4. Vérifie la fermeture du couvercle.","5. Mixe à pleine puissance pendant 45 secondes pour pulvériser les fruits surgelés."]},
+    {"nom":"Choco-Cottage Velouté","type":"Mousse","macros":"~370 kcal | 41g Protéines | 26g Glucides | 7g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/2 tasse cottage 1%","1 c. à thé cacao pur","180 ml boisson d amande","Glaçons"],"instructions":["1. Dépose le fromage cottage et la boisson d amande dans le mélangeur.","2. Mixe cette base seule pendant 20 secondes à vitesse élevée pour éliminer les grumeaux et obtenir une texture lisse.","3. Ajoute la poudre de protéine, le cacao et les glaçons.","4. Ferme bien le couvercle.","5. Mixe à nouveau pendant 40 secondes pour faire monter le mélange en une texture de mousse épaisse."]},
+    {"nom":"Brownie Flocons et Noix","type":"Gourmand","macros":"~395 kcal | 35g Protéines | 34g Glucides | 13g Lipides","ingredients":["1 scoop protéine chocolat-noisette","15 g noix de Grenoble","2 c. à soupe flocons d avoine","1/2 banane","250 ml boisson d amande"],"instructions":["1. Verse la boisson d amande dans le mélangeur.","2. Ajoute les cerneaux de noix de Grenoble, les flocons d avoine et la demi-banane.","3. Incorpore la poudre de protéine.","4. Assure-toi de la fermeture du couvercle.","5. Mixe à vitesse maximale pendant 50 secondes pour broyer complètement les noix et obtenir une texture homogène."]},
+    {"nom":"Frappé Érable Cannelle","type":"Canadien","macros":"~365 kcal | 34g Protéines | 37g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe sirop d érable pur","1/4 c. à thé cannelle","1/2 banane","250 ml boisson d amande","Glaçons"],"instructions":["1. Verse la boisson d amande et le sirop d érable dans le mélangeur.","2. Ajoute la demi-banane congelée, la cannelle et les glaçons.","3. Incorpore la poudre de protéine.","4. Ferme le couvercle de façon sécuritaire.","5. Mixe pendant 40 secondes pour lier les ingrédients froids."]},
+    {"nom":"Green Choco-Noisette","type":"Masqué","macros":"~330 kcal | 34g Protéines | 28g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 poignée épinards frais","1/2 banane","1 c. à thé cacao pur","250 ml boisson d amande","Glaçons"],"instructions":["1. Dépose les épinards frais et la boisson d amande dans le mélangeur. Mixe à pleine puissance pendant 15 secondes pour liquéfier complètement les feuilles.","2. Ajoute la demi-banane, le cacao en poudre et les glaçons.","3. Incorpore la poudre de protéine.","4. Ferme bien le couvercle.","5. Mixe à nouveau pendant 40 secondes pour masquer la couleur verte et obtenir un résultat lisse."]},
+    {"nom":"Noisette Chaï Épicé","type":"Chaudes Épices","macros":"~325 kcal | 34g Protéines | 26g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","150 ml thé chaï infusé froid","100 ml boisson d amande","1/2 banane","Pincée muscade, glaçons"],"instructions":["1. Prépare un thé chaï, laisse-le refroidir complètement au réfrigérateur, puis verse 150 ml dans le mélangeur avec la boisson d amande.","2. Ajoute la demi-banane, une pincée de muscade et les glaçons.","3. Incorpore la poudre de protéine.","4. Vérifie la fermeture du couvercle.","5. Mixe vigoureusement pendant 40 secondes pour créer un breuvage homogène."]},
+    {"nom":"Avocat Choco-Noisette","type":"Glacé","macros":"~380 kcal | 34g Protéines | 24g Glucides | 15g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/4 avocat mûr","1 c. à thé cacao","250 ml boisson d amande","Glaçons"],"instructions":["1. Prélève la chair du quart d avocat et dépose-la dans le mélangeur avec la boisson d amande.","2. Ajoute le cacao en poudre et les glaçons.","3. Incorpore la poudre de protéine.","4. Ferme le couvercle hermétiquement.","5. Mixe à pleine puissance pendant 45 secondes pour transformer la chair d avocat en une texture parfaitement crémeuse et masquer son goût."]}
+  ],
+  "smoothies": [
+    {"nom":"Vert Détox Épinards Pomme","type":"Santé","macros":"~180 kcal | 4g Protéines | 38g Glucides | 2g Lipides","ingredients":["1 poignée épinards frais","1 pomme verte en morceaux","1/2 concombre","1 tasse eau de coco","1 c. à thé jus de citron"],"instructions":["1. Verse l eau de coco dans le robot-mélangeur.","2. Ajoute les épinards frais. Ferme le couvercle et mixe pendant 15 secondes pour liquéfier la verdure.","3. Incorpore les morceaux de pomme verte, les rondelles de concombre et le jus de citron.","4. Mixe à puissance maximale pendant 45 secondes jusqu à l obtention d un liquide lisse."]},
+    {"nom":"Antioxydant Fruits Rouges Menthe","type":"Frais","macros":"~210 kcal | 5g Protéines | 42g Glucides | 3g Lipides","ingredients":["1 tasse fruits rouges surgelés","1/2 tasse yogourt grec 0%","1 tasse eau glacée","Feuilles de menthe fraîche"],"instructions":["1. Verse l eau glacée et le yogourt grec dans le bol du mélangeur.","2. Ajoute les fruits rouges surgelés et quelques feuilles de menthe fraîche.","3. Assure-toi que le couvercle est bien fermé.","4. Mixe à vitesse maximale pendant 45 secondes pour lisser la préparation."]},
+    {"nom":"Exotique Mangue Ananas Curcuma","type":"Énergie","macros":"~195 kcal | 3g Protéines | 45g Glucides | 1g Lipides","ingredients":["3/4 tasse mangue surgelée","3/4 tasse ananas surgelé","1 tasse boisson coco légère","Pincée curcuma et gingembre"],"instructions":["1. Verse la boisson de coco dans le fond du mélangeur.","2. Ajoute les morceaux de mangue et d ananas surgelés.","3. Incorpore une pincée de curcuma et une très petite portion de gingembre frais râpé.","4. Ferme hermétiquement le couvercle et mixe pendant 45 secondes."]},
+    {"nom":"Betterave Framboise Gingembre","type":"Boost","macros":"~175 kcal | 4g Protéines | 38g Glucides | 1g Lipides","ingredients":["1/2 betterave crue râpée","1/2 tasse framboises surgelées","1/2 pomme","1 tasse eau froide","Gingembre frais (1 cm)"],"instructions":["1. Râpe la demi-betterave et le gingembre frais.","2. Place-les dans le mélangeur avec l eau froide et actionne-le pendant 20 secondes.","3. Ajoute les morceaux de pomme et les framboises surgelées par-dessus le liquide.","4. Mixe à haute puissance pendant 45 secondes pour un résultat homogène."]},
+    {"nom":"Matcha Banane Amande","type":"Éveil","macros":"~205 kcal | 3g Protéines | 38g Glucides | 5g Lipides","ingredients":["1 c. à thé matcha","1 banane congelée","1.5 tasse boisson d amande","1 c. à thé érable"],"instructions":["1. Verse la boisson d amande au fond du récipient.","2. Ajoute la poudre de thé matcha, la banane congelée et un filet de sirop d érable.","3. Fixe solidement le couvercle du mélangeur.","4. Mixe pendant 45 secondes pour obtenir un mélange crémeux."]},
+    {"nom":"Carotte Orange Curcuma","type":"Immunité","macros":"~180 kcal | 5g Protéines | 39g Glucides | 1g Lipides","ingredients":["1 tasse jus de carotte pur","1 orange pelée sans pépins","1/4 tasse yogourt grec 0%","Pincée de curcuma, glaçons"],"instructions":["1. Verse le jus de carotte pur et ajoute les quartiers d orange (en t assurant d avoir retiré la peau blanche et les pépins).","2. Incorpore le yogourt grec, la poudre de curcuma et les glaçons.","3. Ferme bien le couvercle.","4. Actionne le mélangeur pendant 45 secondes."]},
+    {"nom":"Avoine Pomme Cannelle","type":"Liquide","macros":"~260 kcal | 6g Protéines | 48g Glucides | 5g Lipides","ingredients":["1 pomme en dés (avec peau)","1/3 tasse flocons d avoine","1.5 tasse boisson d amande","1/2 c. à thé cannelle","1 c. à s. graines chia"],"instructions":["1. Place les flocons d avoine et les graines de chia dans le mélangeur vide. Mixe à sec pendant 10 secondes pour les réduire en poudre.","2. Verse la boisson d amande sur la poudre obtenue.","3. Ajoute les dés de pomme et la cannelle.","4. Mixe à haute intensité pendant 50 secondes."]},
+    {"nom":"Avocat Kiwi Lime","type":"Soyeux","macros":"~240 kcal | 3g Protéines | 32g Glucides | 12g Lipides","ingredients":["1 kiwi épluché","1/4 avocat mûr","1 poignée épinards","1 tasse eau de coco","Jus d une demi-lime"],"instructions":["1. Verse l eau de coco et les épinards dans le mélangeur. Actionne-le 15 secondes pour obtenir un liquide vert.","2. Prélève la chair du kiwi et de l avocat, puis ajoute-les dans le bol.","3. Presse le jus de la demi-lime sur le mélange.","4. Ferme le couvercle et mixe pendant 40 secondes pour lisser la préparation."]},
+    {"nom":"Pêche Kéfir Chia","type":"Probiotique","macros":"~220 kcal | 10g Protéines | 35g Glucides | 5g Lipides","ingredients":["1 tasse pêches surgelées","1 tasse kéfir nature","1 c. à s. graines de chia","1 c. à thé miel"],"instructions":["1. Verse le kéfir nature au fond du mélangeur.","2. Ajoute les morceaux de pêches surgelées et le miel.","3. Mixe à pleine puissance pendant 40 secondes.","4. Incorpore les graines de chia et mixe brièvement (2 secondes maximum). Laisse reposer le mélange 2 minutes avant de consommer pour épaissir."]},
+    {"nom":"Citron Basilic Poire","type":"Surprenant","macros":"~190 kcal | 4g Protéines | 40g Glucides | 2g Lipides","ingredients":["1 poire mûre","Jus d un demi-citron","Feuilles de basilic frais","1/2 tasse yogourt grec 0%","1/2 tasse eau glacée"],"instructions":["1. Place le yogourt grec et l eau glacée dans le mélangeur.","2. Incorpore les feuilles de basilic frais lavées et le jus de citron pressé.","3. Coupe la poire en dés (en retirant le cœur et les pépins) et ajoute-les.","4. Ferme le couvercle et mixe de façon continue pendant 45 secondes."]},
+    {"nom":"Ananas Concombre Menthe","type":"Spa Détox","macros":"~160 kcal | 2g Protéines | 38g Glucides | 1g Lipides","ingredients":["1 tasse ananas surgelé","1/2 concombre pelé","Menthe fraîche","1 tasse eau très froide","1 c. à thé jus lime"],"instructions":["1. Verse l eau très froide dans le mélangeur.","2. Épluche et coupe le concombre en rondelles, puis dépose-les dans l eau.","3. Ajoute l ananas surgelé, les feuilles de menthe et le jus de lime.","4. Fixe le couvercle et mixe à puissance maximale pendant 45 secondes."]},
+    {"nom":"Patate Douce Érable Cannelle","type":"Automne","macros":"~230 kcal | 4g Protéines | 45g Glucides | 4g Lipides","ingredients":["1/2 tasse purée patate douce froide","1 banane","1.5 tasse boisson d amande","1 c. à s. sirop d érable","Cannelle, muscade"],"instructions":["1. Dépose la purée de patates douces refroidie dans le fond du mélangeur.","2. Ajoute la banane épluchée et la boisson d amande.","3. Incorpore le sirop d érable, la cannelle et une pointe de muscade.","4. Ferme le couvercle et actionne la machine pendant 45 secondes pour lisser la préparation."]},
+    {"nom":"Kale Mangue Coco","type":"Tropical","macros":"~195 kcal | 3g Protéines | 38g Glucides | 4g Lipides","ingredients":["1 tasse chou kale (sans tige)","1 tasse mangue surgelée","1 tasse boisson coco légère","Jus d un demi-citron"],"instructions":["1. Verse la boisson de coco dans le mélangeur.","2. Retire les tiges dures des feuilles de kale. Place les feuilles dans le liquide et mixe pendant 20 secondes pour les déchiqueter.","3. Ajoute la mangue surgelée et le jus de citron frais.","4. Mixe pendant 40 secondes pour éliminer les résidus de feuilles et obtenir une texture homogène."]},
+    {"nom":"Melon d eau Fraise Lime","type":"Estival","macros":"~150 kcal | 2g Protéines | 34g Glucides | 1g Lipides","ingredients":["2 tasses melon d eau (sans pépins)","1/2 tasse fraises surgelées","Jus d une lime entière"],"instructions":["1. Dépose les cubes de melon d eau sans pépins au fond du récipient vide (ne pas ajouter de liquide supplémentaire).","2. Ajoute les fraises surgelées et presse le jus de la lime entière.","3. Ferme le couvercle hermétiquement.","4. Mixe pendant 30 secondes. Le melon d eau se liquéfiera instantanément."]},
+    {"nom":"Cerise Amande Cacao","type":"Forêt Noire","macros":"~280 kcal | 6g Protéines | 42g Glucides | 10g Lipides","ingredients":["1 tasse cerises surgelées","1 c. à s. beurre d amande","1 c. à thé cacao pur","1.5 tasse boisson d amande","1/2 banane"],"instructions":["1. Verse la boisson d amande dans le grand récipient du mélangeur.","2. Incorpore le beurre d amande, le cacao pur en poudre, les cerises surgelées et la demi-banane.","3. Assure-toi que le couvercle est bien fixé.","4. Mixe à vitesse maximale pendant 50 secondes pour réduire les cerises congelées en une texture lisse."]}
+  ]
+};
+
+    // ============================================================
+    // 2) STOCKAGE LOCAL (avec repli mémoire si indisponible)
+    // ============================================================
+    const store = {
+      mem: {},
+      get(k, d){ try{ const v = localStorage.getItem('mph:' + k); return v !== null ? JSON.parse(v) : d; } catch(e){ return (k in this.mem) ? this.mem[k] : d; } },
+      set(k, v){ try{ localStorage.setItem('mph:' + k, JSON.stringify(v)); } catch(e){ this.mem[k] = v; } }
+    };
+
+    // ============================================================
+    // 3) ÉTAT GLOBAL
+    // ============================================================
+    const S = {
+      cat: 'dejeuners', search: '', sort: 'pertinence', onlyFav: false, highProt: false, cooking: null,
+      plan: store.get('plan', []),
+      ratings: store.get('ratings', {}),
+      favs: store.get('favs', []),
+      deleted: store.get('deleted', []),
+      goals: Object.assign({cal: 2300, prot: 170, carb: 235, fat: 65}, store.get('goals', {})),
+      history: store.get('history', {})
+    };
+    // Les 5 moments du plan — avec Shaker et Smoothie différenciés
+    const SLOTS = ['Déjeuner', 'Dîner', 'Souper', 'Shaker', 'Smoothie'];
+    const SLOT_LABELS = {'Déjeuner': '🌅 Déjeuner', 'Dîner': '☀️ Dîner', 'Souper': '🌙 Souper', 'Shaker': '🥤 Shaker', 'Smoothie': '🫐 Smoothie'};
+    const DEFAULT_SLOT = {dejeuners: 'Déjeuner', diners: 'Dîner', soupers: 'Souper', shakes: 'Shaker', smoothies: 'Smoothie'};
+
+    // ============================================================
+    // 4) OUTILS
+    // ============================================================
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const gid = () => 'm' + Math.random().toString(36).slice(2, 9);
+    const dkey = (d = new Date()) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    const deaccent = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+
+    function parseMacros(str){
+      const grab = re => { const m = String(str).match(re); return m ? parseInt(m[1], 10) : 0; };
+      return {
+        kcal: grab(/(\d+)\s*kcal/i),
+        prot: grab(/(\d+)\s*g?\s*Prot/i),
+        carb: grab(/(\d+)\s*g?\s*Gluc/i),
+        fat:  grab(/(\d+)\s*g?\s*Lip/i)
+      };
+    }
+    function findRecipe(nom){
+      for(const c in DATA_STORE){
+        const i = DATA_STORE[c].findIndex(r => r.nom === nom);
+        if(i > -1) return {cat: c, idx: i, r: DATA_STORE[c][i]};
+      }
+      return null;
+    }
+    function recipesIn(cat){
+      return (DATA_STORE[cat] || []).map((r, i) => ({cat, idx: i, r, m: parseMacros(r.macros)}))
+        .filter(x => !S.deleted.includes(x.r.nom));
+    }
+    function plannedRecipes(){
+      return S.plan.map(p => {
+        const f = findRecipe(p.nom);
+        return f ? {cat: f.cat, idx: f.idx, r: f.r, slot: p.slot, id: p.id, portions: Math.max(1, parseInt(p.portions, 10) || 1)} : null;
+      }).filter(Boolean);
+    }
+    function totals(){
+      const t = {kcal: 0, prot: 0, carb: 0, fat: 0};
+      plannedRecipes().forEach(x => {
+        const m = parseMacros(x.r.macros), p = x.portions || 1;
+        t.kcal += m.kcal * p; t.prot += m.prot * p; t.carb += m.carb * p; t.fat += m.fat * p;
+      });
+      return t;
+    }
+    function toast(msg, type = 'info'){
+      const wrap = document.getElementById('toasts');
+      const t = document.createElement('div');
+      t.className = 'toast ' + type;
+      t.innerHTML = msg;
+      wrap.appendChild(t);
+      setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 350); }, 3200);
+    }
+
+    // ============================================================
+    // 5) COMPTEURS, CATÉGORIES, RECHERCHE, TRI & FILTRES
+    // ============================================================
+    function updateCounts(){
+      let total = 0;
+      for(const c in DATA_STORE){
+        const n = recipesIn(c).length;
+        const el = document.getElementById('count-' + c);
+        if(el) el.textContent = n;
+        total += n;
+      }
+      document.getElementById('brandCount').textContent = total + ' Recettes';
+      if(typeof tInt === 'undefined' || !tInt) document.title = 'Meal Prep Hub • ' + total + ' Recettes • ~' + S.goals.cal + ' kcal';
+    }
+    function switchCategory(cat){
+      S.cat = cat;
+      document.querySelectorAll('.pill-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+      renderCards();
+    }
+    function setSort(v){ S.sort = v; renderCards(); }
+    function toggleFilter(key, btn){ S[key] = !S[key]; btn.classList.toggle('active', S[key]); renderCards(); }
+    function clearFilters(){
+      S.search = ''; S.onlyFav = false; S.highProt = false;
+      document.getElementById('searchInput').value = '';
+      document.getElementById('chipFav').classList.remove('active');
+      document.getElementById('chipProt').classList.remove('active');
+      renderCards();
+    }
+    function filterCards(){ S.search = document.getElementById('searchInput').value; renderCards(); }
+
+    function currentList(){
+      let list = recipesIn(S.cat);
+      const q = S.search.trim().toLowerCase();
+      if(q) list = list.filter(x =>
+        x.r.nom.toLowerCase().includes(q) ||
+        x.r.type.toLowerCase().includes(q) ||
+        x.r.ingredients.some(i => i.toLowerCase().includes(q)));
+      if(S.onlyFav)  list = list.filter(x => S.favs.includes(x.r.nom));
+      if(S.highProt) list = list.filter(x => x.m.prot >= 40);
+      if(S.sort === 'prot')    list = list.slice().sort((a, b) => b.m.prot - a.m.prot);
+      if(S.sort === 'calDesc') list = list.slice().sort((a, b) => b.m.kcal - a.m.kcal);
+      if(S.sort === 'calAsc')  list = list.slice().sort((a, b) => a.m.kcal - b.m.kcal);
+      if(S.sort === 'note')    list = list.slice().sort((a, b) => (S.ratings[b.r.nom] || '').length - (S.ratings[a.r.nom] || '').length);
+      if(S.sort === 'az')      list = list.slice().sort((a, b) => a.r.nom.localeCompare(b.r.nom, 'fr'));
+      return list;
+    }
+    function hl(text){
+      const q = S.search.trim();
+      const t = esc(text);
+      if(!q) return t;
+      const safe = esc(q).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      try{ return t.replace(new RegExp('(' + safe + ')', 'ig'), '<mark>$1</mark>'); }
+      catch(e){ return t; }
+    }
+    function renderCards(){
+      const list = currentList();
+      const wrap = document.getElementById('cardsContainer');
+      const empty = document.getElementById('emptyState');
+      document.getElementById('resultCount').textContent = list.length + (list.length > 1 ? ' recettes affichées' : ' recette affichée');
+      if(!list.length){
+        wrap.innerHTML = '';
+        empty.style.display = 'block';
+        const catEmpty = !DATA_STORE[S.cat] || DATA_STORE[S.cat].length === 0;
+        document.getElementById('emptyMsg').innerHTML = catEmpty
+          ? 'Cette catégorie est vide pour le moment.<br>Colle tes recettes dans <strong>DATA_STORE.' + S.cat + '</strong> (dans le script en bas du fichier) —<br>elles apparaîtront automatiquement ici : compteurs, recherche, épicerie, plan.'
+          : 'Essaie un autre mot-clé, ou désactive les filtres actifs.';
+        document.getElementById('emptyResetBtn').style.display = catEmpty ? 'none' : 'inline-block';
+        return;
+      }
+      empty.style.display = 'none';
+      wrap.innerHTML = list.map(cardHTML).join('');
+    }
+    function cardHTML(x){
+      const inPlan = S.plan.some(p => p.nom === x.r.nom);
+      const isFav = S.favs.includes(x.r.nom);
+      const rating = S.ratings[x.r.nom] || '';
+      const prev = x.r.ingredients.slice(0, 4);
+      const more = x.r.ingredients.length - 4;
+      const stars = ['', '★', '★★', '★★★', '★★★★', '★★★★★'];
+      return '<div class="recipe-card">'
+        + '<div class="card-head">'
+        +   '<div class="card-top-bar"><span class="badge-type">' + esc(x.r.type) + '</span>'
+        +     '<div class="card-chips">'
+        +       '<button class="icon-btn fav' + (isFav ? ' on' : '') + '" title="Favori" onclick="toggleFav(\'' + x.cat + '\',' + x.idx + ')">' + (isFav ? '♥' : '♡') + '</button>'
+        +       '<button class="icon-btn del" title="Masquer la recette" onclick="deleteRecipe(\'' + x.cat + '\',' + x.idx + ',this)">🗑</button>'
+        +     '</div></div>'
+        +   '<h3 class="card-title">' + hl(x.r.nom) + '</h3>'
+        +   '<div class="card-macro-strip">' + esc(x.r.macros) + '</div>'
+        + '</div>'
+        + '<div class="preview-box"><div class="preview-title">Aperçu ingrédients</div><ul class="preview-list">'
+        +   prev.map(i => '<li>' + esc(i) + '</li>').join('')
+        +   (more > 0 ? '<li class="more-li">+ ' + more + ' autres…</li>' : '')
+        + '</ul></div>'
+        + '<div class="rating-row"><span class="rating-label">Note :</span>'
+        +   '<select class="rating-select" onchange="setRating(\'' + x.cat + '\',' + x.idx + ',this.value)">'
+        +     stars.map(s => '<option value="' + s + '"' + (s === rating ? ' selected' : '') + '>' + (s === '' ? '—' : s) + '</option>').join('')
+        +   '</select></div>'
+        + '<div class="card-actions">'
+        +   '<button class="btn-card btn-cook" onclick="openCook(\'' + x.cat + '\',' + x.idx + ')">🍳 Cuire pas-à-pas</button>'
+        +   '<button class="btn-card btn-add' + (inPlan ? ' in-plan' : '') + '" onclick="togglePlan(\'' + x.cat + '\',' + x.idx + ')">' + (inPlan ? '✓ Dans le plan' : '➕ Ajouter au plan') + '</button>'
+        + '</div></div>';
+    }
+
+    // ============================================================
+    // 6) FAVORIS, NOTES, MASQUAGE, PLAN
+    // ============================================================
+    function toggleFav(cat, idx){
+      const r = DATA_STORE[cat][idx];
+      const i = S.favs.indexOf(r.nom);
+      if(i > -1) S.favs.splice(i, 1); else S.favs.push(r.nom);
+      store.set('favs', S.favs);
+      renderCards();
+    }
+    function setRating(cat, idx, val){
+      const r = DATA_STORE[cat][idx];
+      if(val) S.ratings[r.nom] = val; else delete S.ratings[r.nom];
+      store.set('ratings', S.ratings);
+      if(S.sort === 'note') renderCards();
+    }
+    function deleteRecipe(cat, idx, btn){
+      if(!btn.dataset.armed){
+        btn.dataset.armed = '1'; btn.classList.add('armed'); btn.title = 'Clique encore pour confirmer';
+        setTimeout(() => { btn.dataset.armed = ''; btn.classList.remove('armed'); btn.title = 'Masquer la recette'; }, 2600);
+        return;
+      }
+      const r = DATA_STORE[cat][idx];
+      if(!S.deleted.includes(r.nom)) S.deleted.push(r.nom);
+      store.set('deleted', S.deleted);
+      updateCounts(); renderCards();
+      toast('🗑 Recette masquée : <strong>' + esc(r.nom) + '</strong><br><small>Restaurable via « ↺ Restaurer » en haut.</small>', 'warn');
+    }
+    function restoreDeletedRecipes(){
+      const n = S.deleted.length;
+      if(!n){ toast('Aucune recette masquée pour le moment 🙂'); return; }
+      S.deleted = []; store.set('deleted', S.deleted);
+      updateCounts(); renderCards();
+      toast('↺ ' + n + ' recette' + (n > 1 ? 's' : '') + ' restaurée' + (n > 1 ? 's' : '') + ' !', 'success');
+    }
+    function togglePlan(cat, idx){
+      const r = DATA_STORE[cat][idx];
+      const i = S.plan.findIndex(p => p.nom === r.nom);
+      if(i > -1){
+        S.plan.splice(i, 1);
+        toast('➖ Retiré du plan : ' + esc(r.nom), 'warn');
+      } else {
+        const slot = DEFAULT_SLOT[cat] || 'Déjeuner';
+        S.plan.push({id: gid(), nom: r.nom, slot: slot, portions: 1});
+        toast('➕ Ajouté au plan — ' + SLOT_LABELS[slot] + ' : ' + esc(r.nom), 'success');
+      }
+      store.set('plan', S.plan);
+      renderDashboard(); renderCards();
+    }
+    function resetDayPlan(){
+      if(!S.plan.length){ toast('Le plan est déjà vide 🙂'); return; }
+      S.plan = []; store.set('plan', S.plan);
+      renderDashboard(); renderCards();
+      toast('↺ Journée réinitialisée');
+    }
+
+    // ============================================================
+    // 7) TABLEAU DE BORD + HISTORIQUE 7 JOURS
+    // ============================================================
+    function setMacro(id, val, goal, unit){
+      document.getElementById('val' + id).textContent = val;
+      document.getElementById('goal' + id).textContent = goal + ' ' + unit;
+      const bar = document.getElementById('bar' + id);
+      bar.style.width = (goal ? Math.min(100, val / goal * 100) : 0) + '%';
+      bar.classList.toggle('over', goal > 0 && val > goal * 1.02);
+      const rem = document.getElementById('rem' + id);
+      if(goal && val > goal){ rem.textContent = 'Dépassé de ' + (val - goal) + ' ' + unit; rem.classList.add('over'); }
+      else if(goal){ rem.textContent = 'Reste ' + (goal - val) + ' ' + unit; rem.classList.remove('over'); }
+    }
+    function renderDashboard(){
+      const t = totals(), g = S.goals;
+      setMacro('Cal', t.kcal, g.cal, 'kcal');
+      setMacro('Prot', t.prot, g.prot, 'g');
+      setMacro('Carb', t.carb, g.carb, 'g');
+      setMacro('Fat', t.fat, g.fat, 'g');
+      document.getElementById('planBadge').textContent = S.plan.length;
+      document.getElementById('goalCalBrand').textContent = '~' + g.cal;
+      S.history[dkey()] = t;
+      store.set('history', S.history);
+      renderWeek();
+    }
+    function renderWeek(){
+      const el = document.getElementById('weekChart');
+      let html = '';
+      for(let i = 6; i >= 0; i--){
+        const d = new Date(); d.setDate(d.getDate() - i);
+        const k = dkey(d);
+        const h = (S.history[k] || {}).kcal || 0;
+        const pct = S.goals.cal ? Math.min(100, h / S.goals.cal * 100) : 0;
+        const over = h > S.goals.cal * 1.05;
+        html += '<div class="wk-day" title="' + k + ' : ' + h + ' kcal">'
+          + '<div class="wk-bar' + (over ? ' over' : '') + (k === dkey() ? ' today' : '') + '" style="height:' + Math.max(4, Math.round(pct * 0.62)) + 'px"></div>'
+          + '<span>' + d.toLocaleDateString('fr-CA', {weekday: 'short'}) + '</span>'
+          + '<i>' + h + '</i></div>';
+      }
+      el.innerHTML = html;
+    }
+
+    // ============================================================
+    // 8) MODALES (ouvrir / fermer)
+    // ============================================================
+    function openModal(id){ document.getElementById(id).classList.add('show'); document.body.style.overflow = 'hidden'; }
+    function closeModal(id){ document.getElementById(id).classList.remove('show'); document.body.style.overflow = ''; }
+    function closeAllModals(){ document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show')); document.body.style.overflow = ''; }
+
+    // ============================================================
+    // 9) MODE CUISSON (recette) — AVEC PORTIONS À L'ÉCHELLE
+    // ============================================================
+    let cookCtx = null;
+    function currentPortions(){
+      const v = parseInt((document.getElementById('portionInput') || {}).value, 10);
+      return (isNaN(v) || v < 1) ? 1 : v;
+    }
+    function openCook(cat, idx, portions){
+      const r = DATA_STORE[cat][idx];
+      cookCtx = {cat: idx >= 0 ? cat : cat, idx: idx};
+      const pInput = document.getElementById('portionInput');
+      if(pInput) pInput.value = portions || 1;
+      document.getElementById('mTitle').textContent = r.nom;
+      renderCook(portions || 1);
+      document.getElementById('mSteps').innerHTML = r.instructions
+        .map(s => '<label class="check-row"><input type="checkbox"><span>' + esc(s) + '</span></label>').join('');
+      updateStepProg();
+      openModal('cookModal');
+    }
+    function renderCook(p){
+      if(!cookCtx) return;
+      const r = DATA_STORE[cookCtx.cat][cookCtx.idx];
+      const m = parseMacros(r.macros);
+      if(p > 1){
+        document.getElementById('mMacros').textContent = 'Pour ' + p + ' portions : ~' + (m.kcal * p) + ' kcal | ' + (m.prot * p) + 'g Protéines | ' + (m.carb * p) + 'g Glucides | ' + (m.fat * p) + 'g Lipides • ' + r.type;
+      } else {
+        document.getElementById('mMacros').textContent = r.macros + ' • ' + r.type;
+      }
+      document.getElementById('mIngredients').innerHTML = r.ingredients
+        .map(i => '<label class="check-row"><input type="checkbox"><span>' + esc(scaleIngText(i, p)) + '</span></label>').join('');
+    }
+    function updatePortions(){ if(cookCtx) renderCook(currentPortions()); }
+    function updateStepProg(){
+      const boxes = [...document.querySelectorAll('#mSteps input[type=checkbox]')];
+      const done = boxes.filter(b => b.checked).length;
+      document.getElementById('stepProg').textContent = done + '/' + boxes.length + ' étapes';
+      if(boxes.length && done === boxes.length) toast('🎉 Toutes les étapes cochées — bon appétit !', 'success');
+    }
+    function scaleIngText(raw, p){
+      if(p === 1) return raw;
+      return splitIngredients(raw).map(part => {
+        const ing = parseIng(part);
+        if(ing.qty === null) return part;
+        return fmtQty(ing.qty * p) + (ing.unit ? ' ' + unitDisp(ing.unit, ing.qty * p) + ' ' : ' ') + ing.rest;
+      }).join(' + ');
+    }
+    function recipeText(){
+      if(!cookCtx) return '';
+      const r = DATA_STORE[cookCtx.cat][cookCtx.idx];
+      const p = currentPortions();
+      return r.nom + (p > 1 ? ' (' + p + ' portions)' : '') + '\n' + r.macros + ' • ' + r.type + '\n\nINGRÉDIENTS\n'
+        + r.ingredients.map(i => '• ' + scaleIngText(i, p)).join('\n') + '\n\nPRÉPARATION\n' + r.instructions.join('\n');
+    }
+    function printRecipe(){
+      if(!cookCtx) return;
+      const r = DATA_STORE[cookCtx.cat][cookCtx.idx];
+      const p = currentPortions();
+      document.getElementById('printArea').innerHTML =
+        '<h1>' + esc(r.nom) + (p > 1 ? ' — ' + p + ' portions' : '') + '</h1><p class="p-sub">' + esc(r.macros) + ' • ' + esc(r.type) + '</p>'
+        + '<h3>Ingrédients</h3><ul>' + r.ingredients.map(i => '<li>' + esc(scaleIngText(i, p)) + '</li>').join('') + '</ul>'
+        + '<h3>Préparation</h3><ol>' + r.instructions.map(s => '<li>' + esc(s.replace(/^\d+\.\s*/, '')) + '</li>').join('') + '</ol>';
+      window.print();
+    }
+    function copyRecipe(){ if(cookCtx) copyText(recipeText(), '📋 Recette copiée !'); }
+    function copyText(txt, okMsg){
+      const done = () => toast(okMsg, 'success');
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done).catch(() => fallbackCopy(txt, done));
+      } else fallbackCopy(txt, done);
+    }
+    function fallbackCopy(txt, done){
+      const ta = document.createElement('textarea');
+      ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); } catch(e){ toast('Copie impossible sur ce navigateur 😕', 'warn'); }
+      ta.remove();
+    }
+
+    // ============================================================
+    // 10) PLAN DU JOUR (moments + portions) & ÉPICERIE INTELLIGENTE
+    // ============================================================
+    function openGroceryModal(){ renderPlanModal(); openModal('groceryModal'); }
+    function renderPlanModal(){
+      const items = plannedRecipes();
+      const t = totals();
+      document.getElementById('planTotals').textContent =
+        t.kcal + ' kcal • ' + t.prot + ' g protéines • ' + t.carb + ' g glucides • ' + t.fat + ' g lipides';
+      const mealsEl = document.getElementById('planMeals');
+      if(!items.length){
+        mealsEl.innerHTML = '<div class="plan-empty">🍽️ Ton plan est vide.<br>Ajoute des recettes avec « ➕ Ajouter au plan »,<br>ou laisse la magie opérer avec « ✨ Générer auto » !</div>';
+      } else {
+        mealsEl.innerHTML = '<div class="plan-hint">💡 Change le moment (🌅 ☀️ 🌙 🥤 🫐) et le nombre de portions <strong>(×N p.)</strong> de chaque repas — l\'épicerie et les totaux se recalculent automatiquement.</div>'
+          + SLOTS.map(slot => {
+            const list = items.filter(x => x.slot === slot);
+            if(!list.length) return '';
+            return '<div class="slot-block"><div class="slot-title">' + SLOT_LABELS[slot] + '</div>'
+              + list.map(x =>
+                '<div class="meal-row"><span class="meal-name">' + esc(x.r.nom) + (x.portions > 1 ? ' <span class="meal-qty">×' + x.portions + '</span>' : '') + '</span>'
+                + '<div class="meal-ctrl">'
+                + '<select onchange="moveSlot(\'' + x.id + '\', this.value)" title="Changer le moment">'
+                +   SLOTS.map(s => '<option value="' + s + '"' + (s === slot ? ' selected' : '') + '>' + SLOT_LABELS[s] + '</option>').join('')
+                + '</select>'
+                + '<label class="portion-mini" title="Nombre de portions">×<input type="number" min="1" max="20" value="' + x.portions + '" onchange="setPortions(\'' + x.id + '\', this.value)">p.</label>'
+                + '<button class="mini-btn" title="Ouvrir la recette" onclick="cookMeal(\'' + x.id + '\')">🍳</button>'
+                + '<button class="mini-btn del" title="Retirer" onclick="removeFromPlan(\'' + x.id + '\')">✕</button>'
+                + '</div></div>').join('') + '</div>';
+          }).join('');
+      }
+      renderGrocery();
+    }
+    function moveSlot(id, slot){
+      const e = S.plan.find(p => p.id === id);
+      if(e) e.slot = slot;
+      store.set('plan', S.plan); renderPlanModal();
+    }
+    function setPortions(id, val){
+      const e = S.plan.find(p => p.id === id);
+      if(!e) return;
+      let v = parseInt(val, 10);
+      if(isNaN(v) || v < 1) v = 1;
+      if(v > 20) v = 20;
+      e.portions = v;
+      store.set('plan', S.plan);
+      renderPlanModal(); renderDashboard();
+    }
+    function removeFromPlan(id){
+      S.plan = S.plan.filter(p => p.id !== id);
+      store.set('plan', S.plan);
+      renderPlanModal(); renderDashboard(); renderCards();
+    }
+    function cookMeal(id){
+      const e = S.plan.find(p => p.id === id);
+      if(!e) return;
+      const f = findRecipe(e.nom);
+      if(f) openCook(f.cat, f.idx, e.portions || 1);
+    }
+
+    // --- Découpage, analyse et cumul PROPRE des ingrédients ---
+    // Sépare les ingrédients combinés ("6 œufs + 3 c. à soupe blancs",
+    // "cannelle, 1/2 c. à thé levure", "Sel, poivre") mais garde les
+    // descripteurs ("2 tomates, romaine" reste une seule ligne).
+    function splitIngredients(raw){
+      let s = String(raw).trim().replace(/\s*\+\s*/g, ', ');
+      if(!s.includes(',')) return [s];
+      const parts = s.split(/,\s*/).filter(p => p.length);
+      if(parts.length < 2) return [s];
+      const startsQty = t => /^\d/.test(t.trim());
+      const tailHasQty = parts.slice(1).some(startsQty);
+      if(startsQty(parts[0]) && !tailHasQty) return [s]; // virgule = descripteur
+      return parts;
+    }
+    // Noms seuls à corriger vers leur vrai nom d'aliment
+    const FOOD_FIXES = [[/^romaines?$/i, 'Laitue romaine']];
+    function fixFoodName(s){
+      const t = String(s).trim();
+      for(const f of FOOD_FIXES){ if(f[0].test(t)) return f[1]; }
+      return t;
+    }
+    const UNIT_MAP = {'tasses': 'tasse', 'scoops': 'scoop', 'tranches': 'tranche', 'boîtes': 'boîte', 'boites': 'boîte', 'feuilles': 'feuille', 'gousses': 'gousse', 'têtes': 'tête', 'tetes': 'tête', 'paquets': 'paquet',
+      'c. à s.': 'c. à soupe', 'c. à s': 'c. à soupe', 'c à s.': 'c. à soupe', 'c à s': 'c. à soupe', 'c.à s.': 'c. à soupe',
+      'c. à t.': 'c. à thé', 'c. à t': 'c. à thé', 'c à t.': 'c. à thé', 'c à t': 'c. à thé', 'c.à t.': 'c. à thé'};
+    function parseIng(raw){
+      let s = String(raw).trim();
+      let qty = null, rest = s, m;
+      if((m = s.match(/^(\d+)\s*\/\s*(\d+)\s+(.+)$/))){ qty = +m[1] / +m[2]; rest = m[3]; }
+      else if((m = s.match(/^(\d+(?:[.,]\d+)?)\s+(.+)$/))){ qty = parseFloat(m[1].replace(',', '.')); rest = m[2]; }
+      let unit = '';
+      if(qty !== null){
+        const um = rest.match(/^(kg|g|ml|l|tasses?|c\.?\s*à\.?\s*soupe|c\.?\s*à\.?\s*thé|c\.?\s*à\.?\s*s\.?|c\.?\s*à\.?\s*t\.?|scoops?|tranches?|boîtes?|boites?|feuilles?|gousses?|têtes?|tetes?|paquets?)\s+(.+)$/i);
+        if(um){
+          let u = um[1].toLowerCase().replace(/\s+/g, ' ');
+          if(UNIT_MAP[u] !== undefined) u = UNIT_MAP[u];
+          if(u){ unit = u; rest = um[2]; }
+        }
+      }
+      return {qty, unit, rest: rest.trim(), raw: s};
+    }
+    // Clé de regroupement : singulier approximatif + sans accents
+    // ("Tomates" + "1 tomate" = une seule ligne, affichée proprement)
+    function foodKey(rest, unit){
+      let k = deaccent(rest.toLowerCase()).replace(/\s+/g, ' ').replace(/^de\s+/, '').replace(/^d'/, '').trim();
+      k = k.replace(/([^sx])s$/, '$1');
+      return (unit ? deaccent(unit) + ' ' : '') + k;
+    }
+    function fmtQty(v){
+      const r = Math.round(v * 4) / 4;
+      if(r === Math.round(r)) return String(Math.round(r));
+      const frac = {'0.25': '¼', '0.5': '½', '0.75': '¾'};
+      const whole = Math.floor(r);
+      const f = frac[String(+(r - whole).toFixed(2))];
+      if(f) return (whole ? whole + ' ' : '') + f;
+      return String(Math.round(v * 10) / 10).replace('.', ',');
+    }
+    function unitDisp(u, qty){
+      if(!u) return '';
+      const plur = ['tasse', 'tranche', 'boîte', 'feuille', 'gousse', 'tête', 'paquet', 'scoop'];
+      return (qty > 1 && plur.includes(u)) ? u + 's' : u;
+    }
+    const AISLE_DEFAULT = '🥫 Épicerie & Secs';
+    const AISLE_OVERRIDES = [
+      ['protein', AISLE_DEFAULT],            // poudre de protéine → épicerie (avant "poudre")
+      ["beurre d'arachide", AISLE_DEFAULT], ["beurre d'amande", AISLE_DEFAULT], ['beurre de cacahuete', AISLE_DEFAULT],
+      ['bouillon', AISLE_DEFAULT]
+    ];
+    const AISLES = [
+      {name: '🧂 Assaisonnements & Condiments', keys: ['sel','poivre','pincee','cannelle','curcuma','paprika','muscade','gingembre','poudre','epice','assaisonnement','levure','sauce','salsa','moutarde','dijon','vinaigre','vinaigrette','huile','spray','extrait','stevia','wasabi','origan','herbes sechees']},
+      {name: '🧊 Congélateur', keys: ['surgel']},
+      {name: '🥬 Fruits & Légumes', keys: ['pomme de terre','patate douce','patate','pomme','poire','banane','bleuet','fraise','framboise','mangue','ananas','kiwi','figue','orange','citron','lime','avocat','tomate','poivron','oignon','echalote','ail','epinard','laitue','roquette','mesclun','concombre','brocoli','chou','champignon','courge','zucchini','carotte','celeri','betterave','citrouille','edamame','persil','coriandre','menthe','basilic','ciboulette','petits pois','legume','fruit','mais']},
+      {name: '🥩 Viandes & Poissons', keys: ['poulet','dinde','boeuf','porc','jambon','bacon','saucisse','agneau','veau','thon','saumon','crevette','morue','tilapia','truite','pepperoni','chorizo','prosciutto','steak','bifteck','viande','poitrine']},
+      {name: '🥛 Laitier & Œufs', keys: ['fromage','cottage','ricotta','mozzarella','cheddar','feta','parmesan','gruyere','suisse','kefir','yaourt','yogourt','creme','beurre','oeuf','lait','tofu','boisson']},
+      {name: '🍞 Boulangerie & Céréales', keys: ['pain','tortilla','bagel','muffin','pita','naan','galette','brioche','avoine','flocon','riz','quinoa','pates','pate','spaghetti','macaroni','nouille','farine','fecule','boulgour','couscous','chapelure','cereal','granola','muesli','craquelin','vermicelle']}
+    ];
+    function aisleFor(text){
+      const t = deaccent(text.toLowerCase());
+      for(const o of AISLE_OVERRIDES){ if(t.includes(o[0])) return o[1]; }
+      for(const a of AISLES){ for(const k of a.keys){ if(t.includes(k)) return a.name; } }
+      return AISLE_DEFAULT;
+    }
+    function buildGroceryGroups(){
+      const items = plannedRecipes();
+      if(!items.length) return null;
+      const map = new Map();
+      items.forEach(x => {
+        const p = Math.max(1, x.portions || 1);
+        x.r.ingredients.forEach(raw => {
+          splitIngredients(raw).forEach(part => {
+            const ing = parseIng(part);
+            if(ing.qty === null){
+              const name = fixFoodName(ing.raw);
+              const key = 'raw|' + deaccent(name.toLowerCase()).replace(/\s+/g, ' ');
+              if(!map.has(key)) map.set(key, {count: 0, label: name});
+              map.get(key).count += p;
+            } else {
+              const rest = fixFoodName(ing.rest) || ing.rest;
+              const key = foodKey(rest, ing.unit);
+              if(!map.has(key)) map.set(key, {qty: 0, unit: ing.unit, rest: rest});
+              map.get(key).qty += ing.qty * p;
+            }
+          });
+        });
+      });
+      const groups = {};
+      map.forEach((e, key) => {
+        const text = (e.count !== undefined)
+          ? cap(e.label) + (e.count > 1 ? ' (×' + e.count + ')' : '')
+          : fmtQty(e.qty) + (e.unit ? ' ' + unitDisp(e.unit, e.qty) + ' ' : ' ') + cap(e.rest);
+        const aisle = aisleFor(e.count !== undefined ? e.label : e.rest);
+        (groups[aisle] = groups[aisle] || []).push({key: key, text: text});
+      });
+      for(const a in groups) groups[a].sort((x, y) => x.text.localeCompare(y.text, 'fr'));
+      return groups;
+    }
+    function renderGrocery(){
+      const gEl = document.getElementById('gList');
+      const groups = buildGroceryGroups();
+      if(!groups){
+        gEl.innerHTML = '<div class="plan-empty">🛒 La liste d\'épicerie apparaîtra dès que ton plan contiendra des recettes.</div>';
+        document.getElementById('groceryCount').textContent = '';
+        return;
+      }
+      const order = AISLES.map(a => a.name).concat([AISLE_DEFAULT]);
+      const gc = store.get('groceryChecks', {date: '', keys: []});
+      const checked = new Set(gc.date === dkey() ? gc.keys : []);
+      let n = 0, html = '';
+      order.forEach(a => {
+        if(!groups[a]) return;
+        n += groups[a].length;
+        html += '<div class="aisle-block"><div class="aisle-title">' + a + '</div>'
+          + groups[a].map(it => '<label class="check-row grocery-row"><input type="checkbox"'
+            + (checked.has(it.key) ? ' checked' : '')
+            + ' onchange="toggleGroceryCheck()" data-key="' + esc(it.key) + '"><span>' + esc(it.text) + '</span></label>').join('')
+          + '</div>';
+      });
+      document.getElementById('groceryCount').textContent = ' — ' + n + ' articles cumulés';
+      gEl.innerHTML = html;
+    }
+    function toggleGroceryCheck(){
+      const keys = [...document.querySelectorAll('#gList input:checked')].map(i => i.dataset.key);
+      store.set('groceryChecks', {date: dkey(), keys: keys});
+    }
+    function toggleGroceryClearChecks(){
+      document.querySelectorAll('#gList input:checked').forEach(i => { i.checked = false; });
+      store.set('groceryChecks', {date: dkey(), keys: []});
+    }
+    function copyGroceryToClipboard(){
+      const groups = buildGroceryGroups();
+      if(!groups){ toast('Ton plan est vide : ajoute des recettes d\'abord 🙂', 'warn'); return; }
+      const order = AISLES.map(a => a.name).concat([AISLE_DEFAULT]);
+      let txt = '🛒 MEAL PREP HUB — LISTE D\'ÉPICERIE\n';
+      order.forEach(a => {
+        if(!groups[a]) return;
+        txt += '\n' + a + '\n';
+        groups[a].forEach(it => { txt += '  ☐ ' + it.text + '\n'; });
+      });
+      copyText(txt, '📋 Liste d\'épicerie copiée !');
+    }
+
+    // ============================================================
+    // 11) GÉNÉRATEUR DE JOURNÉE + SURPRISE
+    // ============================================================
+    function totalsOf(picks){
+      const t = {kcal: 0, prot: 0};
+      picks.forEach(p => { const f = findRecipe(p.nom); if(f){ const m = parseMacros(f.r.macros); t.kcal += m.kcal; t.prot += m.prot; } });
+      return t;
+    }
+    function generateDay(){
+      const rand = arr => arr[Math.floor(Math.random() * arr.length)];
+      const picks = [], used = new Set();
+      [['dejeuners', 'Déjeuner'], ['diners', 'Dîner'], ['soupers', 'Souper']].forEach(pair => {
+        const pool = recipesIn(pair[0]).filter(x => !used.has(x.r.nom));
+        if(pool.length){ const c = rand(pool); used.add(c.r.nom); picks.push({id: gid(), nom: c.r.nom, slot: pair[1], portions: 1}); }
+      });
+      let t = totalsOf(picks);
+      const coll = recipesIn('shakes').concat(recipesIn('smoothies')).filter(x => !used.has(x.r.nom));
+      let guard = 0;
+      while(S.goals.cal - t.kcal > 180 && coll.length && guard < 4){
+        const remain = S.goals.cal - t.kcal;
+        coll.sort((a, b) => Math.abs(a.m.kcal - remain) - Math.abs(b.m.kcal - remain));
+        const c = coll.shift();
+        used.add(c.r.nom);
+        picks.push({id: gid(), nom: c.r.nom, slot: (c.cat === 'smoothies' ? 'Smoothie' : 'Shaker'), portions: 1});
+        t.kcal += c.m.kcal; t.prot += c.m.prot;
+        guard++;
+      }
+      S.plan = picks; store.set('plan', S.plan);
+      renderDashboard(); renderCards();
+      if(document.getElementById('groceryModal').classList.contains('show')) renderPlanModal();
+      toast('✨ Journée composée : ' + t.kcal + ' kcal • ' + t.prot + ' g protéines', 'success');
+    }
+    function surpriseMe(){
+      const all = [];
+      for(const c in DATA_STORE) recipesIn(c).forEach(x => all.push(x));
+      if(!all.length){ toast('Aucune recette disponible 🙂', 'warn'); return; }
+      const p = all[Math.floor(Math.random() * all.length)];
+      switchCategory(p.cat);
+      openCook(p.cat, p.idx);
+      toast('🎲 Le hasard a choisi : <strong>' + esc(p.r.nom) + '</strong>');
+    }
+
+    // ============================================================
+    // 12) OBJECTIFS PERSONNALISABLES
+    // ============================================================
+    function openGoals(){
+      document.getElementById('gCal').value = S.goals.cal;
+      document.getElementById('gProt').value = S.goals.prot;
+      document.getElementById('gCarb').value = S.goals.carb;
+      document.getElementById('gFat').value = S.goals.fat;
+      openModal('goalsModal');
+    }
+    function saveGoals(){
+      const num = id => { const v = parseInt(document.getElementById(id).value, 10); return (isNaN(v) || v <= 0) ? null : v; };
+      S.goals = {cal: num('gCal') || 2300, prot: num('gProt') || 170, carb: num('gCarb') || 235, fat: num('gFat') || 65};
+      store.set('goals', S.goals);
+      updateCounts(); renderDashboard();
+      closeModal('goalsModal');
+      toast('⚙️ Objectifs mis à jour : ' + S.goals.cal + ' kcal / ' + S.goals.prot + ' g protéines', 'success');
+    }
+
+    // ============================================================
+    // 13) MINUTEURS (bips Web Audio + titre onglet)
+    // ============================================================
+    let tInt = null, tEnd = 0, audioCtx = null;
+    function ensureAudio(){
+      try{
+        if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if(audioCtx.state === 'suspended') audioCtx.resume();
+      }catch(e){}
+    }
+    function startTimer(sec){
+      if(sec < 1) return;
+      ensureAudio();
+      if(tInt) clearInterval(tInt);
+      tEnd = Date.now() + sec * 1000;
+      document.getElementById('timerBar').style.display = 'flex';
+      tickTimer();
+      tInt = setInterval(tickTimer, 250);
+      closeAllModals();
+      toast('⏱️ Minuteur lancé : ' + fmtClock(sec));
+    }
+    function customTimer(){
+      const v = parseFloat(document.getElementById('customMin').value);
+      if(!v || v <= 0){ toast('Entre un nombre de minutes 🙂', 'warn'); return; }
+      startTimer(Math.round(v * 60));
+    }
+    function customTimerQuick(){
+      const v = parseFloat(document.getElementById('customMinQuick').value);
+      if(!v || v <= 0){ toast('Entre un nombre de minutes 🙂', 'warn'); return; }
+      startTimer(Math.round(v * 60));
+    }
+    function fmtClock(s){
+      s = Math.max(0, Math.round(s));
+      return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+    }
+    function tickTimer(){
+      const ms = Math.max(0, tEnd - Date.now());
+      document.getElementById('timerClock').textContent = fmtClock(ms / 1000);
+      document.title = '⏱ ' + fmtClock(ms / 1000) + ' • Meal Prep Hub';
+      if(ms <= 0){
+        clearInterval(tInt); tInt = null;
+        beep();
+        flashTitle();
+        toast('⏰ <strong>C\'est prêt !</strong> Ton minuteur est terminé.', 'success');
+      }
+    }
+    function addTimerSeconds(sec){
+      if(!tInt){ startTimer(sec); return; }
+      tEnd += sec * 1000;
+    }
+    function stopTimer(){
+      if(tInt){ clearInterval(tInt); tInt = null; }
+      document.getElementById('timerBar').style.display = 'none';
+      updateCounts();
+    }
+    function beep(){
+      if(!audioCtx) return;
+      try{
+        [0, 0.4, 0.8].forEach((off, i) => {
+          const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+          o.type = 'sine';
+          o.frequency.value = i === 2 ? 1174.66 : 880;
+          o.connect(g); g.connect(audioCtx.destination);
+          const t0 = audioCtx.currentTime + off;
+          g.gain.setValueAtTime(0.0001, t0);
+          g.gain.exponentialRampToValueAtTime(0.3, t0 + 0.05);
+          g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.35);
+          o.start(t0); o.stop(t0 + 0.4);
+        });
+      }catch(e){}
+    }
+    function flashTitle(){
+      let n = 0;
+      const iv = setInterval(() => {
+        n++;
+        document.title = n % 2 ? '⏰ C\'EST PRÊT !' : 'Meal Prep Hub';
+        if(n >= 8){ clearInterval(iv); updateCounts(); }
+      }, 650);
+    }
+    function triggerQuickTimer(){ openModal('quickTimerModal'); }
+
+    // ============================================================
+    // 14) RACCOURCIS CLAVIER + INITIALISATION (avec migration)
+    // ============================================================
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape') closeAllModals();
+      const tag = (document.activeElement || {}).tagName;
+      if(e.key === '/' && tag !== 'INPUT' && tag !== 'TEXTAREA' && tag !== 'SELECT'){
+        e.preventDefault();
+        document.getElementById('searchInput').focus();
+      }
+    });
+    (function init(){
+      // Migration des anciens plans : "Collation" devient Shaker/Smoothie
+      // selon la recette, et chaque repas reçoit "portions" (défaut 1).
+      S.plan = (store.get('plan', [])).map(p => {
+        let slot = p.slot;
+        if(!SLOTS.includes(slot)){
+          const f = findRecipe(p.nom);
+          slot = f ? (DEFAULT_SLOT[f.cat] || 'Déjeuner') : 'Déjeuner';
+        }
+        return {id: p.id || gid(), nom: p.nom, slot: slot, portions: Math.max(1, parseInt(p.portions, 10) || 1)};
+      });
+      store.set('plan', S.plan);
+      document.getElementById('mSteps').addEventListener('change', updateStepProg);
+      const d = new Date().toLocaleDateString('fr-CA', {weekday: 'long', day: 'numeric', month: 'long'});
+      document.getElementById('dashDate').textContent = d.charAt(0).toUpperCase() + d.slice(1);
+      updateCounts();
+      switchCategory('dejeuners');
+      renderDashboard();
+    })();
+  </script>
+</body>
+</html>
