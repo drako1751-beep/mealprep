@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meal Prep Hub • 120 Recettes Détaillées • 2300 kcal</title>
+  <title>Meal Prep Hub • 135 Recettes Détaillées • 2300 kcal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
@@ -25,517 +25,87 @@
       --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
       --shadow-hover: 0 20px 35px -10px rgba(14, 165, 233, 0.18), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg-gradient);
-      background-attachment: fixed;
-      color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      padding: 2rem 1.5rem 8rem 1.5rem;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
-
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; padding: 2rem 1.5rem 8rem 1.5rem; min-height: 100vh; -webkit-font-smoothing: antialiased; }
     .container { max-width: 1280px; margin: 0 auto; }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+    .navbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
     .brand { display: flex; align-items: center; gap: 0.85rem; }
-    .brand-icon {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35);
-    }
-    .brand-title {
-      font-size: 1.45rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .brand-sub {
-      font-size: 0.8rem;
-      color: var(--primary);
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
+    .brand-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35); }
+    .brand-title { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-sub { font-size: 0.8rem; color: var(--primary); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
     .nav-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .btn-top {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.65rem 1.25rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.88rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s;
-      backdrop-filter: blur(8px);
-    }
-    .btn-top:hover {
-      border-color: var(--primary);
-      background: rgba(30, 41, 59, 0.9);
-      transform: translateY(-1px);
-    }
-    .btn-top.active-plan {
-      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-      border-color: var(--primary);
-      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
-    }
-
-    .dashboard {
-      background: var(--surface);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 1.75rem;
-      margin-bottom: 2.25rem;
-      box-shadow: var(--shadow-card);
-      position: relative;
-    }
-    .dash-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .dash-label {
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: var(--primary);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
-    }
+    .btn-top { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 0.65rem 1.25rem; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.88rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; backdrop-filter: blur(8px); }
+    .btn-top:hover { border-color: var(--primary); background: rgba(30, 41, 59, 0.9); transform: translateY(-1px); }
+    .btn-top.active-plan { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border-color: var(--primary); box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35); }
+    .dashboard { background: var(--surface); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: 20px; padding: 1.75rem; margin-bottom: 2.25rem; box-shadow: var(--shadow-card); position: relative; }
+    .dash-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem; }
+    .dash-label { font-size: 0.75rem; font-weight: 800; color: var(--primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.25rem; }
     .dash-heading { font-size: 1.45rem; font-weight: 800; }
-    .dash-actions-right {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .btn-reset {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 0.82rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      transition: color 0.2s;
-    }
+    .dash-actions-right { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .btn-reset { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.35rem; transition: color 0.2s; }
     .btn-reset:hover { color: var(--accent-rose); }
-
-    .macro-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-    }
-    .macro-box {
-      background: rgba(10, 17, 34, 0.65);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: 14px;
-      padding: 1rem 1.15rem;
-    }
-    .macro-box-title {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.65rem;
-    }
-    .macro-numbers {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.92rem;
-    }
+    .macro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+    .macro-box { background: rgba(10, 17, 34, 0.65); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 14px; padding: 1rem 1.15rem; }
+    .macro-box-title { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem; }
+    .macro-numbers { font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; }
     .macro-numbers strong { font-size: 1.25rem; color: #fff; }
-    .progress-track {
-      width: 100%;
-      height: 8px;
-      background: #1e293b;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      border-radius: 999px;
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    .progress-track { width: 100%; height: 8px; background: #1e293b; border-radius: 999px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0%; border-radius: 999px; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
     .bar-cal { background: linear-gradient(90deg, #0284c7, #38bdf8); }
     .bar-prot { background: linear-gradient(90deg, #059669, #10b981); }
     .bar-carb { background: linear-gradient(90deg, #d97706, #f59e0b); }
     .bar-fat { background: linear-gradient(90deg, #e11d48, #f43f5e); }
-
-    .controls-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-    }
+    .controls-wrapper { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
     .search-input-group { position: relative; width: 100%; }
-    .search-icon {
-      position: absolute;
-      left: 1.1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-dim);
-      font-size: 1rem;
-    }
-    .search-input {
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 0.9rem 1.2rem 0.9rem 2.85rem;
-      color: #fff;
-      font-family: inherit;
-      font-size: 0.95rem;
-      outline: none;
-      transition: all 0.2s;
-    }
-    .search-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
-    }
-
+    .search-icon { position: absolute; left: 1.1rem; top: 50%; transform: translateY(-50%); color: var(--text-dim); font-size: 1rem; }
+    .search-input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 0.9rem 1.2rem 0.9rem 2.85rem; color: #fff; font-family: inherit; font-size: 0.95rem; outline: none; transition: all 0.2s; }
+    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12); }
     .nav-pills { display: flex; gap: 0.65rem; flex-wrap: wrap; }
-    .pill-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 0.65rem 1.35rem;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s;
-    }
+    .pill-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); padding: 0.65rem 1.35rem; border-radius: 999px; font-size: 0.9rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.2s; }
     .pill-btn:hover { color: #fff; border-color: var(--primary); }
-    .pill-btn.active {
-      background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-      color: #040813;
-      border-color: transparent;
-      font-weight: 700;
-      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35);
-    }
-    .pill-badge {
-      background: rgba(0, 0, 0, 0.18);
-      padding: 0.15rem 0.45rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-    }
-
-    .recipes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 1.5rem;
-    }
-    .recipe-card {
-      background: var(--surface-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      box-shadow: var(--shadow-card);
-      transition: all 0.25s;
-    }
-    .recipe-card:hover {
-      background: var(--surface-card-hover);
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-    }
-    .card-head {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-    }
-    .card-top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .badge-type {
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: var(--primary);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.25rem 0.65rem;
-      border-radius: 6px;
-      text-transform: uppercase;
-      display: inline-block;
-    }
-    
-    .rating-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--border);
-      padding: 0.2rem 0.5rem;
-      border-radius: 8px;
-    }
-    .rating-label {
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      font-weight: 700;
-    }
-    .rating-select {
-      background: transparent;
-      border: none;
-      color: #fbbf24;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      font-weight: 700;
-      outline: none;
-      cursor: pointer;
-    }
-    .rating-select option {
-      background: #0f172a;
-      color: #fff;
-    }
-
-    .card-title {
-      font-size: 1.22rem;
-      font-weight: 700;
-      line-height: 1.35;
-      color: #fff;
-    }
-    .card-macro-strip {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      color: #38bdf8;
-      background: rgba(15, 23, 42, 0.6);
-      padding: 0.45rem 0.75rem;
-      border-radius: 8px;
-      border-left: 3px solid var(--primary);
-    }
-    .preview-box {
-      background: rgba(8, 15, 30, 0.45);
-      border-radius: 10px;
-      padding: 0.85rem;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-    }
-    .preview-title {
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.45rem;
-    }
-    .preview-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-    .preview-list li {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      line-height: 1.35;
-    }
-    .preview-list li::before {
-      content: '• ';
-      color: var(--primary);
-    }
-    .card-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.65rem;
-      margin-top: auto;
-    }
-    .btn-card {
-      border: none;
-      padding: 0.7rem 0.9rem;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.84rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      transition: all 0.2s;
-    }
-    .btn-cook {
-      background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-      color: #040813;
-    }
-    .btn-add {
-      background: rgba(30, 41, 59, 0.8);
-      color: #fff;
-      border: 1px solid var(--border);
-    }
-    .btn-add.in-plan {
-      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-      color: #040813;
-      border-color: transparent;
-    }
-
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(3, 7, 18, 0.85);
-      backdrop-filter: blur(10px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      padding: 1.5rem;
-    }
-    .modal-window {
-      background: #0f172a;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 820px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .modal-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 1.25rem;
-    }
+    .pill-btn.active { background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); color: #040813; border-color: transparent; font-weight: 700; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35); }
+    .pill-badge { background: rgba(0, 0, 0, 0.18); padding: 0.15rem 0.45rem; border-radius: 999px; font-size: 0.78rem; }
+    .recipes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.5rem; }
+    .recipe-card { background: var(--surface-card); border: 1px solid var(--border); border-radius: 18px; padding: 1.4rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: var(--shadow-card); transition: all 0.25s; }
+    .recipe-card:hover { background: var(--surface-card-hover); border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .card-head { display: flex; flex-direction: column; gap: 0.45rem; }
+    .card-top-bar { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+    .badge-type { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--primary); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 6px; text-transform: uppercase; display: inline-block; }
+    .rating-wrapper { display: flex; align-items: center; gap: 0.35rem; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border); padding: 0.2rem 0.5rem; border-radius: 8px; }
+    .rating-label { font-size: 0.72rem; color: var(--text-dim); font-weight: 700; }
+    .rating-select { background: transparent; border: none; color: #fbbf24; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 700; outline: none; cursor: pointer; }
+    .rating-select option { background: #0f172a; color: #fff; }
+    .card-title { font-size: 1.22rem; font-weight: 700; line-height: 1.35; color: #fff; }
+    .card-macro-strip { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: #38bdf8; background: rgba(15, 23, 42, 0.6); padding: 0.45rem 0.75rem; border-radius: 8px; border-left: 3px solid var(--primary); }
+    .preview-box { background: rgba(8, 15, 30, 0.45); border-radius: 10px; padding: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.03); }
+    .preview-title { font-size: 0.72rem; font-weight: 800; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.45rem; }
+    .preview-list { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .preview-list li { font-size: 0.86rem; color: var(--text-muted); line-height: 1.35; }
+    .preview-list li::before { content: '• '; color: var(--primary); }
+    .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; margin-top: auto; }
+    .btn-card { border: none; padding: 0.7rem 0.9rem; border-radius: 10px; font-weight: 700; font-size: 0.84rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; transition: all 0.2s; }
+    .btn-cook { background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); color: #040813; }
+    .btn-add { background: rgba(30, 41, 59, 0.8); color: #fff; border: 1px solid var(--border); }
+    .btn-add.in-plan { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: #040813; border-color: transparent; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 999; padding: 1.5rem; }
+    .modal-window { background: #0f172a; border: 1px solid var(--border); border-radius: 20px; width: 100%; max-width: 820px; max-height: 90vh; overflow-y: auto; padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .modal-header-row { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 1.25rem; }
     .modal-title { font-size: 1.45rem; font-weight: 800; color: #fff; }
-    .modal-sub {
-      font-size: 0.88rem;
-      color: var(--primary);
-      font-family: 'JetBrains Mono', monospace;
-      margin-top: 0.25rem;
-    }
-    .btn-close-modal {
-      background: rgba(255, 255, 255, 0.06);
-      border: none;
-      color: var(--text-muted);
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      font-size: 1.3rem;
-      cursor: pointer;
-    }
+    .modal-sub { font-size: 0.88rem; color: var(--primary); font-family: 'JetBrains Mono', monospace; margin-top: 0.25rem; }
+    .btn-close-modal { background: rgba(255, 255, 255, 0.06); border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 10px; font-size: 1.3rem; cursor: pointer; }
     .btn-close-modal:hover { color: var(--accent-rose); }
-    .timer-ribbon {
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      border-radius: 12px;
-      padding: 0.85rem 1.15rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
+    .timer-ribbon { background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 0.85rem 1.15rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
     .ribbon-btns { display: flex; gap: 0.45rem; flex-wrap: wrap; }
-    .timer-chip {
-      background: rgba(30, 41, 59, 0.9);
-      border: 1px solid var(--border);
-      color: #fff;
-      padding: 0.4rem 0.75rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
+    .timer-chip { background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border); color: #fff; padding: 0.4rem 0.75rem; border-radius: 8px; cursor: pointer; font-size: 0.82rem; font-weight: 600; }
     .timer-chip:hover { border-color: var(--primary); }
-    .modal-section-title {
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.75rem;
-    }
+    .modal-section-title { font-size: 0.82rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
     .checklist-container { display: flex; flex-direction: column; gap: 0.75rem; }
-    .check-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.85rem;
-      padding: 0.85rem 1rem;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      cursor: pointer;
-      line-height: 1.5;
-    }
-    .check-row input[type="checkbox"] {
-      width: 1.25rem;
-      height: 1.25rem;
-      accent-color: var(--primary);
-      margin-top: 0.15rem;
-      flex-shrink: 0;
-    }
+    .check-row { display: flex; align-items: flex-start; gap: 0.85rem; padding: 0.85rem 1rem; border-radius: 10px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.04); cursor: pointer; line-height: 1.5; }
+    .check-row input[type="checkbox"] { width: 1.25rem; height: 1.25rem; accent-color: var(--primary); margin-top: 0.15rem; flex-shrink: 0; }
     .check-row span.striked { text-decoration: line-through; color: var(--text-dim); }
-
-    .timer-float {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      background: rgba(11, 19, 41, 0.92);
-      border: 1px solid var(--primary);
-      border-radius: 16px;
-      padding: 0.85rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      z-index: 900;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(12px);
-    }
-    .timer-clock {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-    .timer-stop-btn {
-      background: rgba(244, 63, 94, 0.15);
-      border: 1px solid rgba(244, 63, 94, 0.4);
-      color: var(--accent-rose);
-      padding: 0.4rem 0.85rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      cursor: pointer;
-    }
+    .timer-float { position: fixed; bottom: 1.5rem; right: 1.5rem; background: rgba(11, 19, 41, 0.92); border: 1px solid var(--primary); border-radius: 16px; padding: 0.85rem 1.25rem; display: flex; align-items: center; gap: 1rem; z-index: 900; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); }
+    .timer-clock { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+    .timer-stop-btn { background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); color: var(--accent-rose); padding: 0.4rem 0.85rem; border-radius: 8px; font-weight: 700; font-size: 0.8rem; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -546,7 +116,7 @@
         <div class="brand-icon">⚡</div>
         <div>
           <div class="brand-title">Meal Prep Hub</div>
-          <div class="brand-sub">Objectif : ~2300 kcal • ~170g Protéines</div>
+          <div class="brand-sub">Objectif : ~2300 kcal • 135 Recettes</div>
         </div>
       </div>
       <div class="nav-actions">
@@ -575,34 +145,21 @@
           </button>
         </div>
       </div>
-
       <div class="macro-grid">
         <div class="macro-box">
-          <div class="macro-box-title">
-            <span>Calories</span>
-            <span class="macro-numbers"><strong id="valCal">0</strong> / 2300 kcal</span>
-          </div>
+          <div class="macro-box-title"><span>Calories</span><span class="macro-numbers"><strong id="valCal">0</strong> / 2300 kcal</span></div>
           <div class="progress-track"><div id="barCal" class="progress-bar bar-cal"></div></div>
         </div>
         <div class="macro-box">
-          <div class="macro-box-title">
-            <span>Protéines</span>
-            <span class="macro-numbers"><strong id="valProt">0</strong> / 170 g</span>
-          </div>
+          <div class="macro-box-title"><span>Protéines</span><span class="macro-numbers"><strong id="valProt">0</strong> / 170 g</span></div>
           <div class="progress-track"><div id="barProt" class="progress-bar bar-prot"></div></div>
         </div>
         <div class="macro-box">
-          <div class="macro-box-title">
-            <span>Glucides</span>
-            <span class="macro-numbers"><strong id="valCarb">0</strong> / 235 g</span>
-          </div>
+          <div class="macro-box-title"><span>Glucides</span><span class="macro-numbers"><strong id="valCarb">0</strong> / 235 g</span></div>
           <div class="progress-track"><div id="barCarb" class="progress-bar bar-carb"></div></div>
         </div>
         <div class="macro-box">
-          <div class="macro-box-title">
-            <span>Lipides</span>
-            <span class="macro-numbers"><strong id="valFat">0</strong> / 65 g</span>
-          </div>
+          <div class="macro-box-title"><span>Lipides</span><span class="macro-numbers"><strong id="valFat">0</strong> / 65 g</span></div>
           <div class="progress-track"><div id="barFat" class="progress-bar bar-fat"></div></div>
         </div>
       </div>
@@ -613,7 +170,6 @@
         <span class="search-icon">🔍</span>
         <input type="text" id="searchInput" class="search-input" placeholder="Rechercher par ingrédient (ex: porc, patate douce, riz, pâtes)..." onkeyup="filterCards()">
       </div>
-
       <nav class="nav-pills">
         <button class="pill-btn active" onclick="switchCategory('dejeuners', this)">
           <span>Déjeuners</span> <span class="pill-badge" id="count-dejeuners">0</span>
@@ -624,14 +180,16 @@
         <button class="pill-btn" onclick="switchCategory('soupers', this)">
           <span>Soupers</span> <span class="pill-badge" id="count-soupers">0</span>
         </button>
+        <button class="pill-btn" onclick="switchCategory('shakes', this)">
+          <span>Shakes Protéinés</span> <span class="pill-badge" id="count-shakes">0</span>
+        </button>
         <button class="pill-btn" onclick="switchCategory('smoothies', this)">
-          <span>Smoothies</span> <span class="pill-badge" id="count-smoothies">0</span>
+          <span>Smoothies Santé</span> <span class="pill-badge" id="count-smoothies">0</span>
         </button>
       </nav>
     </section>
 
     <div id="cardsContainer" class="recipes-grid"></div>
-
   </div>
 
   <div class="modal-overlay" id="cookModal">
@@ -643,23 +201,20 @@
         </div>
         <button class="btn-close-modal" onclick="closeModal('cookModal')">&times;</button>
       </div>
-
       <div class="timer-ribbon">
-        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Minuteurs de cuisine :</span>
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Minuteurs :</span>
         <div class="ribbon-btns">
-          <button class="timer-chip" onclick="startTimer(8*60)">8 min</button>
-          <button class="timer-chip" onclick="startTimer(12*60)">12 min</button>
-          <button class="timer-chip" onclick="startTimer(18*60)">18 min</button>
-          <button class="timer-chip" onclick="startTimer(22*60)">22 min</button>
+          <button class="timer-chip" onclick="startTimer(5*60)">5 min</button>
+          <button class="timer-chip" onclick="startTimer(10*60)">10 min</button>
+          <button class="timer-chip" onclick="startTimer(15*60)">15 min</button>
+          <button class="timer-chip" onclick="startTimer(20*60)">20 min</button>
           <button class="timer-chip" onclick="startTimer(25*60)">25 min</button>
         </div>
       </div>
-
       <div>
         <div class="modal-section-title">Ingrédients Requis (Checklist)</div>
         <div class="checklist-container" id="mIngredients"></div>
       </div>
-
       <div>
         <div class="modal-section-title">Étapes de Préparation Détaillées (Guide Pas-à-Pas)</div>
         <div class="checklist-container" id="mSteps"></div>
@@ -720,39 +275,49 @@
         {"nom":"27. Wrap Salade d'Œufs Légère au Yogourt","type":"Sans Réchauffage","macros":"~485 kcal | 36g Protéines | 44g Glucides | 17g Lipides","ingredients":["2 tortillas blé entier","4 gros œufs durs écrasés","2 c. à soupe yogourt grec 0% + 1 c. à thé Dijon","Céleri haché","Feuilles de laitue"],"instructions":["1. Écale les 4 œufs durs froids et mets-les dans un bol moyen.","2. Écrase-les complètement avec les dents d'une fourchette pour faire de tous petits morceaux.","3. Ajoute dans le bol : 2 cuillères à soupe de yogourt grec 0%, 1 cuillère à thé de moutarde de Dijon, le céleri coupé très fin, une pincée de sel et de poivre. Mélange bien.","4. Pose les 2 tortillas sur une planche. Place une belle feuille de laitue propre et sèche sur chaque tortilla.","5. Dépose la salade d'œufs sur la laitue, replie les bords et roule les tortillas bien serrées dans du papier parchemin."]},
         {"nom":"28. Gâteau Tasse (Mug Cake) Avoine & Choco Minute","type":"Minute Micro-ondes","macros":"~480 kcal | 38g Protéines | 54g Glucides | 12g Lipides","ingredients":["1/2 tasse farine d'avoine","1 scoop protéine chocolat-noisette","1 gros œuf","1/2 banane écrasée","60 ml boisson d'amande","1/2 c. à thé levure chimique"],"instructions":["1. Prends une grande tasse à café en céramique (format mug).","2. Écrase la demi-banane directement au fond de la tasse avec une fourchette.","3. Casse l'œuf dans la tasse et verse les 60 ml de boisson d'amande. Fouette à la fourchette pour lier le liquide.","4. Ajoute la farine d'avoine, la mesure de protéine chocolat-noisette et la demi-cuillère de levure chimique. Remue soigneusement jusqu'au fond pour ne laisser aucune poudre sèche collée.","5. Mets la tasse au centre du micro-ondes et cuis pendant 90 secondes à puissance maximale. Le gâteau va gonfler et devenir moelleux comme un muffin chaud !"]},
         {"nom":"29. Croque-Matin Dinde, Pomme Tranchée & Cheddar","type":"Sandwich Toasté","macros":"~505 kcal | 40g Protéines | 48g Glucides | 16g Lipides","ingredients":["2 tranches pain de blé entier","120 g poitrine de dinde tranchée","1/2 pomme tranchée mince","35 g cheddar léger"],"instructions":["1. Pose les 2 tranches de pain de blé sur ta planche de travail.","2. Sur la première tranche, dépose la moitié du cheddar léger.","3. Ajoute par-dessus les 120 g de dinde fumée en tranches, puis aligne les lamelles fines de pomme croquante. Recouvre avec le reste de cheddar et la deuxième tranche de pain.","4. Chauffe une poêle à feu moyen-doux avec un léger spray d'huile. Dépose le sandwich et appuie dessus avec une spatule. Laisse dorer 3 minutes.","5. Retourne le sandwich et cuis 2 minutes et demie sur l'autre face jusqu'à ce que le pain soit bien doré et que le fromage s'étire en fondant."]},
-        {"nom":"30. Smoothie Bol Épais & Granola Maison","type":"Frais & Croquant","macros":"~490 kcal | 37g Protéines | 62g Glucides | 11g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/2 tasse yogourt grec 0%","1 banane congelée","30 g granola léger","Fruits des champs"],"instructions":["1. Verse dans le mélangeur la demi-tasse de yogourt grec 0% en premier au fond.","2. Coupe la banane congelée en 4 morceaux et dépose-la sur le yogourt avec 1 scoop de protéine chocolat-noisette et seulement 2 cuillères à soupe d'eau très froide (pas plus de liquide pour que ça reste très épais).","3. Mixe à puissance maximale en utilisant le poussoir pour écraser les fruits congelés pendant 45 secondes jusqu'à consistance de crème glacée molle.","4. Verse cette crème chocolatée dans un bol avec une spatule.","5. Décore le dessus avec les 30 g de granola croustillant et une poignée de petits fruits frais. Déguste immédiatement à la cuillère !"]}
+        {"nom":"30. Toast Houmous, Tomate & Féta","type":"Végétarien Rapide","macros":"~450 kcal | 22g Protéines | 55g Glucides | 18g Lipides","ingredients":["2 tranches pain de blé entier épais","1/3 tasse houmous classique","1 tomate coupée en rondelles","30 g féta émiettée","Ciboulette ou persil frais"],"instructions":["1. Fais griller les 2 tranches de pain jusqu'à ce qu'elles soient bien fermes et dorées.","2. Tartine généreusement le houmous (environ 2 cuillères à soupe par tranche) sur le pain tiède.","3. Aligne de belles rondelles de tomates fraîches par-dessus.","4. Émiette la féta avec tes doigts et parsème-la sur les tomates.","5. Ajoute une petite touche de ciboulette hachée et un trait de poivre noir. Déguste !"]},
+        {"nom":"31. Bol Kéfir, Granola & Figues Fraîches","type":"Probiotique Santé","macros":"~420 kcal | 25g Protéines | 60g Glucides | 12g Lipides","ingredients":["1.5 tasse kéfir nature (lait fermenté)","1/2 tasse granola léger","2 figues fraîches coupées en quartiers","1 c. à s. miel liquide"],"instructions":["1. Dans un bol creux, verse le kéfir bien froid.","2. Saupoudre la demi-tasse de granola léger croustillant sur un côté du bol.","3. Dépose délicatement les quartiers de figues fraîches sur l'autre côté.","4. Fais couler un mince filet de miel liquide sur les fruits et le granola.","5. Mange immédiatement à la cuillère pour garder le contraste des textures."]},
+        {"nom":"32. Crêpes Sarrasin, Jambon & Fromage Suisse","type":"Classique Salé","macros":"~490 kcal | 38g Protéines | 50g Glucides | 16g Lipides","ingredients":["2 galettes de sarrasin prêtes à utiliser","100 g jambon maigre en tranches","2 tranches fromage suisse allégé","1 poignée d'épinards"],"instructions":["1. Fais chauffer une grande poêle à feu moyen-doux. Dépose 1 galette de sarrasin.","2. Pose 1 tranche de fromage suisse au centre de la galette, puis la moitié du jambon et des épinards.","3. Laisse chauffer 2 minutes jusqu'à ce que le fromage commence à fondre.","4. Replie les 4 bords de la galette vers le centre pour former un carré.","5. Répète l'opération avec la deuxième galette et déguste chaud."]},
+        {"nom":"33. Œufs Cocotte aux Épinards & Crème","type":"Four Réconfort","macros":"~480 kcal | 35g Protéines | 40g Glucides | 20g Lipides","ingredients":["3 gros œufs","1/2 tasse d'épinards fondus","2 c. à s. crème 15% à cuisson","15 g parmesan râpé","2 tranches pain de blé entier"],"instructions":["1. Préchauffe ton four à 190°C (375°F). Beurres ou huile légèrement 2 petits ramequins allant au four.","2. Dépose les épinards fondus au fond de chaque ramequin.","3. Casse délicatement les œufs par-dessus (1 dans un, 2 dans l'autre, ou comme tu préfères).","4. Verse 1 cuillère à soupe de crème dans chaque ramequin et saupoudre de parmesan.","5. Cuire au four 15 minutes (le blanc doit être pris mais le jaune encore coulant). Mange avec les mouillettes de pain grillé !"]},
+        {"nom":"34. Wrap Beurre d'Amande, Banane & Graines de Chia","type":"Énergie Rapide","macros":"~510 kcal | 22g Protéines | 65g Glucides | 22g Lipides","ingredients":["1 grande tortilla de blé entier","2 c. à s. beurre d'amande naturel","1 banane entière","1 c. à s. graines de chia","Pincée de cannelle"],"instructions":["1. Étale la grande tortilla bien à plat sur le comptoir.","2. Tartine les 2 cuillères à soupe de beurre d'amande uniformément sur toute la surface.","3. Saupoudre la cuillère de graines de chia et la pincée de cannelle sur le beurre d'amande.","4. Dépose la banane entière épluchée sur un bord de la tortilla.","5. Enroule la tortilla serrée autour de la banane, coupe le rouleau en deux et emporte-le !"]},
+        {"nom":"35. Gruau Cuit au Four Framboises & Amandes","type":"Matin Chaud","macros":"~485 kcal | 24g Protéines | 68g Glucides | 15g Lipides","ingredients":["1/2 tasse flocons d'avoine","1 tasse lait d'amande","1/2 tasse framboises fraîches ou surgelées","1 c. à s. amandes effilées","1 c. à s. sirop d'érable"],"instructions":["1. Préchauffe ton four à 180°C (350°F).","2. Dans un petit plat individuel allant au four, mélange l'avoine et le lait d'amande.","3. Enfonce délicatement les framboises dans le mélange.","4. Saupoudre le dessus d'amandes effilées.","5. Cuis au four 30 minutes jusqu'à ce que le dessus soit légèrement doré. Arrose d'une cuillère de sirop d'érable avant de manger."]}
       ],
       "diners": [
-        {"nom":"1. Burrito-Wrap Smash Big Mac Santé","type":"Lunchbox Travail","macros":"Par burrito : ~610 kcal | 48g Protéines | 52g Glucides | 18g Lipides","ingredients":["3 grandes tortillas de blé entier","450 g bœuf haché extra-maigre","3 tranches cheddar léger","2 tasses laitue émincée","1/2 tasse cornichons à l'aneth et oignon haché","SAUCE EN POT : 1/2 tasse yogourt grec 0%, 1 c. à s. mayo légère, relish, moutarde, paprika"],"instructions":["1. Dans une grande poêle sur feu moyen-fort, mets les 450 g de bœuf haché avec sel, poivre et poudre d'ail. Écrase et cuis pendant 6 minutes jusqu'à ce que la viande soit dorée et bien cuite sans eau.","2. Répartis le bœuf chaud dans 3 contenants hermétiques en verre pour tes repas de la semaine. Dépose 1 tranche de cheddar léger sur le bœuf encore chaud dans chaque boîte pour qu'il fonde. Ferme les boîtes au frigo.","3. Préparation de la sauce : Prends 3 petits pots hermétiques étanches de 60 ml. Dans chaque pot, mets 2 cuillères à soupe de yogourt grec 0%, 1 cuillère à thé de mayo légère, 1 cuillère à thé de relish, une goutte de moutarde jaune et une pincée de paprika. Visse les couvercles hermétiquement et garde au frigo.","4. Prends 3 sacs refermables pour mettre 1 tortilla, un peu de salade émincée, des oignons et des cornichons à part pour que rien ne ramollisse.","5. Au travail : Fais chauffer ta boîte de bœuf et fromage 1 min 30 au micro-ondes. Tiédis la tortilla 10 secondes. Secoue très fort ton petit pot de sauce fermée comme un shaker, verse la sauce sur le bœuf chaud, ajoute la salade et les cornichons, roule très serré et déguises !"]},
-        {"nom":"2. Salade Cobb Poulet & Bacon de Dinde","type":"Froid / Zéro Odeur","macros":"Par repas : ~615 kcal | 48g Protéines | 52g Glucides | 18g Lipides","ingredients":["500 g poitrines de poulet rôties","6 tranches bacon de dinde cuit","3 gros œufs durs","150 g couscous perlé cuit","Romaine, chou rouge, tomates cerises","SAUCE EN POT : yogourt grec 0%, Dijon, érable, vinaigre de cidre"],"instructions":["1. Préchauffe le four à 200°C (400°F). Coupe les 500 g de poitrines de poulet en lanières, assaisonne de sel et poivre, et pose-les sur une plaque avec le bacon de dinde. Enfourne pour 20 minutes. Laisse refroidir complètement.","2. Cuis 150 g de couscous perlé dans de l'eau bouillante salée pendant 8 minutes. Égoutte et rince à l'eau froide dans une passoire pour stopper la cuisson.","3. Cuis 3 œufs durs dans l'eau bouillante pendant 9 minutes, refroidis-les dans l'eau glacée et écale-les. Coupe-les en deux.","4. Dans 3 grands contenants lunchbox : dépose le couscous perlé au fond, ajoute le poulet froid en dés, les morceaux de bacon émiettés, les demi-œufs, la salade romaine, le chou rouge râpé et les tomates cerises entières.","5. Préparation de la vinaigrette en pot : Dans 3 petits pots étanches, verse dans chacun : 2 cuillères à soupe de yogourt grec 0%, 1 cuillère à thé de moutarde de Dijon, 1 cuillère à thé de sirop d'érable, 1 cuillère à thé de vinaigre de cidre et du poivre. Visse le bouchon.","6. Au travail : Ton repas se mange froid ! Secoue énergiquement ton petit pot de vinaigrette pendant 10 secondes pour obtenir un liquide onctueux, verse sur toute la salade et mélange avec ta fourchette."]},
-        {"nom":"3. Smash Burger Bowls & Frites de Patates Douces","type":"Réchauffable au Travail","macros":"Par repas : ~630 kcal | 49g Protéines | 56g Glucides | 17g Lipides","ingredients":["450 g bœuf haché extra-maigre en galettes","3 tranches cheddar fondues","500 g patates douces en frites rôties","Cornichons, oignon rouge, salade","SAUCE EN POT : 1/2 tasse yogourt grec, 1 c. à s. relish, moutarde jaune, paprika"],"instructions":["1. Préchauffe ton four à 215°C (425°F). Épluche les patates douces et coupe-les en bâtonnets réguliers comme des frites. Étale-les sur une plaque avec du papier parchemin, vaporise un spray d'huile, sale et cuis 22 minutes en retournant à mi-cuisson.","2. Façonne 3 galettes minces avec les 450 g de bœuf haché. Cuis-les dans une poêle très chaude 3 minutes par côté. Dépose 1 tranche de cheddar sur chaque galette pour qu'elle fonde.","3. Répartis dans 3 plats hermétiques : les frites de patates douces cuites et la galette de bœuf au fromage. Mets les cornichons et la salade dans un petit sachet à part.","4. Prépare la sauce burger : Dans 3 petits pots de 60 ml, mélange le yogourt grec, la relish sucrée, la moutarde jaune et le paprika. Visse bien les bouchons.","5. Au travail : Fais chauffer le plat de frites et bœuf au micro-ondes pendant 2 minutes pour qu'il soit bien chaud. Secoue fort ton petit pot de sauce et nappe directement la viande et les frites chaudes, puis ajoute les cornichons frais croquants."]},
-        {"nom":"4. Salade Grecque Souvlaki Poulet & Orzo","type":"Froid / Prêt à Manger","macros":"Par repas : ~595 kcal | 47g Protéines | 54g Glucides | 16g Lipides","ingredients":["500 g hauts de cuisse de poulet grillés","150 g orzo cuit refroidi","90 g féta","Concombre, poivrons, tomates","SAUCE EN POT : 3/4 tasse tzatzíki maison fouetté"],"instructions":["1. Dans un bol, assaisonne les hauts de cuisse de poulet avec du jus de citron, de l'origan et du sel. Fais-les dorer dans une poêle sur feu moyen-vif 6 minutes par côté jusqu'à ce qu'ils soient bien cuits à cœur. Laisse refroidir sur une planche et coupe en tranches.","2. Cuis les 150 g d'orzo (petites pâtes en forme de grains de riz) dans l'eau bouillante salée 8 minutes. Égoutte et rince à l'eau froide.","3. Dans 3 contenants hermétiques, sépare l'orzo froid, les morceaux de poulet rôti, le concombre en dés, les dés de poivron rouge et la féta émiettée.","4. Préparation de la sauce en pot : Remplis 3 petits pots étanches avec 2 grosses cuillères à soupe de tzatzíki crémeux bien assaisonné.","5. Au travail : Pas besoin de micro-ondes ! Ouvre ton petit pot de tzatzíki, secoue-le légèrement pour l'assouplir et verse-le directement sur le bol froid avant de brasser avec ta fourchette."]},
-        {"nom":"5. Sandwich Focaccia Dinde & Pesto","type":"Boîte à Lunch","macros":"Par sandwich : ~605 kcal | 45g Protéines | 54g Glucides | 19g Lipides","ingredients":["3 portions pain focaccia blé","350 g poitrine de dinde fumée","90 g mozzarella allégée","3 c. à soupe pesto","Poivrons rôtis en bocal, roquette"],"instructions":["1. Coupe les 3 morceaux de focaccia en deux dans le sens de l'épaisseur avec un couteau à pain pour ouvrir les sandwichs.","2. Étends 1 cuillère à soupe de pesto de basilic sur la tranche du bas de chaque pain.","3. Dépose sur le pesto les tranches de poitrine de dinde fumée en les pliant pour donner du volume.","4. Ajoute les lanières de poivrons rôtis égouttées et la tranche de mozzarella allégée.","5. Ajoute une belle poignée de feuilles de roquette fraîche et referme avec le dessus de la focaccia. Emballe chaque sandwich très serré dans une feuille d'aluminium et place au frigo."]},
-        {"nom":"6. Salade Nouilles Soba & Bœuf Teriyaki","type":"Asiatique Froid","macros":"Par repas : ~620 kcal | 46g Protéines | 66g Glucides | 15g Lipides","ingredients":["450 g bœuf émincé sauté","180 g nouilles soba cuites rincées","Carottes râpées, pois mange-tout, edamames","SAUCE EN POT : 3 c. à s. sauce soya réduite en sodium, sésame grillé, filet de miel, gingembre"],"instructions":["1. Fais bouillir une casserole d'eau et plonge les nouilles soba (au sarrasin) pendant 4 à 5 minutes. Égoutte-les immédiatement et rince-les très longtemps sous l'eau glacée du robinet avec tes doigts pour enlever l'amidon et les garder bien fermes.","2. Dans une poêle très chaude avec un spray d'huile, saisis les lanières de bœuf 3 minutes avec du sel et du poivre. Laisse refroidir.","3. Dans 3 boîtes hermétiques, répartis les nouilles soba froides, les lanières de bœuf, les carottes râpées, les pois mange-tout croquants et les edamames.","4. Prépare la sauce teriyaki en pot : Dans 3 petits contenants étanches, mélange la sauce soya allégée, 1/2 cuillère à thé de miel, 1/2 cuillère à thé d'huile de sésame et une pincée de gingembre moulu. Visse fermement.","5. Au travail : Secoue vigoureusement ton petit pot pour dissoudre le miel dans la sauce soya. Verse sur les nouilles et le bœuf froid, puis mélange le tout."]},
-        {"nom":"7. Burrito Bowl Poulet Fajita & Haricots Noirs","type":"Réchauffable","macros":"Par repas : ~610 kcal | 48g Protéines | 62g Glucides | 14g Lipides","ingredients":["500 g poitrines de poulet émincées","150 g riz jasmin cuit","1 boîte haricots noirs rincés","Poivrons et oignons sautés","SAUCE EN POT : 1/2 tasse yogourt grec fouetté avec salsa et jus de lime"],"instructions":["1. Coupe les poitrines de poulet, les poivrons et les oignons en lanières. Fais-les sauter dans une grande poêle sur feu moyen-vif avec des épices mexicaines pendant 8 minutes jusqu'à ce que le poulet soit entièrement cuit.","2. Rince et égoutte les haricots noirs en boîte.","3. Dans 3 plats pour le travail, dépose une portion de riz jasmin cuit, les haricots noirs et le poulet sauté avec les légumes dorés. Ferme les plats au frigo.","4. Prépare la sauce crémeuse en pot : Dans 3 petits pots hermétiques, mélange 2 cuillères à soupe de yogourt grec 0%, 1 cuillère à soupe de salsa douce et 5 gouttes de jus de lime frais.","5. Au travail : Réchauffe ton plat de riz, poulet et haricots 2 minutes au micro-ondes. Sors ton petit pot de sauce, secoue-le fort pour le liquéfier, et verse la sauce crémeuse sur le plat bien chaud avant de savourer."]},
-        {"nom":"8. Salade Pâtes au Thon & Câpres","type":"Sans Réchauffage","macros":"Par repas : ~590 kcal | 47g Protéines | 58g Glucides | 14g Lipides","ingredients":["3 boîtes thon pâle égoutté","180 g rotinis de blé entier cuits","Tomates cerises, concombres, olives","SAUCE EN POT : yogourt grec 0%, jus de citron, câpres, moutarde Dijon"],"instructions":["1. Fais cuire les pâtes rotinis dans l'eau bouillante salée 9 minutes. Égoutte et rince à l'eau très froide pour stopper la cuisson.","2. Ouvre les 3 boîtes de thon et presse-les bien pour enlever toute l'eau. Émiette le thon dans les 3 contenants de pâtes froides.","3. Ajoute dans les boîtes les tomates cerises coupées en deux, les dés de concombre et quelques olives noires tranchées.","4. Prépare la sauce crémeuse au citron : Dans 3 petits pots étanches, mélange le yogourt grec 0%, 1 cuillère à thé de moutarde de Dijon, 1 cuillère à thé de jus de citron et 1 cuillère à thé de câpres écrasées.","5. Au travail : C'est un repas prêt à manger froid sans faire la file au micro-ondes ! Secoue ton petit pot hermétique pour rendre la sauce liquide, verse-la sur les pâtes et brasse avec ta fourchette."]},
-        {"nom":"9. Bowl Poulet Shawarma & Salade Quinoa","type":"Moyen-Orient","macros":"Par repas : ~605 kcal | 49g Protéines | 54g Glucides | 16g Lipides","ingredients":["500 g poulet mariné shawarma cuit","120 g quinoa cuit","Persil haché, tomates, concombre","SAUCE EN POT : hummus délayé avec un filet de jus de citron et eau"],"instructions":["1. Assaisonne le poulet avec cumin, coriandre, ail et paprika. Cuis-le dans une poêle huilée 6 minutes de chaque côté et découpe en tranches.","2. Cuis le quinoa dans l'eau bouillante 15 minutes, égoutte et laisse tiédir. Mélange-le avec une poignée de persil frais haché, des dés de tomates et de concombres pour faire un taboulé frais.","3. Monte tes 3 plats : dépose le taboulé de quinoa frais et les lanières de poulet shawarma.","4. Prépare la sauce hummus en pot : Dans 3 petits pots hermétiques, mets 2 cuillères à soupe d'hummus, 1 cuillère à thé d'eau et quelques gouttes de jus de citron. Visse le bouchon.","5. Au travail : Fais tiédir le poulet 45 secondes au micro-ondes si tu le souhaites. Secoue fort ton pot de hummus pour le fluidifier et verse-le en filet sur la viande et le quinoa."]},
-        {"nom":"10. Wrap Poulet César Bacon de Dinde","type":"Transportable","macros":"Par wrap : ~595 kcal | 48g Protéines | 48g Glucides | 18g Lipides","ingredients":["3 grandes tortillas blé entier","450 g poulet rôti en lanières","6 tranches bacon de dinde cuit","Romaine émincée","SAUCE EN POT : yogourt grec 0%, parmesan, ail, Worcestershire, citron"],"instructions":["1. Fais dorer les lanières de poulet et le bacon de dinde à la poêle pendant 6 minutes. Laisse refroidir. Émiette le bacon.","2. Lave et sèche soigneusement la salade romaine. Coupe-la en fines lanières.","3. Prépare la sauce César légère : Dans 3 petits pots étanches, mélange 2 cuillères à soupe de yogourt grec 0%, 1 cuillère à thé de parmesan râpé fin, 1/4 cuillère d'ail en poudre, 2 gouttes de sauce Worcestershire et du jus de citron.","4. Emballe 3 tortillas dans un sac refermable, et mets la salade avec le poulet et le bacon dans un plat sec.","5. Au travail : Ouvre la tortilla. Secoue très fort ton pot de sauce César et verse-la sur le poulet et la salade. Dépose au milieu de la tortilla, plie les bords et roule fermement."]},
-        {"nom":"11. Salade Thaï Poulet & Vermicelles de Riz","type":"Croquant","macros":"Par repas : ~615 kcal | 47g Protéines | 52g Glucides | 17g Lipides","ingredients":["450 g poulet haché maigre cuit","120 g vermicelles de riz cuits","Chou râpé, carottes, coriandre","SAUCE EN POT : 2 c. à s. beurre d'arachide fondu, sauce soya, lime, sriracha, eau"],"instructions":["1. Plonge les vermicelles de riz dans un bol d'eau bouillante pendant 3 minutes pour les ramollir. Égoutte et rince à l'eau froide. Coupe-les un peu avec des ciseaux de cuisine pour qu'ils soient faciles à manger.","2. Fais cuire le poulet haché dans une poêle huilée 6 minutes en remuant avec du sel et de l'ail. Laisse refroidir.","3. Dans 3 boîtes hermétiques, monte les repas avec les vermicelles froids, le poulet haché, du chou rouge râpé très fin, des carottes râpées et de la coriandre.","4. Prépare la sauce arachide thaï : Fais fondre 2 cuillères de beurre d'arachide 15 secondes au micro-ondes. Dans 3 petits pots étanches, mélange le beurre d'arachide fondu avec 1 cuillère à soupe de sauce soya, un trait de jus de lime et 1 cuillère à soupe d'eau chaude.","5. Au travail : Secoue fort ton petit pot hermétique pour homogénéiser la sauce arachide, verse sur les vermicelles croquants et mélange."]},
-        {"nom":"12. Bowl Riz Poulet Piri-Piri & Maïs Rôti","type":"Réchauffable","macros":"Par repas : ~620 kcal | 48g Protéines | 65g Glucides | 13g Lipides","ingredients":["500 g poulet piri-piri rôti","150 g riz basmati cuit","1 tasse maïs doré","1 boîte haricots rouges rincés","SAUCE EN POT : yogourt grec 0% fouetté avec sauce piri-piri ou sriracha et lime"],"instructions":["1. Cuis le riz basmati dans l'eau bouillante 11 minutes. Égoutte.","2. Dans une poêle bien chaude sans gras, verse la tasse de grains de maïs et laisse-les rôtir 3 minutes sans remuer pour qu'ils prennent de petites taches dorées.","3. Cuis le poulet mariné aux épices piri-piri 6 minutes par face à la poêle et coupe-le en morceaux.","4. Remplis 3 contenants lunchbox avec le riz basmati, les haricots rouges rincés, le maïs grillé et les morceaux de poulet.","5. Prépare la sauce en pot : Dans 3 petits pots hermétiques, bats le yogourt grec avec 1 cuillère à thé de sauce piri-piri ou sriracha et une goutte de jus de lime.","6. Au travail : Chauffe le bol 2 minutes au micro-ondes. Secoue énergiquement ton pot de sauce pour la rendre fluide et nappe le riz fumant."]},
-        {"nom":"13. Salade Mexicaine Bœuf Haché & Orzo","type":"Chaud ou Froid","macros":"Par repas : ~630 kcal | 46g Protéines | 58g Glucides | 19g Lipides","ingredients":["450 g bœuf haché extra-maigre épicé","150 g orzo cuit","Tomates cerises, maïs, coriandre","1/2 avocat en dés pour servir","SAUCE EN POT : salsa fraîche mélangée avec filet d'huile d'olive et jus de lime"],"instructions":["1. Cuis les petites pâtes orzo 8 minutes dans l'eau bouillante. Égoutte et rince à l'eau tiède.","2. Fais dorer le bœuf haché dans une poêle 6 minutes avec des épices à tacos ou chili.","3. Divise dans 3 contenants hermétiques l'orzo cuit, le bœuf haché doré, les tomates cerises coupées en deux et le maïs.","4. Prépare la vinaigrette salsa : Dans 3 petits pots hermétiques, mélange 2 cuillères à soupe de salsa liquide avec 1 cuillère à thé d'huile d'olive et un filet de jus de lime.","5. Au travail : Tu peux manger ce plat froid ou réchauffé 1 min 30 au micro-ondes. Secoue le petit pot pour émulsionner la sauce, verse sur l'orzo et ajoute des dés d'avocat frais."]},
-        {"nom":"14. Wrap Poulet Buffalo & Sauce Fromage Bleu","type":"Piquant","macros":"Par wrap : ~590 kcal | 47g Protéines | 46g Glucides | 16g Lipides","ingredients":["3 grandes tortillas blé entier","450 g poulet effiloché avec sauce Frank's RedHot","Céleri émincé, carottes râpées, romaine","SAUCE EN POT : 1/2 tasse yogourt grec 0% + 30g miettes de fromage bleu écrasé"],"instructions":["1. Cuis les poitrines de poulet à l'eau frémissante 15 minutes, égoutte et effiloche la viande avec deux fourchettes. Mélange le poulet chaud avec 3 cuillères à soupe de sauce piquante Frank's RedHot. Répartis dans 3 plats.","2. Émince le céleri en petits dés très croquants et râpe les carottes.","3. Prépare la sauce bleue en pot : Dans un bol, écrase à la fourchette le fromage bleu avec le yogourt grec 0% et une goutte de lait pour obtenir une sauce onctueuse. Divise dans 3 petits pots hermétiques étanches.","4. Au travail : Réchauffe ton poulet buffalo au micro-ondes 1 minute pour réveiller les épices. Secoue ton petit pot de sauce au bleu, nappe le poulet chaud, ajoute le céleri et la salade dans la tortilla tiédie et roule fermement."]},
-        {"nom":"15. Bowl Pâtes Poulet Froid, Tomates Séchées & Féta","type":"Salade de Pâtes","macros":"Par repas : ~605 kcal | 48g Protéines | 56g Glucides | 16g Lipides","ingredients":["450 g poulet grillé émincé","180 g penne blé entier cuits","60 g tomates séchées","60 g féta émiettée","SAUCE EN POT : huile d'olive, vinaigre balsamique blanc, origan et ail en poudre"],"instructions":["1. Cuis les penne de blé entier dans une casserole d'eau bouillante salée pendant 10 minutes. Égoutte et rince à l'eau très froide pour stopper la chaleur.","2. Fais dorer les lanières de poulet dans une poêle huilée 6 minutes. Laisse refroidir et coupe en dés de 1 cm.","3. Dans 3 boîtes hermétiques, mélange les penne froides, les dés de poulet, les morceaux de tomates séchées égouttées et la féta émiettée.","4. Prépare la vinaigrette italienne en pot : Dans 3 petits pots étanches, verse dans chacun 1 cuillère à soupe d'huile d'olive, 1 cuillère à thé de vinaigre, une pincée d'origan et d'ail. Visse le couvercle.","5. Au travail : Pas d'attente au micro-ondes ! Secoue énergiquement ton petit pot pendant 10 secondes pour émulsionner l'huile et le vinaigre, verse sur les pâtes et mélange."]},
-        {"nom":"16. Bol Riz Jasmin, Côtelette de Porc & Sauce Ail-Soya","type":"Réchauffable au Travail","macros":"Par repas : ~615 kcal | 48g Protéines | 60g Glucides | 14g Lipides","ingredients":["450 g côtelettes de porc désossées tranchées","150 g riz jasmin cru cuit","1 tête brocoli cuite vapeur","SAUCE EN POT : 3 c. à s. sauce soya faible en sel, 1 c. à thé miel, ail râpé, huile de sésame"],"instructions":["1. Cuis le riz jasmin à l'eau bouillante 11 minutes. Égoutte.","2. Découpe les fleurons de brocoli et cuis-les 5 minutes à la vapeur au-dessus d'une casserole d'eau frémissante pour qu'ils restent bien verts et fermes.","3. Coupe les côtelettes de porc en lanières de 2 cm. Cuis-les dans une poêle chaude huilée à feu vif pendant 5 minutes jusqu'à ce qu'elles soient bien dorées.","4. Répartis le riz jasmin, les lanières de porc et le brocoli dans 3 plats pour le travail.","5. Prépare la sauce en pot : Dans 3 petits contenants étanches, mélange la sauce soya, le miel liquide, l'ail en poudre et l'huile de sésame.","6. Au travail : Chauffe le plat 2 minutes au micro-ondes. Secoue bien le petit pot hermétique et verse la sauce soya parfumée directement sur le porc et le riz brûlant."]},
-        {"nom":"17. Salade de Lentilles, Dinde Fumée & Vinaigrette Dijon","type":"Froid / Haute Satiété","macros":"Par repas : ~580 kcal | 46g Protéines | 58g Glucides | 12g Lipides","ingredients":["1.5 tasse lentilles vertes cuites","350 g poitrine de dinde fumée en cubes","Carottes râpées, persil","SAUCE EN POT : 2 c. à s. moutarde de Dijon, 1 c. à s. vinaigre de cidre, 1 c. à s. huile olive"],"instructions":["1. Rince les lentilles en boîte à l'eau froide et égoutte-les bien.","2. Découpe la poitrine de dinde fumée en cubes de 1 cm. Râpe les carottes et hache le persil.","3. Dépose les lentilles, les cubes de dinde et les carottes râpées dans 3 boîtes lunchbox.","4. Prépare la vinaigrette : Dans 3 petits pots étanches, mélange la moutarde de Dijon, le vinaigre de cidre, l'huile d'olive, du sel et du poivre noir. Ferme hermétiquement.","5. Au travail : C'est un repas froid idéal. Secoue ton petit pot comme un chef pendant 10 secondes : la moutarde va épaissir la sauce comme une mayonnaise légère. Verse sur les lentilles et déguises."]},
-        {"nom":"18. Bowl Patate Douce Pilée, Bœuf Haché & Sauce Ranch Légère","type":"Réchauffable Réconfort","macros":"Par repas : ~625 kcal | 49g Protéines | 58g Glucides | 15g Lipides","ingredients":["450 g bœuf haché extra-maigre cuit","600 g patates douces en purée","300 g haricots verts vapeur","SAUCE EN POT : yogourt grec 0%, poudre d'ail, aneth, jus de citron, sel"],"instructions":["1. Épluche les patates douces, coupe-les en cubes et fais-les bouillir 15 minutes dans l'eau salée. Égoutte et écrase à la fourchette pour faire une belle purée.","2. Fais dorer le bœuf haché dans une poêle 6 minutes avec du sel et du poivre. Cuis les haricots verts à la vapeur 5 minutes.","3. Dans 3 contenants, dispose la purée de patates douces, le bœuf haché doré et les haricots verts.","4. Prépare la sauce ranch légère : Dans 3 petits pots hermétiques, mélange le yogourt grec avec une pincée de poudre d'ail, de l'aneth séché, une goutte de citron et du sel.","5. Au travail : Fais chauffer le plat 2 minutes au micro-ondes pour que la purée et le bœuf soient très chauds. Secoue le petit pot de ranch et étale la sauce fraîche sur la viande fumante."]},
-        {"nom":"19. Wrap Souvlaki de Porc & Tzatzíki","type":"Sandwich Lunchbox","macros":"Par wrap : ~600 kcal | 47g Protéines | 48g Glucides | 16g Lipides","ingredients":["3 grandes tortillas blé entier","450 g lanières de longe de porc marinées citron/origan","Tomates, oignon rouge émincé","SAUCE EN POT : 1/2 tasse tzatzíki crémeux à l'ail et aneth"],"instructions":["1. Coupe la longe de porc en fines lanières. Fais-les mariner 10 minutes avec du jus de citron, de l'ail et de l'origan.","2. Fais dorer le porc dans une poêle bien chaude 5 minutes jusqu'à ce qu'il soit croustillant et cuit à cœur. Laisse tiédir et range dans 3 contenants avec les tomates coupées et l'oignon émincé.","3. Prépare les 3 petits pots étanches avec 2 cuillères à soupe de tzatzíki frais dans chaque.","4. Au travail : Tiédis le porc et la tortilla 30 secondes au micro-ondes. Ouvre le pot de tzatzíki, secoue-le, nappe la viande chaude, replie les côtés de la tortilla et roule bien serré."]},
-        {"nom":"20. Pâtes Macaronis au Poulet & Coulis Rosé","type":"Réchauffable","macros":"Par repas : ~620 kcal | 48g Protéines | 64g Glucides | 13g Lipides","ingredients":["450 g poulet cuit en dés","180 g macaronis blé entier cuits","SAUCE EN POT : 1 tasse coulis tomate mijoté mélangé avec 1/2 tasse yogourt grec 0% et origan","Épinards frais"],"instructions":["1. Cuis les macaronis dans l'eau bouillante salée 8 minutes. Égoutte.","2. Découpe les poitrines de poulet en cubes et cuis-les à la poêle 6 minutes avec un spray d'huile.","3. Dans 3 contenants hermétiques, dépose les macaronis cuits, les dés de poulet et une poignée de bébés épinards frais sans sauce.","4. Prépare la sauce rosée en pot : Dans une coupelle, mélange le coulis de tomate avec le yogourt grec 0% et une pincée d'origan pour former une belle sauce rose crémeuse. Verse dans 3 petits pots étanches.","5. Au moment de manger : Chauffe tes pâtes et poulet 1 min 30 au micro-ondes. Dévisse le couvercle de ton petit pot de sauce rosée, chauffe-le 20 secondes au micro-ondes (sans couvercle métallique), secoue et verse la sauce sur les pâtes chaudes avant de brasser."]},
-        {"nom":"21. Salade Riz Basmati, Saumon & Vinaigrette Aneth","type":"Froid / Sans Odeur","macros":"Par repas : ~610 kcal | 45g Protéines | 58g Glucides | 17g Lipides","ingredients":["450 g filet de saumon cuit émietté froid","150 g riz basmati cuit refroidi","Concombre en dés, aneth frais","SAUCE EN POT : jus de citron, 1 c. à s. huile d'olive, moutarde Dijon, poivre"],"instructions":["1. Cuis les filets de saumon au four 14 minutes à 200°C (400°F). Laisse refroidir complètement, puis émiette la chair avec une fourchette.","2. Cuis le riz basmati, égoutte et laisse refroidir.","3. Dans 3 contenants, sépare le riz basmati froid, le saumon émietté, les dés de concombre et l'aneth frais.","4. Prépare la vinaigrette : Dans 3 petits pots étanches, mélange le jus de citron, l'huile d'olive, 1/2 cuillère à thé de moutarde de Dijon et du poivre noir.","5. Au travail : Zéro odeur de poisson dans la salle à manger car le plat se mange froid ! Secoue énergiquement ton pot de vinaigrette pour créer une émulsion blanche et nappe le riz et le saumon."]},
-        {"nom":"22. Bol Quinoa, Bœuf Épicé & Sauce Chipotle Douce","type":"Lunchbox Travail","macros":"Par repas : ~630 kcal | 48g Protéines | 64g Glucides | 15g Lipides","ingredients":["450 g bœuf haché extra-maigre","120 g quinoa cuit","1 boîte haricots noirs rincés","1 tasse maïs","SAUCE EN POT : yogourt grec 0%, 1 c. à thé sauce chipotle ou adobo, jus de lime"],"instructions":["1. Cuis le quinoa dans l'eau bouillante salée 15 minutes. Égoutte.","2. Dore le bœuf haché à la poêle 6 minutes avec du cumin, de la poudre de chili et du sel.","3. Remplis 3 contenants pour le travail avec le quinoa au fond, le bœuf haché épicé, les haricots noirs et le maïs en grains.","4. Prépare la sauce chipotle : Dans 3 petits pots étanches, mélange 2 cuillères de yogourt grec avec 1 cuillère à thé de sauce chipotle fumée et un filet de lime.","5. Au travail : Chauffe le bol mexicain 2 minutes au micro-ondes. Secoue vigoureusement ton petit pot de chipotle et verse cette crème fumée sur le bœuf très chaud."]},
-        {"nom":"23. Sandwich Bagel Dinde, Cheddar & Épinards","type":"Boîte à Lunch","macros":"~590 kcal | 46g Protéines | 54g Glucides | 15g Lipides","ingredients":["3 bagels de blé entier","360 g poitrine de dinde fumée","60 g cheddar léger en tranches","Moutarde de Dijon, épinards"],"instructions":["1. Coupe les 3 bagels de blé entier en deux à l'aide d'un couteau à pain.","2. Tartine 1 cuillère à thé de moutarde de Dijon sur la moitié inférieure de chaque bagel.","3. Dépose les tranches de poitrine de dinde fumée (environ 120 g par bagel).","4. Pose la tranche de fromage cheddar léger sur la viande, puis recouvre d'une généreuse poignée de jeunes épinards lavés et essorés.","5. Referme avec le dessus du bagel et emballe chaque sandwich fermement dans du papier parchemin ou d'aluminium. Prêt à manger sans réchauffage."]},
-        {"nom":"24. Salade Fusilli Poulet & Pesto Émulsionné","type":"Froid / Prêt à Manger","macros":"Par repas : ~605 kcal | 47g Protéines | 56g Glucides | 16g Lipides","ingredients":["450 g poulet grillé en dés","180 g fusillis blé entier cuits","Tomates cerises coupées en deux","SAUCE EN POT : 3 c. à s. pesto de basilic émulsionné avec 1 c. à s. d'eau chaude et citron"],"instructions":["1. Fais bouillir une grande casserole d'eau avec du sel et plonge les fusillis 9 minutes. Égoutte et rince à l'eau froide pour refroidir complètement les pâtes.","2. Cuis les poitrines de poulet à la poêle 6 minutes par face, laisse refroidir et coupe en dés de 1 cm.","3. Dans 3 boîtes hermétiques, mélange les fusillis froids, les dés de poulet et les tomates cerises coupées en deux.","4. Prépare le pesto liquide : Dans 3 petits pots étanches, mélange 1 cuillère à soupe de pesto avec 1 cuillère à thé d'eau tiède et 3 gouttes de citron pour le rendre bien fluide. Visse le couvercle.","5. Au travail : Chauffe tes pâtes et poulet 1 min 30 au micro-ondes. Secoue énergiquement le petit pot et verse le pesto liquide sur les penne chaudes avant de brasser."]},
-        {"nom":"25. Riz Frit Poulet & Sauce Soya Sésame","type":"Réchauffable","macros":"Par repas : ~615 kcal | 48g Protéines | 62g Glucides | 12g Lipides","ingredients":["450 g blanc de poulet en dés","150 g riz jasmin cuit","2 gros œufs brouillés","Petits pois et carottes","SAUCE EN POT : sauce soya réduite en sel, huile de sésame grillé, oignon vert émincé"],"instructions":["1. Cuis le riz jasmin la veille et mets-le au frigo (le riz froid et sec fait le meilleur riz frit).","2. Dans une grande poêle huilée à feu vif, fais sauter les cubes de poulet 5 minutes, ajoute les petits pois et carottes décongelés, puis le riz froid. Remue vigoureusement pendant 3 minutes pour détacher les grains.","3. Pousse le riz sur le côté de la poêle, casse les 2 œufs dans l'espace libre, brouille-les rapidement et mélange-les à tout le riz. Divise dans 3 contenants hermétiques.","4. Prépare la sauce en pot : Dans 3 petits contenants, mélange 1 cuillère à soupe de sauce soya allégée, 1/2 cuillère à thé d'huile de sésame et les oignons verts ciselés.","5. Au travail : Réchauffe ton plat 2 minutes au micro-ondes. Secoue le petit pot de sauce soya et arrose directement le riz chaud fumant."]},
-        {"nom":"26. Wrap Bœuf & Sauce Teriyaki Maison","type":"Transportable","macros":"Par wrap : ~610 kcal | 46g Protéines | 50g Glucides | 16g Lipides","ingredients":["3 grandes tortillas blé entier","450 g bœuf haché extra-maigre cuit","Chou blanc et carottes râpés","SAUCE EN POT : sauce teriyaki allégée (soya, gingembre, filet de miel)"],"instructions":["1. Fais dorer le bœuf haché extra-maigre dans une poêle pendant 6 minutes avec une pincée de poivre et d'ail. Égoutte le surplus de liquide et range la viande dans 3 petits contenants.","2. Râpe le chou blanc et les carottes pour obtenir une belle salade croquante sans sauce.","3. Prépare la sauce teriyaki : Dans 3 petits pots étanches, mélange la sauce soya réduite en sel, le miel liquide, une pincée de gingembre et une goutte d'eau. Visse bien le bouchon.","4. Au travail : Réchauffe le bœuf haché 1 minute au micro-ondes. Secoue fort ton petit pot de sauce teriyaki et verse-la sur la viande chaude. Dépose la salade croquante et le bœuf nappé sur la tortilla, puis roule fermement."]},
-        {"nom":"27. Bowl Couscous Perlé, Porc & Nappage Érable-Cidre","type":"Lunchbox Travail","macros":"Par repas : ~625 kcal | 48g Protéines | 62g Glucides | 14g Lipides","ingredients":["450 g côtelettes de porc en dés dorés","150 g couscous perlé cuit","2 poivrons rôtis en dés","SAUCE EN POT : 2 c. à s. sirop d'érable pur, 1 c. à s. vinaigre de cidre, Dijon, poivre"],"instructions":["1. Cuis le couscous perlé dans l'eau bouillante salée pendant 8 minutes. Égoutte.","2. Découpe les côtelettes de porc en dés. Fais-les sauter à feu vif dans une poêle huilée 5 minutes jusqu'à ce qu'ils soient bien dorés. Découpe les poivrons en cubes et fais-les rôtir 3 minutes avec le porc.","3. Sépare le couscous perlé, les cubes de porc et les poivrons dans 3 contenants pour le travail.","4. Prépare la sauce érable-cidre : Dans 3 petits pots étanches, mélange le sirop d'érable pur, le vinaigre de cidre de pomme, 1 cuillère à thé de moutarde de Dijon et du poivre noir.","5. Au travail : Fais chauffer le plat 2 minutes au micro-ondes. Secoue le petit pot hermétique pendant 5 secondes pour émulsionner la sauce et nappe le porc chaud."]},
-        {"nom":"28. Salade de Pâtes Poulet Grec & Vinaigrette Vinaigre-Origan","type":"Froid Zéro Micro-ondes","macros":"Par repas : ~595 kcal | 48g Protéines | 54g Glucides | 15g Lipides","ingredients":["450 g poulet cuit en lanières","180 g penne cuits refroidis","Concombre, tomates, olives kalamata","60 g féta","SAUCE EN POT : jus de citron, vinaigre de vin rouge, origan séché, 1 c. à s. huile olive"],"instructions":["1. Cuis les penne al dente 9 minutes dans l'eau bouillante. Rince-les sous l'eau très froide pour qu'elles restent bien fermes et refroidissent.","2. Cuis le poulet assaisonné d'origan et de citron 6 minutes par côté à la poêle. Coupe-le en lanières.","3. Dans 3 contenants hermétiques, monte les repas avec les pâtes froides, les lanières de poulet, des rondelles de concombre, des tomates cerises, quelques olives kalamata et la féta émiettée.","4. Prépare la vinaigrette grecque en pot : Dans 3 petits pots étanches, verse le jus de citron, le vinaigre de vin, l'huile d'olive, beaucoup d'origan séché et du sel.","5. Au travail : Secoue le pot vigoureusement pendant 10 secondes et verse sur ta salade de pâtes méditerranéenne."]},
-        {"nom":"29. Bowl Patate Douce, Poulet Rôti & Sauce Mac Maison","type":"Réchauffable au Bureau","macros":"Par repas : ~600 kcal | 49g Protéines | 55g Glucides | 12g Lipides","ingredients":["500 g poitrines de poulet rôties en tranches","600 g patates douces en dés rôties","1 tête brocoli cuite vapeur","SAUCE EN POT : yogourt grec 0%, moutarde, relish, paprika, poudre d'ail"],"instructions":["1. Préchauffe le four à 205°C (400°F). Coupe les patates douces en cubes de 1 cm et cuis-les 20 minutes sur une plaque avec du papier parchemin et un spray d'huile.","2. Coupe le poulet en tranches et fais-le dorer 6 minutes à la poêle. Fais cuire les bouquets de brocoli 5 minutes à la vapeur.","3. Dispose dans 3 contenants pour le travail : les dés de patate douce rôtie, les tranches de poulet et le brocoli vert.","4. Prépare la sauce Mac : Dans 3 petits pots de 60 ml, mélange le yogourt grec, la relish sucrée, la moutarde jaune et une pincée de paprika et d'ail. Visse hermétiquement.","5. Au travail : Chauffe le bol au micro-ondes pendant 2 minutes. Secoue le petit pot fort pour le liquéfier et étends la sauce sur la volaille et les patates douces bien chaudes."]},
-        {"nom":"30. Wrap Thon Épicé & Sauce Yogourt Sriracha","type":"Prêt à Consommer","macros":"Par wrap : ~590 kcal | 46g Protéines | 48g Glucides | 17g Lipides","ingredients":["3 grandes tortillas blé entier","3 boîtes thon égoutté","1/2 avocat en tranches","Concombre en bâtonnets, salade","SAUCE EN POT : 1/2 tasse yogourt grec 0% + 2 c. à thé sriracha + jus de lime"],"instructions":["1. Ouvre les 3 boîtes de thon et égoutte tout le jus en pressant fermement. Émiette le thon dans un bol.","2. Découpe le concombre en fins bâtonnets et tranche le demi-avocat.","3. Prépare la sauce épicée en pot : Dans 3 petits pots étanches, mélange le yogourt grec 0% avec la sauce sriracha et quelques gouttes de jus de lime frais. Visse bien le bouchon.","4. Emballe les tortillas et les légumes séparément pour le transport.","5. Au travail : Pose la tortilla à plat, dépose le thon égoutté, le concombre, l'avocat et la salade. Secoue le petit pot de sauce sriracha pour la rendre crémeuse, verse directement sur le thon et roule le wrap très serré."]}
+        {"nom":"1. Burrito-Wrap Smash Big Mac Santé","type":"Lunchbox Travail","macros":"Par burrito : ~610 kcal | 48g Protéines | 52g Glucides | 18g Lipides","ingredients":["3 grandes tortillas de blé entier","450 g bœuf haché extra-maigre","3 tranches cheddar léger","2 tasses laitue émincée","1/2 tasse cornichons à l'aneth et oignon haché","SAUCE EN POT : 1/2 tasse yogourt grec 0%, 1 c. à s. mayo légère, relish, moutarde, paprika"],"instructions":["1. Dans une grande poêle sur feu moyen-fort, mets les 450 g de bœuf haché avec sel, poivre et poudre d'ail. Écrase et cuis pendant 6 minutes.","2. Répartis le bœuf chaud dans 3 contenants hermétiques en verre. Dépose 1 tranche de cheddar léger sur le bœuf encore chaud dans chaque boîte pour qu'il fonde. Ferme les boîtes au frigo.","3. Préparation de la sauce : Prends 3 petits pots hermétiques de 60 ml. Dans chaque, mets yogourt grec 0%, mayo légère, relish, moutarde et paprika. Visse les couvercles.","4. Prends 3 sacs refermables pour mettre tortilla, salade, oignons et cornichons.","5. Au travail : Fais chauffer la boîte de bœuf 1 min 30 au micro-ondes. Tiédis la tortilla 10 secondes. Secoue très fort ton petit pot de sauce, verse sur le bœuf chaud, ajoute la salade et roule !"]},
+        {"nom":"2. Salade Cobb Poulet & Bacon de Dinde","type":"Froid / Zéro Odeur","macros":"Par repas : ~615 kcal | 48g Protéines | 52g Glucides | 18g Lipides","ingredients":["500 g poitrines de poulet rôties","6 tranches bacon de dinde cuit","3 gros œufs durs","150 g couscous perlé cuit","Romaine, chou rouge, tomates cerises","SAUCE EN POT : yogourt grec 0%, Dijon, érable, vinaigre de cidre"],"instructions":["1. Coupe les 500 g de poitrines de poulet en lanières, cuis-les au four 20 min à 200°C avec le bacon de dinde. Laisse refroidir.","2. Cuis 150 g de couscous perlé (8 min). Égoutte et rince à l'eau froide.","3. Cuis 3 œufs durs (9 min), refroidis, écale et coupe en deux.","4. Dans 3 contenants : dépose couscous, poulet froid, bacon émietté, œufs, romaine, chou rouge et tomates.","5. Sauce en pot : Dans 3 pots étanches, mélange yogourt grec, moutarde, érable et vinaigre de cidre.","6. Au travail : Secoue énergiquement ton petit pot de vinaigrette, verse sur la salade froide et mélange."]},
+        {"nom":"3. Smash Burger Bowls & Frites de Patates Douces","type":"Réchauffable au Travail","macros":"Par repas : ~630 kcal | 49g Protéines | 56g Glucides | 17g Lipides","ingredients":["450 g bœuf haché extra-maigre en galettes","3 tranches cheddar fondues","500 g patates douces en frites rôties","Cornichons, oignon rouge, salade","SAUCE EN POT : 1/2 tasse yogourt grec, 1 c. à s. relish, moutarde jaune, paprika"],"instructions":["1. Épluche les patates douces, coupe en frites, cuis au four à 215°C pendant 22 minutes avec de l'huile et du sel.","2. Façonne 3 galettes minces de bœuf. Cuis-les à la poêle 3 minutes par côté, ajoute le cheddar pour fondre.","3. Répartis dans 3 plats hermétiques : frites et galette. Salade et cornichons à part.","4. Sauce burger : Dans 3 pots de 60 ml, mélange yogourt grec, relish, moutarde et paprika.","5. Au travail : Chauffer plat de frites et bœuf 2 min. Secoue le petit pot et nappe la viande."]},
+        {"nom":"4. Salade Grecque Souvlaki Poulet & Orzo","type":"Froid / Prêt à Manger","macros":"Par repas : ~595 kcal | 47g Protéines | 54g Glucides | 16g Lipides","ingredients":["500 g hauts de cuisse de poulet grillés","150 g orzo cuit refroidi","90 g féta","Concombre, poivrons, tomates","SAUCE EN POT : 3/4 tasse tzatzíki maison fouetté"],"instructions":["1. Assaisonne le poulet (citron, origan). Cuis à la poêle 6 min/côté. Laisse refroidir et tranche.","2. Cuis 150 g d'orzo (8 min). Égoutte et rince à l'eau froide.","3. Dans 3 contenants : orzo, poulet rôti, concombre, poivron et féta.","4. Sauce en pot : Remplis 3 petits pots étanches de tzatzíki.","5. Au travail : Ouvre le pot de tzatzíki, secoue un peu, verse sur le bol froid et brasse."]},
+        {"nom":"5. Sandwich Focaccia Dinde & Pesto","type":"Boîte à Lunch","macros":"Par sandwich : ~605 kcal | 45g Protéines | 54g Glucides | 19g Lipides","ingredients":["3 portions pain focaccia blé","350 g poitrine de dinde fumée","90 g mozzarella allégée","3 c. à soupe pesto","Poivrons rôtis en bocal, roquette"],"instructions":["1. Coupe les 3 morceaux de focaccia en deux dans l'épaisseur.","2. Étends 1 cuillère à soupe de pesto sur chaque pain.","3. Dépose les tranches de dinde fumée en pliant pour du volume.","4. Ajoute poivrons rôtis et mozzarella allégée.","5. Ajoute roquette, referme, emballe dans du papier d'aluminium et place au frigo."]},
+        {"nom":"6. Salade Nouilles Soba & Bœuf Teriyaki","type":"Asiatique Froid","macros":"Par repas : ~620 kcal | 46g Protéines | 66g Glucides | 15g Lipides","ingredients":["450 g bœuf émincé sauté","180 g nouilles soba cuites rincées","Carottes râpées, pois mange-tout, edamames","SAUCE EN POT : 3 c. à s. sauce soya réduite en sodium, sésame grillé, filet de miel, gingembre"],"instructions":["1. Cuis nouilles soba 4-5 min. Rince très longtemps à l'eau glacée pour enlever l'amidon.","2. Saisis le bœuf 3 min à la poêle très chaude. Laisse refroidir.","3. Dans 3 boîtes : nouilles, bœuf, carottes, pois mange-tout, edamames.","4. Sauce teriyaki : Dans 3 pots étanches, mélange sauce soya, miel, huile de sésame et gingembre.","5. Au travail : Secoue ton petit pot, verse sur les nouilles froides et mélange."]},
+        {"nom":"7. Burrito Bowl Poulet Fajita & Haricots Noirs","type":"Réchauffable","macros":"Par repas : ~610 kcal | 48g Protéines | 62g Glucides | 14g Lipides","ingredients":["500 g poitrines de poulet émincées","150 g riz jasmin cuit","1 boîte haricots noirs rincés","Poivrons et oignons sautés","SAUCE EN POT : 1/2 tasse yogourt grec fouetté avec salsa et jus de lime"],"instructions":["1. Fais sauter poulet, poivrons et oignons dans une poêle (épices mexicaines, 8 min).","2. Rince et égoutte les haricots noirs.","3. Dans 3 plats : riz jasmin, haricots et poulet sauté.","4. Sauce crémeuse : Dans 3 petits pots, mélange yogourt grec, salsa et jus de lime.","5. Au travail : Réchauffe le bol 2 minutes. Secoue le pot de sauce et verse."]},
+        {"nom":"8. Salade Pâtes au Thon & Câpres","type":"Sans Réchauffage","macros":"Par repas : ~590 kcal | 47g Protéines | 58g Glucides | 14g Lipides","ingredients":["3 boîtes thon pâle égoutté","180 g rotinis de blé entier cuits","Tomates cerises, concombres, olives","SAUCE EN POT : yogourt grec 0%, jus de citron, câpres, moutarde Dijon"],"instructions":["1. Cuis les rotinis (9 min). Égoutte et rince à l'eau très froide.","2. Ouvre les 3 boîtes de thon, égoutte bien. Émiette dans les 3 contenants de pâtes.","3. Ajoute tomates cerises, concombre et olives.","4. Sauce crémeuse : Dans 3 pots étanches, mélange yogourt grec, moutarde, jus de citron et câpres.","5. Au travail : Secoue ton petit pot, verse sur les pâtes froides et brasse."]},
+        {"nom":"9. Bowl Poulet Shawarma & Salade Quinoa","type":"Moyen-Orient","macros":"Par repas : ~605 kcal | 49g Protéines | 54g Glucides | 16g Lipides","ingredients":["500 g poulet mariné shawarma cuit","120 g quinoa cuit","Persil haché, tomates, concombre","SAUCE EN POT : hummus délayé avec un filet de jus de citron et eau"],"instructions":["1. Assaisonne le poulet (cumin, ail, paprika). Cuis à la poêle 6 min/côté.","2. Cuis le quinoa (15 min). Laisse tiédir et mélange avec persil, tomates et concombre pour un taboulé.","3. Monte 3 plats avec taboulé de quinoa et poulet shawarma.","4. Sauce hummus : Dans 3 petits pots, mélange hummus, 1 c. à thé d'eau et jus de citron.","5. Au travail : Fais tiédir le poulet (45 sec). Secoue le pot de hummus et verse en filet."]},
+        {"nom":"10. Wrap Poulet César Bacon de Dinde","type":"Transportable","macros":"Par wrap : ~595 kcal | 48g Protéines | 48g Glucides | 18g Lipides","ingredients":["3 grandes tortillas blé entier","450 g poulet rôti en lanières","6 tranches bacon de dinde cuit","Romaine émincée","SAUCE EN POT : yogourt grec 0%, parmesan, ail, Worcestershire, citron"],"instructions":["1. Fais dorer le poulet et le bacon de dinde à la poêle (6 min). Émiette le bacon.","2. Lave et émince la romaine.","3. Sauce César légère : Dans 3 pots étanches, mélange yogourt grec, parmesan, ail, sauce Worcestershire et citron.","4. Emballe les tortillas, mets salade, poulet et bacon dans un plat sec.","5. Au travail : Secoue le pot de sauce César, verse sur la salade, roule fermement dans la tortilla."]},
+        {"nom":"11. Salade Thaï Poulet & Vermicelles de Riz","type":"Croquant","macros":"Par repas : ~615 kcal | 47g Protéines | 52g Glucides | 17g Lipides","ingredients":["450 g poulet haché maigre cuit","120 g vermicelles de riz cuits","Chou râpé, carottes, coriandre","SAUCE EN POT : 2 c. à s. beurre d'arachide fondu, sauce soya, lime, sriracha, eau"],"instructions":["1. Ramollis les vermicelles de riz dans l'eau bouillante (3 min). Rince à l'eau froide.","2. Cuis le poulet haché à la poêle (6 min).","3. Dans 3 boîtes : vermicelles, poulet, chou rouge, carottes râpées, coriandre.","4. Sauce thaï : Dans 3 pots étanches, mélange beurre d'arachide fondu, sauce soya, lime, sriracha et 1 c. à soupe d'eau chaude.","5. Au travail : Secoue le pot de sauce arachide et verse sur la salade."]},
+        {"nom":"12. Bowl Riz Poulet Piri-Piri & Maïs Rôti","type":"Réchauffable","macros":"Par repas : ~620 kcal | 48g Protéines | 65g Glucides | 13g Lipides","ingredients":["500 g poulet piri-piri rôti","150 g riz basmati cuit","1 tasse maïs doré","1 boîte haricots rouges rincés","SAUCE EN POT : yogourt grec 0% fouetté avec sauce piri-piri ou sriracha et lime"],"instructions":["1. Cuis le riz basmati (11 min).","2. Rôtis le maïs dans une poêle sans gras (3 min).","3. Cuis le poulet piri-piri (6 min/côté).","4. Remplis 3 contenants : riz, haricots rouges, maïs et poulet.","5. Sauce en pot : Dans 3 pots hermétiques, bats le yogourt grec avec piri-piri et lime.","6. Au travail : Chauffe le bol 2 min. Secoue le pot de sauce et nappe le riz fumant."]},
+        {"nom":"13. Salade Mexicaine Bœuf Haché & Orzo","type":"Chaud ou Froid","macros":"Par repas : ~630 kcal | 46g Protéines | 58g Glucides | 19g Lipides","ingredients":["450 g bœuf haché extra-maigre épicé","150 g orzo cuit","Tomates cerises, maïs, coriandre","1/2 avocat en dés pour servir","SAUCE EN POT : salsa fraîche mélangée avec filet d'huile d'olive et jus de lime"],"instructions":["1. Cuis l'orzo (8 min). Égoutte et rince à l'eau tiède.","2. Fais dorer le bœuf haché avec épices à tacos (6 min).","3. Divise dans 3 contenants : orzo, bœuf, tomates cerises et maïs.","4. Vinaigrette salsa : Dans 3 pots hermétiques, mélange salsa, huile d'olive et lime.","5. Au travail : Froid ou réchauffé (1 min 30). Secoue la sauce, verse sur l'orzo et ajoute l'avocat."]},
+        {"nom":"14. Wrap Poulet Buffalo & Sauce Fromage Bleu","type":"Piquant","macros":"Par wrap : ~590 kcal | 47g Protéines | 46g Glucides | 16g Lipides","ingredients":["3 grandes tortillas blé entier","450 g poulet effiloché avec sauce Frank's RedHot","Céleri émincé, carottes râpées, romaine","SAUCE EN POT : 1/2 tasse yogourt grec 0% + 30g miettes de fromage bleu écrasé"],"instructions":["1. Cuis le poulet à l'eau frémissante (15 min), effiloche et mélange avec sauce Frank's.","2. Émince le céleri et râpe les carottes.","3. Sauce bleue : Écrase le fromage bleu avec le yogourt grec. Divise dans 3 petits pots étanches.","4. Au travail : Réchauffe le poulet (1 min). Secoue le pot de sauce bleue, nappe le poulet, ajoute légumes et roule."]},
+        {"nom":"15. Bowl Pâtes Poulet Froid, Tomates Séchées & Féta","type":"Salade de Pâtes","macros":"Par repas : ~605 kcal | 48g Protéines | 56g Glucides | 16g Lipides","ingredients":["450 g poulet grillé émincé","180 g penne blé entier cuits","60 g tomates séchées","60 g féta émiettée","SAUCE EN POT : huile d'olive, vinaigre balsamique blanc, origan et ail en poudre"],"instructions":["1. Cuis les penne (10 min). Rince à l'eau très froide.","2. Fais dorer le poulet à la poêle (6 min). Laisse refroidir et coupe.","3. Dans 3 contenants : penne froides, poulet, tomates séchées et féta.","4. Vinaigrette italienne : Dans 3 pots étanches, verse huile d'olive, vinaigre, origan et ail.","5. Au travail : Pas de micro-ondes ! Secoue ton petit pot 10 sec, verse sur les pâtes et mélange."]},
+        {"nom":"16. Bol Riz Jasmin, Côtelette de Porc & Sauce Ail-Soya","type":"Réchauffable au Travail","macros":"Par repas : ~615 kcal | 48g Protéines | 60g Glucides | 14g Lipides","ingredients":["450 g côtelettes de porc désossées tranchées","150 g riz jasmin cru cuit","1 tête brocoli cuite vapeur","SAUCE EN POT : 3 c. à s. sauce soya faible en sel, 1 c. à thé miel, ail râpé, huile de sésame"],"instructions":["1. Cuis le riz jasmin (11 min).","2. Cuis les fleurons de brocoli à la vapeur (5 min).","3. Coupe les côtelettes de porc en lanières et cuis à feu vif (5 min).","4. Répartis riz, porc et brocoli dans 3 plats.","5. Sauce en pot : Dans 3 petits contenants étanches, mélange sauce soya, miel, ail et huile de sésame.","6. Au travail : Chauffe le plat 2 min. Secoue le petit pot et verse sur le porc et le riz chaud."]},
+        {"nom":"17. Salade de Lentilles, Dinde Fumée & Vinaigrette Dijon","type":"Froid / Haute Satiété","macros":"Par repas : ~580 kcal | 46g Protéines | 58g Glucides | 12g Lipides","ingredients":["1.5 tasse lentilles vertes cuites","350 g poitrine de dinde fumée en cubes","Carottes râpées, persil","SAUCE EN POT : 2 c. à s. moutarde de Dijon, 1 c. à s. vinaigre de cidre, 1 c. à s. huile olive"],"instructions":["1. Rince et égoutte les lentilles en boîte.","2. Découpe la poitrine de dinde fumée en cubes, râpe carottes et hache persil.","3. Dépose lentilles, dinde et carottes dans 3 boîtes.","4. Vinaigrette : Dans 3 pots étanches, mélange moutarde de Dijon, vinaigre, huile d'olive, sel et poivre.","5. Au travail : Secoue ton petit pot pour épaissir la vinaigrette, verse sur les lentilles et déguste."]},
+        {"nom":"18. Bowl Patate Douce Pilée, Bœuf Haché & Sauce Ranch Légère","type":"Réchauffable Réconfort","macros":"Par repas : ~625 kcal | 49g Protéines | 58g Glucides | 15g Lipides","ingredients":["450 g bœuf haché extra-maigre cuit","600 g patates douces en purée","300 g haricots verts vapeur","SAUCE EN POT : yogourt grec 0%, poudre d'ail, aneth, jus de citron, sel"],"instructions":["1. Épluche les patates douces, coupe et fais bouillir 15 min. Écrase en purée.","2. Fais dorer le bœuf haché à la poêle (6 min). Cuis les haricots à la vapeur (5 min).","3. Dans 3 contenants : purée, bœuf et haricots.","4. Sauce ranch : Dans 3 pots hermétiques, mélange yogourt grec, poudre d'ail, aneth et jus de citron.","5. Au travail : Chauffer 2 min. Secoue le pot de ranch et étale sur la viande chaude."]},
+        {"nom":"19. Wrap Souvlaki de Porc & Tzatzíki","type":"Sandwich Lunchbox","macros":"Par wrap : ~600 kcal | 47g Protéines | 48g Glucides | 16g Lipides","ingredients":["3 grandes tortillas blé entier","450 g lanières de longe de porc marinées citron/origan","Tomates, oignon rouge émincé","SAUCE EN POT : 1/2 tasse tzatzíki crémeux à l'ail et aneth"],"instructions":["1. Coupe la longe de porc en lanières et marine (citron, ail, origan, 10 min).","2. Fais dorer le porc à la poêle bien chaude (5 min). Laisse tiédir et range dans 3 contenants avec tomates et oignon.","3. Tzatzíki : Remplis 3 petits pots étanches avec 2 c. à s. de tzatzíki frais.","4. Au travail : Tiédis le porc (30 sec). Secoue le tzatzíki, nappe la viande, roule fermement la tortilla."]},
+        {"nom":"20. Pâtes Macaronis au Poulet & Coulis Rosé","type":"Réchauffable","macros":"Par repas : ~620 kcal | 48g Protéines | 64g Glucides | 13g Lipides","ingredients":["450 g poulet cuit en dés","180 g macaronis blé entier cuits","SAUCE EN POT : 1 tasse coulis tomate mijoté mélangé avec 1/2 tasse yogourt grec 0% et origan","Épinards frais"],"instructions":["1. Cuis les macaronis (8 min). Égoutte.","2. Coupe le poulet en cubes et cuis à la poêle (6 min).","3. Dans 3 contenants : macaronis, poulet et épinards frais sans sauce.","4. Sauce rosée : Mélange coulis de tomate, yogourt grec et origan. Divise dans 3 petits pots.","5. Au travail : Chauffe les pâtes (1 min 30). Chauffe ton petit pot de sauce (20 sec), secoue et verse sur les pâtes."]},
+        {"nom":"21. Salade Riz Basmati, Saumon & Vinaigrette Aneth","type":"Froid / Sans Odeur","macros":"Par repas : ~610 kcal | 45g Protéines | 58g Glucides | 17g Lipides","ingredients":["450 g filet de saumon cuit émietté froid","150 g riz basmati cuit refroidi","Concombre en dés, aneth frais","SAUCE EN POT : jus de citron, 1 c. à s. huile d'olive, moutarde Dijon, poivre"],"instructions":["1. Cuis les filets de saumon au four (14 min à 200°C). Refroidis et émiette la chair.","2. Cuis le riz basmati, égoutte et refroidis.","3. Dans 3 contenants : riz froid, saumon émietté, concombre et aneth.","4. Vinaigrette : Dans 3 pots étanches, mélange jus de citron, huile d'olive et moutarde de Dijon.","5. Au travail : Secoue ton pot pour créer une émulsion blanche et nappe la salade froide."]},
+        {"nom":"22. Bol Quinoa, Bœuf Épicé & Sauce Chipotle Douce","type":"Lunchbox Travail","macros":"Par repas : ~630 kcal | 48g Protéines | 64g Glucides | 15g Lipides","ingredients":["450 g bœuf haché extra-maigre","120 g quinoa cuit","1 boîte haricots noirs rincés","1 tasse maïs","SAUCE EN POT : yogourt grec 0%, 1 c. à thé sauce chipotle ou adobo, jus de lime"],"instructions":["1. Cuis le quinoa (15 min). Égoutte.","2. Dore le bœuf haché avec cumin et chili (6 min).","3. Remplis 3 contenants : quinoa, bœuf épicé, haricots noirs et maïs.","4. Sauce chipotle : Dans 3 pots étanches, mélange yogourt grec, sauce chipotle fumée et lime.","5. Au travail : Chauffe le bol 2 min. Secoue le petit pot de chipotle et verse sur le bœuf très chaud."]},
+        {"nom":"23. Sandwich Bagel Dinde, Cheddar & Épinards","type":"Boîte à Lunch","macros":"~590 kcal | 46g Protéines | 54g Glucides | 15g Lipides","ingredients":["3 bagels de blé entier","360 g poitrine de dinde fumée","60 g cheddar léger en tranches","Moutarde de Dijon, épinards"],"instructions":["1. Coupe les 3 bagels de blé entier en deux.","2. Tartine la moutarde de Dijon sur la moitié inférieure.","3. Dépose les tranches de poitrine de dinde fumée.","4. Pose la tranche de fromage cheddar léger et une poignée d'épinards.","5. Referme et emballe chaque sandwich. Prêt à manger sans réchauffage."]},
+        {"nom":"24. Salade Fusilli Poulet & Pesto Émulsionné","type":"Froid / Prêt à Manger","macros":"Par repas : ~605 kcal | 47g Protéines | 56g Glucides | 16g Lipides","ingredients":["450 g poulet grillé en dés","180 g fusillis blé entier cuits","Tomates cerises coupées en deux","SAUCE EN POT : 3 c. à s. pesto de basilic émulsionné avec 1 c. à s. d'eau chaude et citron"],"instructions":["1. Cuis les fusillis (9 min). Rince à l'eau froide.","2. Cuis le poulet à la poêle (6 min/face). Refroidis et coupe en dés.","3. Dans 3 boîtes : fusillis froids, poulet et tomates cerises.","4. Pesto liquide : Dans 3 pots étanches, mélange pesto avec un peu d'eau chaude et de citron.","5. Au travail : Chauffe tes pâtes (facultatif). Secoue le petit pot et verse le pesto liquide sur les pâtes."]},
+        {"nom":"25. Riz Frit Poulet & Sauce Soya Sésame","type":"Réchauffable","macros":"Par repas : ~615 kcal | 48g Protéines | 62g Glucides | 12g Lipides","ingredients":["450 g blanc de poulet en dés","150 g riz jasmin cuit","2 gros œufs brouillés","Petits pois et carottes","SAUCE EN POT : sauce soya réduite en sel, huile de sésame grillé, oignon vert émincé"],"instructions":["1. Cuis le riz jasmin la veille (pour qu'il soit froid et sec).","2. Fais sauter le poulet 5 min, ajoute petits pois/carottes et le riz froid. Remue 3 min.","3. Pousse le riz, casse les 2 œufs, brouille-les et mélange. Divise dans 3 contenants.","4. Sauce en pot : Dans 3 petits contenants, mélange sauce soya, huile de sésame et oignons verts.","5. Au travail : Réchauffe 2 min au micro-ondes. Secoue le petit pot de sauce soya et arrose."]},
+        {"nom":"26. Wrap Bœuf & Sauce Teriyaki Maison","type":"Transportable","macros":"Par wrap : ~610 kcal | 46g Protéines | 50g Glucides | 16g Lipides","ingredients":["3 grandes tortillas blé entier","450 g bœuf haché extra-maigre cuit","Chou blanc et carottes râpés","SAUCE EN POT : sauce teriyaki allégée (soya, gingembre, filet de miel)"],"instructions":["1. Fais dorer le bœuf haché (6 min) avec sel/poivre. Égoutte et range dans 3 petits contenants.","2. Râpe le chou blanc et les carottes.","3. Sauce teriyaki : Dans 3 pots étanches, mélange sauce soya, miel, gingembre et un filet d'eau.","4. Au travail : Réchauffe le bœuf 1 min. Secoue ton pot de sauce teriyaki et verse-la sur la viande chaude. Roule dans la tortilla avec la salade."]},
+        {"nom":"27. Bowl Couscous Perlé, Porc & Nappage Érable-Cidre","type":"Lunchbox Travail","macros":"Par repas : ~625 kcal | 48g Protéines | 62g Glucides | 14g Lipides","ingredients":["450 g côtelettes de porc en dés dorés","150 g couscous perlé cuit","2 poivrons rôtis en dés","SAUCE EN POT : 2 c. à s. sirop d'érable pur, 1 c. à s. vinaigre de cidre, Dijon, poivre"],"instructions":["1. Cuis le couscous perlé (8 min). Égoutte.","2. Découpe le porc en dés et saisis à feu vif (5 min). Rôtis les poivrons avec le porc.","3. Sépare couscous, porc et poivrons dans 3 contenants.","4. Sauce érable-cidre : Dans 3 pots étanches, mélange sirop d'érable, vinaigre de cidre et moutarde de Dijon.","5. Au travail : Fais chauffer le plat 2 min. Secoue le petit pot et nappe le porc chaud."]},
+        {"nom":"28. Salade de Pâtes Poulet Grec & Vinaigrette Vinaigre-Origan","type":"Froid Zéro Micro-ondes","macros":"Par repas : ~595 kcal | 48g Protéines | 54g Glucides | 15g Lipides","ingredients":["450 g poulet cuit en lanières","180 g penne cuits refroidis","Concombre, tomates, olives kalamata","60 g féta","SAUCE EN POT : jus de citron, vinaigre de vin rouge, origan séché, 1 c. à s. huile olive"],"instructions":["1. Cuis les penne al dente (9 min). Rince-les sous l'eau très froide.","2. Cuis le poulet (origan, citron) 6 min/côté à la poêle. Coupe en lanières.","3. Dans 3 contenants : pâtes froides, poulet, concombre, tomates, olives et féta.","4. Vinaigrette grecque : Dans 3 pots étanches, verse jus de citron, vinaigre de vin, huile d'olive et origan.","5. Au travail : Secoue le pot vigoureusement 10 sec et verse sur ta salade méditerranéenne."]},
+        {"nom":"29. Bowl Patate Douce, Poulet Rôti & Sauce Mac Maison","type":"Réchauffable au Bureau","macros":"Par repas : ~600 kcal | 49g Protéines | 55g Glucides | 12g Lipides","ingredients":["500 g poitrines de poulet rôties en tranches","600 g patates douces en dés rôties","1 tête brocoli cuite vapeur","SAUCE EN POT : yogourt grec 0%, moutarde, relish, paprika, poudre d'ail"],"instructions":["1. Coupe les patates douces en cubes, cuis-les 20 min au four à 205°C avec un spray d'huile.","2. Tranche le poulet et dore 6 min à la poêle. Cuis le brocoli 5 min à la vapeur.","3. Dispose dans 3 contenants : patate douce, poulet et brocoli.","4. Sauce Mac : Dans 3 pots de 60 ml, mélange yogourt grec, relish, moutarde, paprika et ail.","5. Au travail : Chauffe le bol 2 min. Secoue le petit pot fort et étends la sauce sur la volaille."]},
+        {"nom":"30. Wrap Thon Épicé & Sauce Yogourt Sriracha","type":"Prêt à Consommer","macros":"Par wrap : ~590 kcal | 46g Protéines | 48g Glucides | 17g Lipides","ingredients":["3 grandes tortillas blé entier","3 boîtes thon égoutté","1/2 avocat en tranches","Concombre en bâtonnets, salade","SAUCE EN POT : 1/2 tasse yogourt grec 0% + 2 c. à thé sriracha + jus de lime"],"instructions":["1. Égoutte les 3 boîtes de thon et émiette dans un bol.","2. Découpe concombre en bâtonnets et tranche le demi-avocat.","3. Sauce épicée : Dans 3 pots étanches, mélange yogourt grec, sauce sriracha et jus de lime.","4. Emballe les tortillas et légumes séparément.","5. Au travail : Pose la tortilla, mets thon, concombre, avocat et salade. Secoue le pot de sauce sriracha, verse et roule le wrap."]},
+        {"nom":"31. Bol Poke Végétarien au Tofu Soyeux & Edamames","type":"Frais & Asiatique","macros":"Par repas : ~540 kcal | 26g Protéines | 68g Glucides | 18g Lipides","ingredients":["450 g tofu soyeux ferme en cubes","150 g riz sushi cuit vinaigré","1 tasse edamames écossés cuits","1 avocat en tranches","SAUCE EN POT : 3 c. à s. sauce soya, 1 c. à thé sésame, 1 c. à s. vinaigre de riz"],"instructions":["1. Cuis le riz à sushi. Une fois tiède, ajoute une touche de vinaigre de riz et répartis dans 3 bols.","2. Découpe délicatement le tofu soyeux (ou mi-ferme) en beaux cubes carrés.","3. Dispose le tofu, les edamames cuits et les tranches d'avocat sur le riz dans les contenants.","4. Sauce en pot : Dans 3 petits pots étanches, mélange la sauce soya, l'huile de sésame grillé et le vinaigre de riz.","5. Au travail : Repas froid. Secoue vigoureusement ton pot de sauce asiatique et nappe le poke bowl juste avant de manger."]},
+        {"nom":"32. Salade Niçoise au Thon & Pommes de Terre","type":"Classique Français Froid","macros":"Par repas : ~575 kcal | 38g Protéines | 48g Glucides | 24g Lipides","ingredients":["3 boîtes thon pâle égoutté en gros morceaux","400 g pommes de terre grelots cuites","300 g haricots verts vapeur froids","3 gros œufs durs","SAUCE EN POT : 2 c. à s. huile d'olive, 1 c. à s. jus de citron, 1 c. à c. moutarde de Dijon"],"instructions":["1. Fais bouillir les pommes de terre grelots jusqu'à ce qu'elles soient tendres, puis coupe-les en deux. Cuis les haricots verts à la vapeur.","2. Cuis 3 œufs durs (9 minutes), écale et coupe-les en quartiers.","3. Dispose harmonieusement dans 3 lunchboxes : les grelots, les haricots verts, l'œuf dur et les gros morceaux de thon égoutté.","4. Sauce en pot : Dans 3 pots, émulsionne l'huile d'olive, le jus de citron, la moutarde, sel et poivre.","5. Au travail : Secoue ton petit pot pour lier la vinaigrette et arrose copieusement ta salade niçoise."]},
+        {"nom":"33. Wrap Poulet, Houmous & Légumes Grillés","type":"Lunchbox Rapide","macros":"Par wrap : ~590 kcal | 42g Protéines | 56g Glucides | 22g Lipides","ingredients":["3 grandes tortillas blé entier","450 g poulet grillé en lanières","1/2 tasse houmous classique","1 bocal poivrons rouges rôtis","SAUCE EN POT : yogourt grec 0%, 1/2 c. à thé poudre d'ail, menthe fraîche hachée"],"instructions":["1. Cuis les lanières de poulet à la poêle avec un filet d'huile d'olive. Laisse refroidir.","2. Égoutte les poivrons rôtis en bocal et coupe-les en longues bandes.","3. Sauce en pot : Prépare une sauce blanche en mélangeant le yogourt grec avec la poudre d'ail et la menthe. Mets dans 3 petits pots hermétiques.","4. Au travail : Tartine une généreuse couche de houmous sur ta tortilla. Ajoute le poulet froid et les poivrons rôtis. Secoue ton petit pot de sauce à l'ail, verse-la par-dessus et roule le wrap serré."]},
+        {"nom":"34. Pâtes Froides Pesto, Mozzarella & Tomates Cerises","type":"Salade Italienne","macros":"Par repas : ~580 kcal | 30g Protéines | 65g Glucides | 22g Lipides","ingredients":["180 g fusillis tricolores cuits","1 tasse petites boules mozzarella (bocconcini)","2 tasses tomates cerises coupées en deux","1 poignée roquette fraîche","SAUCE EN POT : 3 c. à s. pesto de basilic allongé d'une cuillère d'eau chaude"],"instructions":["1. Fais cuire les fusillis dans l'eau bouillante salée, égoutte et rince à l'eau très froide.","2. Coupe les tomates cerises en deux et égoutte les petites boules de mozzarella.","3. Dans 3 contenants, répartis les pâtes froides, les tomates, la mozzarella et une poignée de roquette.","4. Sauce en pot : Dans 3 pots étanches, mets 1 cuillère à soupe de pesto avec un trait d'eau chaude pour le rendre très fluide. Visse le couvercle.","5. Au travail : Secoue très fort ton pot de pesto liquide et verse-le sur tes pâtes italiennes froides."]},
+        {"nom":"35. Couscous aux Pois Chiches, Menthe & Raisins Secs","type":"Végétalien Parfumé","macros":"Par repas : ~550 kcal | 22g Protéines | 85g Glucides | 14g Lipides","ingredients":["1.5 tasse couscous (semoule) cuit","1 grosse boîte de pois chiches rincés","2 c. à s. raisins secs réhydratés","Concombre en dés et menthe fraîche","SAUCE EN POT : 2 c. à s. huile d'olive, jus d'un demi citron, 1 c. à thé cumin moulu"],"instructions":["1. Prépare le couscous selon les instructions de la boîte avec de l'eau bouillante. Laisse gonfler et égrène à la fourchette.","2. Rince abondamment les pois chiches à l'eau froide. Trempe les raisins secs 5 minutes dans l'eau tiède pour les gonfler.","3. Dans 3 plats, dispose le couscous léger, les pois chiches, les dés de concombre croquant, les raisins secs et des feuilles de menthe déchirées.","4. Sauce en pot : Dans 3 petits pots, mélange l'huile d'olive, le jus de citron frais, le cumin, le sel et le poivre.","5. Au travail : Secoue la vinaigrette orientale aromatisée au cumin et verse sur ton taboulé revisité."]}
       ],
       "soupers": [
         {"nom":"1. Côtelettes de Porc & Patate Douce Pilée (Sauce Érable-Dijon à part)","type":"Coupure Maigre & Velouté","macros":"Par repas : ~610 kcal | 48g Protéines | 56g Glucides | 14g Lipides","ingredients":["450 g côtelettes de porc désossées (3 pièces)","600 g patates douces pelées cuites pilées","300 g haricots verts frais vapeur","SAUCE EN POT : 2 c. à soupe moutarde de Dijon + 1.5 c. à soupe sirop d'érable + 1 c. à thé vinaigre cidre + poivre"],"instructions":["1. Épluche les 600 g de patates douces, coupe-les en cubes réguliers et plonge-les dans une grande casserole d'eau bouillante salée pendant 15 minutes complètes. Vérifie avec une fourchette : elle doit s'enfoncer toute seule sans forcer. Égoutte l'eau et écrase les patates au pilon à purée avec une pincée de sel, poivre et cannelle pour obtenir une texture bien veloutée.","2. Coupe les deux bouts des haricots verts et cuis-les à la vapeur au-dessus d'une casserole d'eau frémissante pendant 6 minutes pour qu'ils restent bien verts et croquants sous la dent.","3. Chauffe une poêle sur feu moyen-vif (chiffre 7) avec un spray d'huile d'olive. Dépose les 3 côtelettes de porc désossées assaisonnées de sel et poivre. Laisse cuire exactement 4 minutes sans les bouger, puis retourne-les avec une pince de cuisine et cuis 3 minutes et demie de l'autre côté. Retire-les du feu et laisse reposer 5 minutes sur une planche à découper pour que la viande reste juteuse.","4. Prépare la sauce érable-Dijon : Prends 3 petits pots hermétiques étanches de 60 ml. Dans chaque pot, verse précisément 2 cuillères à thé de moutarde de Dijon, 1 cuillère à soupe et demie de sirop d'érable pur, 1/2 cuillère à thé de vinaigre de cidre et un tour de moulin à poivre noir. Ferme les couvercles bien hermétiquement.","5. Répartition : Divise la purée onctueuse de patates douces, les haricots verts et une côtelette de porc entière dans 3 grands contenants en verre pour tes repas.","6. Au moment de manger : Fais chauffer ton plat 2 minutes au micro-ondes. Prends ton petit pot de sauce, secoue-le vigoureusement comme un shaker pendant 5 secondes pour créer une émulsion brillante et nappe généreusement la côtelette chaude et la purée fumante."]},
@@ -764,7 +329,7 @@
         {"nom":"7. Saumon Rôti, Asperges & Riz (Sauce Teriyaki en Pot)","type":"Poisson au Four","macros":"Par repas : ~625 kcal | 46g Protéines | 50g Glucides | 19g Lipides","ingredients":["450 g filets de saumon cuits","1 botte asperges rôties","150 g riz basmati cuit","SAUCE EN POT : sauce soya allégée, gingembre, filet de miel, graines de sésame"],"instructions":["1. Préchauffe le four à 200°C (400°F). Casse la tige dure du bas des asperges en pliant avec tes mains (elle casse naturellement au bon endroit).","2. Dépose les 3 pavés de saumon et les asperges sur une plaque huilée. Sale et poivre. Enfourne pour 14 minutes.","3. Cuis le riz basmati dans l'eau bouillante salée 11 minutes et égoutte.","4. Prépare la sauce teriyaki fluide : Dans 3 petits pots hermétiques, mélange 1 cuillère à soupe de sauce soya allégée, 1/2 cuillère à thé de miel liquide, un peu de gingembre et des graines de sésame.","5. Répartis riz, asperges et un pavé de saumon dans chaque contenant hermétique.","6. Au moment de manger : Réchauffe ton plat 1 minute et demie au micro-ondes. Secoue le petit pot pour bien mélanger le miel et la sauce soya, puis verse en filet sur le saumon chaud."]},
         {"nom":"8. Poulet Croustillant & Riz Jasmin (Sauce Général Tao en Pot)","type":"Classique Santé","macros":"Par repas : ~620 kcal | 47g Protéines | 66g Glucides | 11g Lipides","ingredients":["500 g poitrines de poulet dorées croustillantes","300 g haricots verts vapeur","150 g riz jasmin cuit","SAUCE EN POT : bouillon, sauce soya, ail, gingembre, piment, filet de miel épaissi"],"instructions":["1. Coupe les poitrines de poulet en bouchées de 2 cm. Dépose-les sur une plaque avec papier parchemin, vaporise généreusement de spray d'huile et cuis au four à 210°C (410°F) pendant 18 minutes pour qu'elles deviennent bien dorées et croustillantes.","2. Cuis le riz jasmin à l'eau bouillante 11 minutes. Cuis les haricots verts à la vapeur 5 minutes.","3. Prépare la sauce Tao maison : Dans une petite casserole, fais bouillir 2 minutes 1/2 tasse de bouillon, 2 cuillères de sauce soya, 1 cuillère de miel, de l'ail et 1 cuillère à thé de fécule de maïs pour que ça épaississe comme un sirop. Laisse refroidir et divise dans 3 petits pots étanches.","4. Monte tes boîtes avec le riz, les haricots et le poulet croustillant sans sauce.","5. Au moment de manger : Réchauffe ton plat de poulet au four ou micro-ondes pour qu'il reste croustillant. Secoue ton pot de sauce Tao et verse directement sur le poulet chaud avant de déguster."]},
         {"nom":"9. Sauté de Bœuf & Légumes (Sauce Wok Gingembre-Soya)","type":"Wok Express","macros":"Par repas : ~610 kcal | 48g Protéines | 54g Glucides | 14g Lipides","ingredients":["450 g bavette émincée saisie","2 poivrons + 1 tasse pois mange-tout","150 g riz basmati cuit","SAUCE EN POT : sauce soya, ail, gingembre râpé, huile de sésame, 1 c. à thé d'eau"],"instructions":["1. Cuis le riz basmati dans l'eau bouillante salée 11 minutes. Égoutte.","2. Découpe les poivrons en lanières et garde les pois mange-tout entiers. Fais-les sauter à feu vif dans une poêle avec un spray d'huile 4 minutes pour qu'ils restent bien croquants. Réserve.","3. Coupe le bœuf en lanières très fines. Dans la même poêle très chaude, saisis la viande 3 minutes avec du sel et du poivre. Retire aussitôt.","4. Prépare la sauce wok : Dans 3 petits contenants hermétiques, mélange 1 cuillère à soupe et demie de sauce soya, une touche d'huile de sésame, de l'ail en poudre et du gingembre râpé. Visse hermétiquement.","5. Répartis le riz, les légumes croquants et le bœuf sauté dans 3 boîtes hermétiques.","6. Au moment de manger : Chauffe le plat 1 min 45 au micro-ondes. Secoue le petit pot fort et verse la sauce soya parfumée sur tout le wok bien chaud."]},
-        {"nom":"10. Chili Con Carne Express & Pain Blé","type":"Mijoté Réconfort","macros":"Par repas : ~635 kcal | 49g Protéines | 65g Glucides | 14g Lipides","ingredients":["450 g bœuf haché extra-maigre","1 boîte haricots rouges","1 boîte tomates en dés avec épices chili","1 tasse maïs","3 tranches pain blé entier"],"instructions":["1. Dans une grande casserole sur feu moyen, dore le bœuf haché 6 minutes en l'écrasant avec une cuillère en bois. Égoutte le gras si nécessaire.","2. Ajoute dans la casserole la boîte de tomates en dés avec son son, la boîte de haricots rouges rincés, la tasse de maïs en grains et 1 cuillère à soupe d'épices chili (cumin, paprika, poudre d'ail, piment).","3. Baisse le feu à doux (chiffre 3), couvre avec un couvercle et laisse mijoter pendant 15 minutes complètes en remuant de temps en temps.","4. Répartis ce bon mijoté chaud dans 3 grands contenants hermétiques.","5. Au moment de manger : Réchauffe le chili 2 minutes au micro-ondes en couvrant pour éviter les éclaboussures. Déguste avec une tranche de pain de blé entier pour tremper dans la sauce."]},
+        {"nom":"10. Chili Con Carne Express & Pain Blé","type":"Mijoté Réconfort","macros":"Par repas : ~635 kcal | 49g Protéines | 65g Glucides | 14g Lipides","ingredients":["450 g bœuf haché extra-maigre","1 boîte haricots rouges","1 boîte tomates en dés avec épices chili","1 tasse maïs","3 tranches pain blé entier"],"instructions":["1. Dans une grande casserole sur feu moyen, dore le bœuf haché 6 minutes en l'écrasant avec une cuillère en bois. Égoutte le gras si nécessaire.","2. Ajoute dans la casserole la boîte de tomates en dés avec son jus, la boîte de haricots rouges rincés, la tasse de maïs en grains et 1 cuillère à soupe d'épices chili (cumin, paprika, poudre d'ail, piment).","3. Baisse le feu à doux (chiffre 3), couvre avec un couvercle et laisse mijoter pendant 15 minutes complètes en remuant de temps en temps.","4. Répartis ce bon mijoté chaud dans 3 grands contenants hermétiques.","5. Au moment de manger : Réchauffe le chili 2 minutes au micro-ondes en couvrant pour éviter les éclaboussures. Déguste avec une tranche de pain de blé entier pour tremper dans la sauce."]},
         {"nom":"11. Casserole Poulet Enchilada & Haricots Noirs","type":"Gratin Mexicain","macros":"Par repas : ~600 kcal | 50g Protéines | 52g Glucides | 15g Lipides","ingredients":["500 g poulet cuit effiloché","1 tasse sauce enchilada rouge","1 boîte haricots noirs","60 g fromage marbré râpé","3 petites tortillas maïs en lanières"],"instructions":["1. Préchauffe ton four à 190°C (375°F). Coupe les tortillas de maïs en lanières de 1 cm avec un couteau.","2. Dans un grand plat carré allant au four, dépose le poulet effiloché cuit, la boîte de haricots noirs rincés et égouttés, et les lanières de tortillas.","3. Verse la tasse de sauce enchilada rouge par-dessus et mélange avec une cuillère pour bien tout napper.","4. Saupoudre les 60 g de fromage marbré râpé sur toute la surface.","5. Enfourne pour 20 minutes de cuisson jusqu'à ce que la sauce bouillonne sur les côtés et que le fromage soit gratiné et fondu.","6. Laisse tiédir 10 minutes et sépare en 3 portions égales dans tes plats hermétiques pour la semaine."]},
         {"nom":"12. Saucisses de Dinde, Grelots & Sauce Moutarde Miel","type":"Facile sans Vaisselle","macros":"Par repas : ~580 kcal | 44g Protéines | 48g Glucides | 18g Lipides","ingredients":["450 g saucisses dinde italiennes rôties","500 g pommes de terre grelots rôties","2 poivrons rôtis","SAUCE EN POT : 2 c. à s. moutarde de Dijon, 1 c. à s. miel, 1 c. à thé vinaigre de cidre, poivre"],"instructions":["1. Préchauffe le four à 205°C (400°F). Coupe les grelots en deux, les saucisses de dinde en grosses rondelles de 2 cm, et les poivrons en carrés.","2. Dépose le tout sur une grande plaque de cuisson recouverte de papier parchemin. Vaporise un spray d'huile d'olive, sale, poivre et ajoute une pincée d'origan. Mélange avec tes mains.","3. Enfourne pour 25 minutes en retournant les morceaux à mi-cuisson avec une spatule. Répartis dans 3 contenants.","4. Prépare la sauce en pot : Dans 3 petits pots étanches, mélange la moutarde de Dijon, le miel pur et le vinaigre de cidre avec une pincée de poivre noir.","5. Au moment de manger : Réchauffe ton plat de saucisses et légumes 2 minutes au micro-ondes. Secoue énergiquement ton petit pot de sauce pour la rendre liquide et nappe généreusement les grelots et les saucisses chaudes."]},
         {"nom":"13. Bœuf à la Coréenne (Sauce Bulgogi en Pot) & Brocoli","type":"Sucré-Salé","macros":"Par repas : ~615 kcal | 48g Protéines | 58g Glucides | 14g Lipides","ingredients":["450 g bœuf haché extra-maigre cuit","150 g riz jasmin cuit","1 tête brocoli vapeur","SAUCE EN POT : sauce soya, 1 c. à s. miel, ail, sriracha, sésame grillé"],"instructions":["1. Cuis le riz jasmin dans l'eau bouillante salée 11 minutes. Égoutte.","2. Découpe la tête de brocoli en fleurons et cuis-les à la vapeur 5 minutes.","3. Fais dorer le bœuf haché dans une poêle sur feu vif pendant 6 minutes avec une pincée de sel jusqu'à ce qu'il soit bien cuit et émietté.","4. Prépare la sauce bulgogi coréenne : Dans 3 petits pots étanches, mélange 1 cuillère à soupe et demie de sauce soya, 1 cuillère à thé de miel, 1/4 cuillère de sriracha, de la poudre d'ail et des graines de sésame.","5. Répartis le riz jasmin, le brocoli et le bœuf haché dans 3 plats pour le travail.","6. Au moment de manger : Chauffe ton plat 2 minutes au micro-ondes. Secoue fort le pot de sauce coréenne pour dissoudre le miel, et nappe la viande fumante et le riz."]},
@@ -782,41 +347,48 @@
         {"nom":"25. Morue Rôtie Sauce Tomate, Olives & Couscous Perlé","type":"Méditerranéen Léger","macros":"Par repas : ~585 kcal | 46g Protéines | 56g Glucides | 13g Lipides","ingredients":["500 g longes de morue cuites","1 boîte tomates en dés mijotées avec ail et olives","150 g couscous perlé cuit"],"instructions":["1. Cuis le couscous perlé dans une casserole d'eau bouillante salée 8 minutes. Égoutte.","2. Dans une grande poêle, verse la boîte de tomates en dés avec une pincée d'origan, d'ail et des rondelles d'olives noires. Laisse mijoter 5 minutes.","3. Dépose les morceaux de morue délicatement dans la sauce tomate frémissante, couvre avec un couvercle et laisse pocher doucement pendant 10 minutes jusqu'à ce que le poisson soit bien blanc et s'effeuille tout seul.","4. Répartis le couscous perlé au fond de 3 contenants hermétiques et dépose la morue avec sa sauce tomate méditerranéenne par-dessus. Se réchauffe doucement au micro-ondes."]},
         {"nom":"26. Casserole Poulet Riz & Brocoli au Fromage","type":"Un Seul Plat","macros":"Par repas : ~610 kcal | 49g Protéines | 56g Glucides | 15g Lipides","ingredients":["450 g poulet cuit en dés","150 g riz jasmin cuit","2 tasses brocoli vapeur","1/2 tasse yogourt grec + 60g cheddar râpé"],"instructions":["1. Préchauffe le four à 190°C (375°F). Cuis le riz jasmin 11 minutes dans l'eau bouillante et cuis le brocoli 4 minutes à la vapeur. Découpe le poulet en cubes et cuis-le 5 minutes à la poêle.","2. Dans un grand plat allant au four, mélange le riz cuit, les morceaux de poulet, le brocoli, le yogourt grec 0% et la moitié du cheddar râpé (30 g) avec du sel et du poivre.","3. Saupoudre les 30 g de cheddar restant sur le dessus.","4. Cuis au four pendant 15 minutes jusqu'à ce que le dessus soit gratiné et doré. Sépare en 3 parts égales pour la semaine."]},
         {"nom":"27. Côtelettes de Porc, Riz Brun & Crème Champignons en Pot","type":"Crème Allégée","macros":"Par repas : ~625 kcal | 48g Protéines | 58g Glucides | 15g Lipides","ingredients":["450 g côtelettes de porc désossées cuites","150 g riz brun cuit","SAUCE EN POT : champignons tranchés dorés liés avec 1/2 tasse yogourt grec 0% et bouillon poulet chaud"],"instructions":["1. Cuis le riz brun dans l'eau bouillante à couvert 25 minutes et égoutte.","2. Cuis les côtelettes de porc à la poêle à feu moyen-vif 4 minutes par côté. Laisse reposer.","3. Dans la même poêle, fais dorer les champignons tranchés 4 minutes. Retire du feu, ajoute le yogourt grec et 3 cuillères de bouillon de poulet chaud en fouettant pour créer une crème de champignons onctueuse. Verse dans 3 petits pots hermétiques étanches.","4. Répartis le riz brun et les côtelettes de porc dans 3 plats.","5. Au moment de manger : Réchauffe le porc et le riz 2 minutes au micro-ondes. Tiédis le pot de sauce aux champignons 20 secondes, secoue et verse généreusement sur la côtelette."]},
-        {"nom":"28. Macaronis au Bœuf Façon Goulash Hongrois","type":"Mijoté Pâtes","macros":"Par repas : ~635 kcal | 49g Protéines | 65g Glucides | 14g Lipides","ingredients":["450 g bœuf haché extra-maigre doré","180 g macaronis cuits","1 boîte tomates en dés mijotées au paprika doux et oignon"],"instructions":["1. Cuis les macaronis dans l'eau bouillante salée 8 minutes et égoutte.","2. Dans une grande casserole, fais revenir l'oignon émincé et le bœuf haché 6 minutes en l'émiettant.","3. Ajoute 1 cuillère à soupe comble de paprika doux, la boîte de tomates en dés avec son son, une pincée d'ail et du sel. Laisse mijoter doucement à feu doux pendant 10 minutes.","4. Verse les macaronis cuits directement dans la sauce au bœuf et remue avec une cuillère en bois pendant 2 minutes pour que les pâtes boivent la sauce.","5. Divise dans 3 contenants hermétiques pour tes dîners ou soupers."]},
+        {"nom":"28. Macaronis au Bœuf Façon Goulash Hongrois","type":"Mijoté Pâtes","macros":"Par repas : ~635 kcal | 49g Protéines | 65g Glucides | 14g Lipides","ingredients":["450 g bœuf haché extra-maigre doré","180 g macaronis cuits","1 boîte tomates en dés mijotées au paprika doux et oignon"],"instructions":["1. Cuis les macaronis dans l'eau bouillante salée 8 minutes et égoutte.","2. Dans une grande casserole, fais revenir l'oignon émincé et le bœuf haché 6 minutes en l'émiettant.","3. Ajoute 1 cuillère à soupe comble de paprika doux, la boîte de tomates en dés avec son jus, une pincée d'ail et du sel. Laisse mijoter doucement à feu doux pendant 10 minutes.","4. Verse les macaronis cuits directement dans la sauce au bœuf et remue avec une cuillère en bois pendant 2 minutes pour que les pâtes boivent la sauce.","5. Divise dans 3 contenants hermétiques pour tes dîners ou soupers."]},
         {"nom":"29. Souvlaki de Poulet, Riz Curcuma & Tzatzíki en Pot","type":"Saveur Grèce","macros":"Par repas : ~605 kcal | 49g Protéines | 58g Glucides | 14g Lipides","ingredients":["500 g poulet mariné grec rôti","150 g riz basmati cuit au curcuma","Salade concombre et tomate","SAUCE EN POT : 3/4 tasse tzatzíki crémeux"],"instructions":["1. Cuis le riz basmati dans l'eau bouillante avec 1/2 cuillère à thé de curcuma moulu (qui va donner une superbe couleur jaune soleil) pendant 11 minutes. Égoutte.","2. Coupe le poulet en cubes, assaisonne de jus de citron, d'ail et d'origan. Enfile sur des petites brochettes ou cuis directement à la poêle 6 minutes jusqu'à ce que ce soit bien doré.","3. Remplis 3 petits pots hermétiques étanches avec 2 cuillères à soupe de tzatzíki frais.","4. Dans 3 contenants, dispose le riz jaune, les morceaux de poulet grec et quelques crudités à part.","5. Au moment de manger : Fais chauffer poulet et riz 1 min 30 au micro-ondes. Secoue le tzatzíki et nappe le plat tiédi."]},
-        {"nom":"30. Saumon Poêlé, Riz Basmati & Sauce Soya-Gingembre en Pot","type":"Simple & Équilibré","macros":"Par repas : ~620 kcal | 46g Protéines | 52g Glucides | 18g Lipides","ingredients":["450 g filets de saumon saisis","150 g riz basmati cuit","300 g haricots verts vapeur","SAUCE EN POT : sauce soya allégée, gingembre moulu, jus de lime, huile de sésame"],"instructions":["1. Cuis le riz basmati dans l'eau bouillante salée 11 minutes. Égoutte. Cuis les haricots verts à la vapeur 5 minutes.","2. Chauffe une poêle à feu moyen-vif avec un spray d'huile. Dépose les pavés de saumon côté peau en premier et cuis 4 minutes. Retourne délicatement avec une spatule et cuis 3 minutes de l'autre côté.","3. Prépare la sauce en pot : Dans 3 petits pots étanches, mélange la sauce soya réduite en sel, une touche d'huile de sésame, un filet de jus de lime et une pincée de gingembre.","4. Répartis riz, saumon et haricots verts dans 3 plats hermétiques.","5. Au moment de manger : Réchauffe ton plat 1 minute 30 au micro-ondes. Secoue le petit pot hermétique et verse cette sauce asiatique sur le saumon chaud et le riz."]}
+        {"nom":"30. Saumon Poêlé, Riz Basmati & Sauce Soya-Gingembre en Pot","type":"Simple & Équilibré","macros":"Par repas : ~620 kcal | 46g Protéines | 52g Glucides | 18g Lipides","ingredients":["450 g filets de saumon saisis","150 g riz basmati cuit","300 g haricots verts vapeur","SAUCE EN POT : sauce soya allégée, gingembre moulu, jus de lime, huile de sésame"],"instructions":["1. Cuis le riz basmati dans l'eau bouillante salée 11 minutes. Égoutte. Cuis les haricots verts à la vapeur 5 minutes.","2. Chauffe une poêle à feu moyen-vif avec un spray d'huile. Dépose les pavés de saumon côté peau en premier et cuis 4 minutes. Retourne délicatement avec une spatule et cuis 3 minutes de l'autre côté.","3. Prépare la sauce en pot : Dans 3 petits pots étanches, mélange la sauce soya réduite en sel, une touche d'huile de sésame, un filet de jus de lime et une pincée de gingembre.","4. Répartis riz, saumon et haricots verts dans 3 plats hermétiques.","5. Au moment de manger : Réchauffe ton plat 1 minute 30 au micro-ondes. Secoue le petit pot hermétique et verse cette sauce asiatique sur le saumon chaud et le riz."]},
+        {"nom":"31. Curry de Lentilles Corail & Lait de Coco","type":"Mijoté Réconfort","macros":"Par repas : ~560 kcal | 28g Protéines | 72g Glucides | 16g Lipides","ingredients":["1.5 tasse lentilles corail crues","1 boîte lait de coco léger","1 boîte tomates en dés","2 c. à s. pâte de cari ou poudre","150 g riz basmati cuit"],"instructions":["1. Rince les lentilles corail à l'eau froide jusqu'à ce que l'eau soit claire.","2. Fais revenir la poudre de cari dans une grande casserole avec un filet d'huile pour libérer les arômes (1 min).","3. Ajoute les lentilles corail, la boîte de tomates en dés et le lait de coco léger. Remue bien.","4. Laisse mijoter à feu très doux pendant 20 minutes (les lentilles vont fondre et épaissir la sauce).","5. Sers ce dahl onctueux bien chaud sur ta portion de riz basmati dans tes 3 contenants."]},
+        {"nom":"32. Sauté de Crevettes à l'Ail & Courgettes","type":"Faible en Glucides","macros":"Par repas : ~410 kcal | 42g Protéines | 15g Glucides | 18g Lipides","ingredients":["500 g crevettes crues décortiquées","3 grosses courgettes en spirales (zoodles) ou lanières","3 gousses d'ail hachées","2 c. à s. beurre allégé ou huile d'olive","Jus d'un citron frais"],"instructions":["1. Si tu as un spiraliseur, fais des spaghettis de courgette (ou coupe-les en très fines lanières).","2. Dans une grande poêle, fais fondre le beurre avec l'ail haché à feu moyen.","3. Ajoute les crevettes crues et fais-les sauter 3 à 4 minutes jusqu'à ce qu'elles soient bien roses et fermes. Retire-les de la poêle.","4. Mets les courgettes dans la même poêle chaude pendant 2 minutes maximum pour qu'elles restent croquantes, puis presse le jus de citron par-dessus.","5. Remets les crevettes, mélange 30 secondes et divise dans tes contenants. Réchauffe très brièvement !"]},
+        {"nom":"33. Risotto d'Orge aux Champignons & Parmesan","type":"Gourmand Fibreux","macros":"Par repas : ~540 kcal | 22g Protéines | 75g Glucides | 15g Lipides","ingredients":["1 tasse orge perlé sec","4 tasses bouillon de champignons ou poulet chaud","2 barquettes de champignons tranchés","1/2 tasse parmesan fraîchement râpé","1/2 tasse vin blanc (optionnel)"],"instructions":["1. Fais dorer les champignons dans une sauteuse jusqu'à ce qu'ils rendent leur eau et dorent bien. Retire-les.","2. Dans la même sauteuse, verse l'orge sec et fais-le nacrer (rôtir à sec) 2 minutes. Déglace avec le vin blanc ou une louche de bouillon.","3. Ajoute le bouillon très chaud louche par louche en remuant constamment à feu moyen. Attends que le liquide soit absorbé avant d'en remettre (environ 30 minutes de cuisson).","4. Quand l'orge est tendre mais encore croquant au centre, éteins le feu.","5. Incorpore les champignons cuits et le parmesan râpé en remuant vigoureusement pour créer le crémeux du risotto."]},
+        {"nom":"34. Aubergines Farcies au Bœuf & Mozzarella","type":"Légumes Farcis","macros":"Par repas : ~595 kcal | 45g Protéines | 35g Glucides | 28g Lipides","ingredients":["3 petites aubergines coupées en deux","450 g bœuf haché extra-maigre","1 tasse coulis de tomate","90 g mozzarella allégée râpée","Origan et poudre d'ail"],"instructions":["1. Préchauffe le four à 200°C (400°F). Vide l'intérieur des demi-aubergines avec une cuillère (garde la chair). Cuis les coques vides au four 15 minutes.","2. Hache la chair d'aubergine que tu as retirée.","3. Fais dorer le bœuf haché avec la chair d'aubergine hachée dans une poêle. Ajoute le coulis de tomate, l'ail et l'origan. Laisse réduire 5 min.","4. Sors les coques d'aubergines du four, garnis-les généreusement du mélange de viande en dôme.","5. Saupoudre la mozzarella sur chaque aubergine et remets au four (à Broil) 5 minutes pour gratiner le tout."]},
+        {"nom":"35. Saumon en Papillote, Poireaux & Citron","type":"Cuisson Vapeur Four","macros":"Par repas : ~510 kcal | 42g Protéines | 25g Glucides | 24g Lipides","ingredients":["3 pavés de saumon frais","2 blancs de poireaux émincés finement","3 tranches de citron","150 g riz basmati cuit pour accompagner","Papier parchemin ou aluminium"],"instructions":["1. Préchauffe le four à 200°C (400°F). Découpe 3 grands carrés de papier parchemin.","2. Fais fondre les poireaux émincés 5 minutes à la poêle avec un fond d'eau pour qu'ils soient tendres.","3. Au centre de chaque papier, dépose un lit de fondue de poireaux.","4. Pose le pavé de saumon sur les poireaux, sale, poivre, et ajoute une tranche de citron par-dessus.","5. Plie et ferme les papillotes très hermétiquement. Enfourne 15 minutes. Ouvre avec prudence (attention à la vapeur) et sers sur le riz basmati."]}
+      ],
+      "shakes": [
+        {"nom":"1. Shake Ferrero Rocher Gourmand","type":"Signature Post-Workout","macros":"~365 kcal | 35g Protéines | 30g Glucides | 11g Lipides","ingredients":["1 scoop protéine chocolat-noisette","250 ml boisson d'amande","1 c. à soupe beurre d'arachide ou noisette","1/2 banane congelée","3-4 cubes de glace"],"instructions":["1. Verse 250 ml de boisson d'amande au fond du mélangeur.","2. Ajoute le beurre d'arachide et la banane.","3. Ajoute la scoop de protéine et la glace.","4. Mixe 45 secondes à fond."]},
+        {"nom":"2. Black Forest Shake (Choco-Noisette & Cerises)","type":"Frais & Antioxydant","macros":"~340 kcal | 34g Protéines | 36g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse cerises douces surgelées","1/3 tasse yogourt grec 0%","200 ml eau très froide"],"instructions":["1. Verse eau et yogourt au fond du blender.","2. Ajoute les cerises surgelées.","3. Ajoute la protéine.","4. Donne des impulsions pour casser la glace puis mixe 45 sec."]},
+        {"nom":"3. Shake Banana-Bread Nutella & Avoine","type":"Énergie Lente","macros":"~390 kcal | 36g Protéines | 48g Glucides | 7g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/3 tasse (30g) flocons d'avoine","1 banane mûre","250 ml boisson d'amande","1/4 c. à thé cannelle"],"instructions":["1. Broie l'avoine à sec 10 sec dans le blender.","2. Verse la boisson d'amande.","3. Ajoute banane et cannelle.","4. Ajoute la protéine et mixe 50 sec."]},
+        {"nom":"4. Café Glacé Noisette Mocha (Pré-Workout)","type":"Focus & Réveil","macros":"~320 kcal | 34g Protéines | 24g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","120 ml café fort refroidi","150 ml boisson d'amande","1/2 banane","5 cubes de glace"],"instructions":["1. Verse le café froid et la boisson d'amande.","2. Ajoute la demi-banane et les glaçons.","3. Ajoute la protéine.","4. Mixe 40 sec à haute vitesse."]},
+        {"nom":"5. Shake Chocolat-Framboise Intense","type":"Acidulé","macros":"~330 kcal | 34g Protéines | 32g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse framboises surgelées","1/2 tasse yogourt grec 0%","200 ml eau froide"],"instructions":["1. Verse eau et yogourt dans le mélangeur.","2. Ajoute les framboises surgelées.","3. Ajoute la protéine.","4. Mixe à puissance maximale 45 sec."]},
+        {"nom":"6. Pâte à Biscuits Choco-Noisette (Cookie Dough)","type":"Haute Satiété","macros":"~385 kcal | 35g Protéines | 42g Glucides | 9g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/4 tasse flocons d'avoine","1 c. à soupe graines de lin","1/2 banane","250 ml boisson d'amande","Pincée de sel"],"instructions":["1. Verse la boisson d'amande.","2. Ajoute banane, avoine, lin et sel.","3. Ajoute la protéine.","4. Mixe 45 sec puis laisse reposer 2 min pour épaissir."]},
+        {"nom":"7. Shake Chocolat Noir Pur & Noisettes","type":"Cacao Brut","macros":"~345 kcal | 35g Protéines | 26g Glucides | 8g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe cacao noir pur","1/2 banane congelée","250 ml boisson d'amande","4 glaçons"],"instructions":["1. Verse la boisson d'amande.","2. Ajoute le cacao pur, la banane et les glaçons.","3. Ajoute la protéine.","4. Mixe 45 sec."]},
+        {"nom":"8. Double Nut Shake (Arachide & Choco-Noisette)","type":"Crémeux","macros":"~390 kcal | 37g Protéines | 28g Glucides | 13g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe beurre d'arachide naturel","250 ml boisson d'amande","1/2 banane","3 glaçons"],"instructions":["1. Verse la boisson d'amande.","2. Ajoute le beurre d'arachide, la banane et les glaçons.","3. Ajoute la protéine.","4. Mixe 45 sec."]},
+        {"nom":"9. Shake Choco-Noisette & Bleuets Sauvages","type":"Digeste","macros":"~335 kcal | 34g Protéines | 34g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse bleuets surgelés","1/3 tasse yogourt grec 0%","200 ml eau très froide"],"instructions":["1. Verse l'eau et le yogourt.","2. Ajoute les bleuets surgelés.","3. Ajoute la protéine.","4. Mixe 45 sec."]},
+        {"nom":"10. Le Choco-Cottage Velouté (Mousse)","type":"Caséine Lente","macros":"~370 kcal | 41g Protéines | 26g Glucides | 7g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/2 tasse cottage 1%","1 c. à thé cacao pur","180 ml boisson d'amande","4 glaçons"],"instructions":["1. Mixe le cottage et la boisson d'amande 20 sec pour lisser.","2. Ajoute la protéine, le cacao et la glace.","3. Mixe 40 sec pour une mousse épaisse."]},
+        {"nom":"11. Smoothie Brownie Flocons & Noix","type":"Texture Gourmande","macros":"~395 kcal | 35g Protéines | 34g Glucides | 13g Lipides","ingredients":["1 scoop protéine chocolat-noisette","15 g noix de Grenoble","2 c. à soupe flocons d'avoine","1/2 banane","250 ml boisson d'amande"],"instructions":["1. Verse la boisson d'amande.","2. Ajoute les noix, l'avoine et la banane.","3. Ajoute la protéine.","4. Mixe 50 sec pour broyer les noix."]},
+        {"nom":"12. Frappé Érable, Cannelle & Noisette","type":"Style Canadien","macros":"~365 kcal | 34g Protéines | 37g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe sirop d'érable pur","1/4 c. à thé cannelle","1/2 banane","250 ml boisson d'amande","4 glaçons"],"instructions":["1. Verse la boisson d'amande et le sirop d'érable.","2. Ajoute cannelle, banane et glaçons.","3. Ajoute la protéine.","4. Mixe 40 sec."]},
+        {"nom":"13. Green Choco-Noisette (Épinards Invisibles)","type":"Légumes Masqués","macros":"~330 kcal | 34g Protéines | 28g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 poignée épinards frais","1/2 banane","1 c. à thé cacao pur","250 ml boisson d'amande","3 glaçons"],"instructions":["1. Liquéfie les épinards avec la boisson d'amande 15 sec.","2. Ajoute banane, cacao, protéine et glaçons.","3. Mixe 40 sec."]},
+        {"nom":"14. Frappé Noisette Chaï Épicé","type":"Épices Chaudes","macros":"~325 kcal | 34g Protéines | 26g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","150 ml thé chaï infusé froid","100 ml boisson d'amande","1/2 banane","Pincée muscade","4 glaçons"],"instructions":["1. Verse le thé froid et la boisson d'amande.","2. Ajoute banane, muscade et glaçons.","3. Ajoute la protéine et mixe 40 sec."]},
+        {"nom":"15. Smoothie Onctueux Avocat & Choco-Noisette","type":"Texture Glacée","macros":"~380 kcal | 34g Protéines | 24g Glucides | 15g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/4 avocat mûr","1 c. à thé cacao","250 ml boisson d'amande","4 glaçons"],"instructions":["1. Mets le quart d'avocat dans le mélangeur.","2. Verse la boisson d'amande.","3. Ajoute cacao, protéine et glace.","4. Mixe 45 sec."]}
       ],
       "smoothies": [
-        {"nom":"1. Shake Ferrero Rocher Gourmand","type":"Signature Post-Workout","macros":"~365 kcal | 35g Protéines | 30g Glucides | 11g Lipides","ingredients":["1 scoop protéine chocolat-noisette","250 ml boisson d'amande","1 c. à soupe beurre d'arachide ou noisette","1/2 banane congelée","3-4 cubes de glace"],"instructions":["1. Prends le bol de ton mélangeur (blender).","2. Verse en premier les 250 ml de boisson d'amande au fond (mettre le liquide en premier évite que la poudre ne colle au fond des lames).","3. Ajoute 1 cuillère à soupe de beurre d'arachide (ou beurre de noisette) et la demi-banane congelée coupée en morceaux.","4. Dépose 1 mesure complète (scoop) de protéine chocolat-noisette sur le dessus.","5. Ajoute 3 ou 4 glaçons. Ferme le couvercle fermement.","6. Allume à puissance maximale pendant 45 secondes complètes jusqu'à ce que tu n'entendes plus les glaçons craquer. Verse dans ton verre et déguise aussitôt !"]},
-        {"nom":"2. Black Forest Shake (Choco-Noisette & Cerises)","type":"Frais & Antioxydant","macros":"~340 kcal | 34g Protéines | 36g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse cerises douces surgelées","1/3 tasse yogourt grec 0%","200 ml eau très froide"],"instructions":["1. Verse 200 ml d'eau très froide et le tiers de tasse de yogourt grec 0% au fond du mélangeur.","2. Ajoute la tasse complète de cerises douces surgelées sans noyau.","3. Dépose 1 scoop de protéine chocolat-noisette par-dessus.","4. Enclenche le couvercle. Donne 3 impulsions courtes (bouton Pulse) pour casser les cerises congelées.","5. Fais tourner à vitesse maximale pendant 45 secondes jusqu'à obtenir une belle texture pourpre et veloutée."]},
-        {"nom":"3. Shake Banana-Bread Nutella & Avoine","type":"Énergie Lente","macros":"~390 kcal | 36g Protéines | 48g Glucides | 7g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/3 tasse (30g) flocons d'avoine","1 banane mûre","250 ml boisson d'amande","1/4 c. à thé cannelle"],"instructions":["1. Mets d'abord le tiers de tasse de flocons d'avoine secs seuls dans le mélangeur fermé. Fais tourner 10 secondes à sec pour réduire l'avoine en poudre fine comme de la farine.","2. Ouvre le couvercle, verse les 250 ml de boisson d'amande.","3. Épluche la banane, coupe-la en morceaux et ajoute-la avec la pincée de cannelle.","4. Ajoute 1 scoop de protéine chocolat-noisette.","5. Ferme le couvercle et mixe à fond pendant 50 secondes pour que l'avoine se dissolve complètement dans la boisson."]},
-        {"nom":"4. Café Glacé Noisette Mocha (Pré-Workout)","type":"Focus & Réveil","macros":"~320 kcal | 34g Protéines | 24g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","120 ml café fort refroidi","150 ml boisson d'amande","1/2 banane","5 cubes de glace"],"instructions":["1. Prépare un café fort à l'avance et laisse-le refroidir au réfrigérateur (ne mets jamais de café bouillant dans le blender fermé).","2. Verse dans le mélangeur : 120 ml de café froid et 150 ml de boisson d'amande.","3. Ajoute la demi-banane, la scoop de protéine chocolat-noisette et les 5 glaçons.","4. Mixe pendant 40 secondes à haute vitesse pour créer un café frappé très mousseux et bien glacé."]},
-        {"nom":"5. Shake Chocolat-Framboise Intense","type":"Acidulé","macros":"~330 kcal | 34g Protéines | 32g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse framboises surgelées","1/2 tasse yogourt grec 0%","200 ml eau froide"],"instructions":["1. Verse 200 ml d'eau froide et la demi-tasse de yogourt grec 0% dans le mélangeur.","2. Verse la tasse de framboises surgelées.","3. Ajoute 1 mesure de protéine chocolat-noisette.","4. Ferme le couvercle et mixe à puissance maximale pendant 45 secondes. L'acidité de la framboise avec le chocolat-noisette donne un goût de dessert fruité."]},
-        {"nom":"6. Pâte à Biscuits Choco-Noisette (Cookie Dough)","type":"Haute Satiété","macros":"~385 kcal | 35g Protéines | 42g Glucides | 9g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/4 tasse flocons d'avoine","1 c. à soupe graines de lin","1/2 banane","250 ml boisson d'amande","Pincée de sel"],"instructions":["1. Verse les 250 ml de boisson d'amande au fond du blender.","2. Ajoute la demi-banane, le quart de tasse d'avoine, la cuillère de graines de lin moulues et une toute petite pincée de sel de mer.","3. Termine avec 1 scoop de protéine chocolat-noisette.","4. Mixe à pleine puissance pendant 45 secondes.","5. Verse dans ton verre et attends 2 minutes sans boire : les graines de lin et l'avoine vont gonfler légèrement et donner une texture épaisse de pâte à biscuits."]},
-        {"nom":"7. Shake Chocolat Noir Pur & Noisettes","type":"Cacao Brut","macros":"~345 kcal | 35g Protéines | 26g Glucides | 8g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe cacao noir pur","1/2 banane congelée","250 ml boisson d'amande","4 glaçons"],"instructions":["1. Verse les 250 ml de boisson d'amande dans le bol du mélangeur.","2. Ajoute 1 cuillère à soupe comble de poudre de cacao noir non sucré (100% cacao).","3. Ajoute la demi-banane congelée, la scoop de protéine chocolat-noisette et les 4 glaçons.","4. Mixe à puissance maximale pendant 45 secondes pour un goût de chocolat noir intense."]},
-        {"nom":"8. Double Nut Shake (Arachide & Choco-Noisette)","type":"Crémeux","macros":"~390 kcal | 37g Protéines | 28g Glucides | 13g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe beurre d'arachide naturel","250 ml boisson d'amande","1/2 banane","3 glaçons"],"instructions":["1. Verse 250 ml de boisson d'amande dans le mélangeur.","2. Ajoute 1 grosse cuillère à soupe de beurre d'arachide naturel (crémeux), la demi-banane et 3 glaçons.","3. Ajoute la mesure de protéine chocolat-noisette.","4. Ferme le couvercle et fais tourner pendant 45 secondes complètes pour créer une texture ultra riche et onctueuse."]},
-        {"nom":"9. Shake Choco-Noisette & Bleuets Sauvages","type":"Digeste","macros":"~335 kcal | 34g Protéines | 34g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse bleuets surgelés","1/3 tasse yogourt grec 0%","200 ml eau très froide"],"instructions":["1. Verse 200 ml d'eau très froide et le tiers de tasse de yogourt grec au fond du blender.","2. Ajoute la tasse de bleuets sauvages surgelés.","3. Ajoute 1 scoop de protéine chocolat-noisette.","4. Mixe pendant 45 secondes à haute vitesse jusqu'à ce que la texture soit parfaitement lisse et violette."]},
-        {"nom":"10. Le Choco-Cottage Velouté (Mousse)","type":"Caséine Lente","macros":"~370 kcal | 41g Protéines | 26g Glucides | 7g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/2 tasse cottage 1%","1 c. à thé cacao pur","180 ml boisson d'amande","4 glaçons"],"instructions":["1. Mets d'abord la demi-tasse de fromage cottage 1% et les 180 ml de boisson d'amande dans le mélangeur. Mixe pendant 20 secondes seul : les petits grains de cottage vont disparaître complètement et former un lait très épais.","2. Ouvre le couvercle, ajoute 1 scoop de protéine, 1 cuillère à thé de cacao et les 4 glaçons.","3. Remets en marche pendant 40 secondes : tu obtiendras une consistance de mousse au chocolat à boire."]},
-        {"nom":"11. Smoothie Brownie Flocons & Noix","type":"Texture Gourmande","macros":"~395 kcal | 35g Protéines | 34g Glucides | 13g Lipides","ingredients":["1 scoop protéine chocolat-noisette","15 g noix de Grenoble","2 c. à soupe flocons d'avoine","1/2 banane","250 ml boisson d'amande"],"instructions":["1. Verse les 250 ml de boisson d'amande dans le mélangeur.","2. Ajoute les 15 g de cerneaux de noix de Grenoble et les 2 cuillères à soupe d'avoine.","3. Ajoute la demi-banane et 1 scoop de protéine chocolat-noisette.","4. Mixe à puissance maximale pendant 50 secondes pour broyer totalement les noix et créer un goût de brownie liquide."]},
-        {"nom":"12. Frappé Érable, Cannelle & Noisette","type":"Style Canadien","macros":"~365 kcal | 34g Protéines | 37g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe sirop d'érable pur","1/4 c. à thé cannelle","1/2 banane","250 ml boisson d'amande","4 glaçons"],"instructions":["1. Verse 250 ml de boisson d'amande et 1 cuillère à soupe de vrai sirop d'érable pur dans le récipient.","2. Ajoute une bonne pincée de cannelle, la demi-banane et 4 glaçons.","3. Dépose 1 scoop de protéine chocolat-noisette sur le dessus.","4. Mixe pendant 40 secondes à fond pour obtenir un shake glacé parfumé à l'érable."]},
-        {"nom":"13. Green Choco-Noisette (Épinards Invisibles)","type":"Légumes Masqués","macros":"~330 kcal | 34g Protéines | 28g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 poignée épinards frais","1/2 banane","1 c. à thé cacao pur","250 ml boisson d'amande","3 glaçons"],"instructions":["1. Verse 250 ml de boisson d'amande et tasse bien 1 grosse poignée de feuilles d'épinards frais au fond du blender. Mixe 15 secondes pour liquéfier complètement les feuilles vertes.","2. Ajoute la demi-banane, 1 cuillère à thé de cacao pur (qui va cacher la couleur verte), la scoop de protéine et les 3 glaçons.","3. Mixe 40 secondes à haute vitesse : tu auras un smoothie au goût 100% chocolat sans sentir le goût des légumes !"]},
-        {"nom":"14. Frappé Noisette Chaï Épicé","type":"Épices Chaudes","macros":"~325 kcal | 34g Protéines | 26g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","150 ml thé chaï infusé froid","100 ml boisson d'amande","1/2 banane","Pincée muscade","4 glaçons"],"instructions":["1. Fais infuser un sachet de thé chaï dans une tasse d'eau chaude et laisse refroidir au réfrigérateur.","2. Verse les 150 ml de thé chaï froid et les 100 ml de boisson d'amande dans le mélangeur.","3. Ajoute la demi-banane, une pincée de muscade, la scoop de protéine et 4 glaçons.","4. Mixe à puissance maximale 40 secondes."]},
-        {"nom":"15. Smoothie Onctueux Avocat & Choco-Noisette","type":"Texture Glacée","macros":"~380 kcal | 34g Protéines | 24g Glucides | 15g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/4 avocat mûr","1 c. à thé cacao","250 ml boisson d'amande","4 glaçons"],"instructions":["1. Retire la peau et dépose le quart d'avocat bien mûr dans le mélangeur.","2. Verse les 250 ml de boisson d'amande par-dessus.","3. Ajoute 1 cuillère à thé de cacao, 1 scoop de protéine chocolat-noisette et 4 glaçons.","4. Mixe pendant 45 secondes : l'avocat apporte une texture ultra soyeuse sans laisser de goût particulier."]},
-        {"nom":"16. Shake Chocolat-Noisette & Fraises Surgelées","type":"Fruité Doux","macros":"~335 kcal | 34g Protéines | 34g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse fraises surgelées","1/3 tasse yogourt grec 0%","200 ml eau froide"],"instructions":["1. Verse 200 ml d'eau froide et le tiers de tasse de yogourt grec 0% dans le mélangeur.","2. Ajoute la tasse de fraises surgelées et 1 scoop de protéine chocolat-noisette.","3. Mixe pendant 45 secondes jusqu'à ce que les fraises soient complètement réduites en purée onctueuse."]},
-        {"nom":"17. Frappé Choco-Noisette & Lait de Soya Vanille","type":"Riche en Protéines","macros":"~375 kcal | 39g Protéines | 32g Glucides | 8g Lipides","ingredients":["1 scoop protéine chocolat-noisette","250 ml boisson de soya non sucrée","1/2 banane","4 glaçons"],"instructions":["1. Verse 250 ml de boisson de soya au fond du blender.","2. Ajoute la demi-banane congelée en rondelles et 4 glaçons.","3. Dépose 1 scoop de protéine chocolat-noisette.","4. Mixe pendant 40 secondes à fond pour obtenir un apport massif de 39g de protéines."]},
-        {"nom":"18. Shake Croustade Choco-Pomme & Avoine","type":"Saveur Dessert","macros":"~385 kcal | 35g Protéines | 48g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/2 pomme pelée en dés","1/4 tasse flocons d'avoine","1/4 c. à thé cannelle","250 ml boisson d'amande"],"instructions":["1. Épluche la demi-pomme, coupe-la en petits dés et mets-la dans le mélangeur avec le quart de tasse d'avoine et 250 ml de boisson d'amande.","2. Ajoute 1 scoop de protéine chocolat-noisette et la cannelle.","3. Mixe 50 secondes à puissance maximale pour pulvériser la pomme et l'avoine."]},
-        {"nom":"19. Shake Noisette & Graines de Chia Gonflées","type":"Fibres & Oméga-3","macros":"~360 kcal | 35g Protéines | 30g Glucides | 9g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe graines de chia","1/2 banane","250 ml boisson d'amande"],"instructions":["1. Verse 250 ml de boisson d'amande, 1 cuillère à soupe de graines de chia et la demi-banane dans le bol.","2. Ajoute 1 scoop de protéine chocolat-noisette.","3. Mixe pendant 40 secondes. Laisse reposer 5 minutes dans ton verre avant de boire pour que le chia épaississe la boisson."]},
-        {"nom":"20. Shake Choco-Noisette Menthe Fraîche","type":"Style After-Eight","macros":"~320 kcal | 34g Protéines | 24g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","4-5 feuilles de menthe fraîche","1/2 banane","250 ml boisson d'amande","4 glaçons"],"instructions":["1. Lave 4 ou 5 feuilles de menthe fraîche et mets-les dans le bol avec les 250 ml de boisson d'amande.","2. Ajoute la demi-banane, la scoop de protéine chocolat-noisette et 4 glaçons.","3. Mixe pendant 45 secondes : la fraîcheur de la menthe se marie parfaitement avec le chocolat."]},
-        {"nom":"21. Shake Chocolat, Beurre d'Amande & Sel de Mer","type":"Riche & Minéral","macros":"~390 kcal | 36g Protéines | 28g Glucides | 13g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe beurre d'amande","1/2 banane","Pincée sel rose","250 ml boisson d'amande"],"instructions":["1. Verse les 250 ml de boisson d'amande et 1 cuillère à soupe de beurre d'amande dans le blender.","2. Ajoute la demi-banane, une petite pincée de sel de mer et 1 scoop de protéine.","3. Mixe à fond pendant 45 secondes pour un shake très velouté."]},
-        {"nom":"22. Shake Chocolat-Noisette & Poudre de Beurre d'Arachide (PB2)","type":"Faible en Gras","macros":"~330 kcal | 39g Protéines | 28g Glucides | 4g Lipides","ingredients":["1 scoop protéine chocolat-noisette","2 c. à soupe PB2 ou poudre d'arachide déshydratée","1/2 banane","250 ml boisson d'amande"],"instructions":["1. Verse 250 ml de boisson d'amande au fond du bol.","2. Ajoute 2 cuillères à soupe de poudre d'arachide déshydratée (PB2), la demi-banane et la scoop de protéine chocolat-noisette.","3. Mixe pendant 40 secondes pour un goût d'arachide puissant sans les calories du gras."]},
-        {"nom":"23. Smoothie Bowl Choco-Noisette & Framboises","type":"À Manger à la Cuillère","macros":"~370 kcal | 36g Protéines | 42g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 tasse framboises surgelées","1/2 tasse yogourt grec 0%","50 ml eau froide"],"instructions":["1. Verse seulement 50 ml d'eau très froide et la demi-tasse de yogourt grec au fond du blender.","2. Ajoute la tasse de framboises surgelées et 1 scoop de protéine.","3. Mixe en utilisant le bâton poussoir pour écraser les fruits congelés contre les lames pendant 40 secondes jusqu'à consistance de sorbet épais. Sers dans un bol avec une cuillère."]},
-        {"nom":"24. Frappé Noisette Espresso Double & Cacao","type":"Super Énergie","macros":"~330 kcal | 34g Protéines | 22g Glucides | 6g Lipides","ingredients":["1 scoop protéine chocolat-noisette","2 espressos refroidis","1 c. à thé cacao pur","100 ml boisson d'amande","5 glaçons"],"instructions":["1. Prépare 2 expressos courts et laisse-les refroidir 10 minutes au frigo.","2. Verse le café froid, 100 ml de boisson d'amande et 1 cuillère à thé de cacao dans le bol.","3. Ajoute 1 scoop de protéine chocolat-noisette et 5 glaçons.","4. Mixe pendant 40 secondes à haute vitesse pour faire mousser le café."]},
-        {"nom":"25. Shake Choco-Noisette & Mangue Glacée","type":"Touche Exotique","macros":"~345 kcal | 34g Protéines | 38g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","3/4 tasse mangue surgelée en dés","200 ml eau froide","1/4 tasse yogourt grec 0%"],"instructions":["1. Verse 200 ml d'eau froide et le quart de tasse de yogourt grec au fond.","2. Ajoute les 3/4 de tasse de dés de mangue surgelée et 1 scoop de protéine.","3. Mixe à puissance maximale pendant 45 secondes pour un mélange fruité et doux."]},
-        {"nom":"26. Shake Protéiné Noisette & Pépites de Cacao Cru","type":"Texture Croquante","macros":"~365 kcal | 35g Protéines | 28g Glucides | 9g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe éclats de cacao cru (cacao nibs)","1/2 banane","250 ml boisson d'amande","3 glaçons"],"instructions":["1. Verse la boisson d'amande, la demi-banane, les 3 glaçons et la scoop de protéine dans le mélangeur. Mixe pendant 40 secondes jusqu'à consistance lisse.","2. Ouvre le couvercle, ajoute la cuillère à soupe d'éclats de cacao cru.","3. Donne seulement 2 petites impulsions (Pulse) de 1 seconde pour mélanger les pépites sans les pulvériser. Déguste avec le croquant du chocolat sous la dent !"]},
-        {"nom":"27. Shake Choco-Noisette & Citrouille Épicée","type":"Style Automne","macros":"~340 kcal | 34g Protéines | 32g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/3 tasse purée de citrouille pure","1/4 c. à thé épices tarte citrouille","250 ml boisson d'amande","3 glaçons"],"instructions":["1. Verse 250 ml de boisson d'amande et le tiers de tasse de purée de citrouille pure en conserve dans le blender.","2. Ajoute une pincée d'épices pour tarte à la citrouille (cannelle, muscade, gingembre) et 3 glaçons.","3. Ajoute 1 scoop de protéine chocolat-noisette.","4. Mixe pendant 45 secondes à fond."]},
-        {"nom":"28. Frappé Protéiné Noisette & Concombre Rafraîchissant","type":"Frais & Léger","macros":"~315 kcal | 34g Protéines | 22g Glucides | 5g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1/2 tasse concombre pelé en dés","1/2 banane","200 ml eau très froide","4 glaçons"],"instructions":["1. Épluche le demi-concombre, coupe-le en dés et mets-le au fond du blender avec 200 ml d'eau très froide.","2. Ajoute la demi-banane, la scoop de protéine et les 4 glaçons.","3. Mixe pendant 45 secondes complètes pour liquéfier le concombre et créer une boisson très désaltérante."]},
-        {"nom":"29. Shake Choco-Noisette & Noix de Coco Râpée","type":"Style Bounty-Noisette","macros":"~375 kcal | 34g Protéines | 28g Glucides | 12g Lipides","ingredients":["1 scoop protéine chocolat-noisette","1 c. à soupe noix de coco râpée non sucrée","1/2 banane","250 ml boisson d'amande ou coco légère"],"instructions":["1. Verse 250 ml de boisson d'amande ou de coco dans le bol du mélangeur.","2. Ajoute 1 cuillère à soupe de noix de coco râpée non sucrée, la demi-banane et 3 glaçons.","3. Ajoute 1 scoop de protéine chocolat-noisette.","4. Mixe pendant 45 secondes à haute vitesse pour bien broyer la noix de coco."]},
-        {"nom":"30. Shake Ultime Récupération Choco-Noisette (Post-Legday)","type":"Max Régénération","macros":"~395 kcal | 42g Protéines | 44g Glucides | 8g Lipides","ingredients":["1.5 scoop protéine chocolat-noisette (45g)","1 banane entière","1 c. à soupe graines de chanvre ou lin","300 ml boisson d'amande","4 glaçons"],"instructions":["1. Verse les 300 ml de boisson d'amande au fond du bol de ton mélangeur.","2. Épluche la banane entière, coupe-la en morceaux et ajoute-la avec 1 cuillère à soupe de graines de chanvre.","3. Dépose 1 mesure et demie (45 g) de protéine chocolat-noisette et ajoute les 4 glaçons.","4. Enclenche le couvercle et fais tourner à puissance maximale pendant 50 secondes complètes pour dissoudre toute la poudre et obtenir 42g de protéines pures."]}
+        {"nom":"1. Smoothie Vert Détox Épinards & Pomme","type":"Rafraîchissant Santé","macros":"~180 kcal | 4g Protéines | 38g Glucides | 2g Lipides","ingredients":["1 poignée d'épinards frais lavés","1 pomme verte Granny Smith en morceaux","1/2 concombre","1 tasse d'eau de coco","1 c. à thé de jus de citron frais"],"instructions":["1. Verse la tasse d'eau de coco dans le bol de ton mélangeur.","2. Ajoute la poignée d'épinards frais et mixe 15 secondes pour bien liquéfier le vert.","3. Ajoute les morceaux de pomme verte, les rondelles de concombre et le jus de citron.","4. Mixe à puissance maximale pendant 45 secondes jusqu'à obtenir un liquide parfaitement lisse et désaltérant."]},
+        {"nom":"2. Smoothie Antioxydant Fruits Rouges & Menthe","type":"Frais & Vitamine C","macros":"~210 kcal | 5g Protéines | 42g Glucides | 3g Lipides","ingredients":["1 tasse de fruits rouges surgelés (fraises, bleuets, framboises)","1/2 tasse de yogourt grec nature 0%","1 tasse d'eau ou de thé vert infusé froid","4-5 feuilles de menthe fraîche"],"instructions":["1. Verse l'eau ou le thé vert froid et le yogourt grec dans le mélangeur.","2. Ajoute la tasse de fruits rouges surgelés et les feuilles de menthe fraîche.","3. Mixe pendant 45 secondes à haute vitesse. C'est un smoothie naturellement sucré et bourré d'antioxydants sans poudre."]},
+        {"nom":"3. Smoothie Exotique Mangue, Ananas & Curcuma","type":"Énergie Tropicale","macros":"~195 kcal | 3g Protéines | 45g Glucides | 1g Lipides","ingredients":["3/4 tasse de dés de mangue surgelée","3/4 tasse de morceaux d'ananas surgelés","1 tasse de boisson de coco légère","1/4 c. à thé de curcuma en poudre","Une pincée de gingembre frais râpé"],"instructions":["1. Verse la boisson de coco légère au fond du mélangeur.","2. Ajoute les dés de mangue et d'ananas congelés.","3. Saupoudre le quart de cuillère de curcuma et ajoute le gingembre râpé.","4. Mixe pendant 45 secondes à fond pour obtenir une texture veloutée de soleil en bouteille."]},
+        {"nom":"4. Smoothie Betterave, Framboise & Gingembre","type":"Boost d'Énergie","macros":"~175 kcal | 4g Protéines | 38g Glucides | 1g Lipides","ingredients":["1/2 petite betterave crue pelée et râpée","1/2 tasse de framboises surgelées","1/2 pomme","1 tasse d'eau froide","1 petit morceau de gingembre frais (1 cm)"],"instructions":["1. Râpe finement la demi-betterave et le petit morceau de gingembre pour aider le mélangeur.","2. Mets-les dans le bol avec la tasse d'eau très froide et mixe 20 secondes.","3. Ajoute la demi-pomme en morceaux et les framboises surgelées.","4. Mixe à fond pendant 45 secondes (la couleur rouge sera vibrante et incroyable)."]},
+        {"nom":"5. Smoothie Matcha, Banane & Lait d'Amande","type":"Antioxydant & Éveil","macros":"~205 kcal | 3g Protéines | 38g Glucides | 5g Lipides","ingredients":["1 c. à thé de poudre de thé vert matcha","1 banane entière congelée","1.5 tasse de boisson d'amande","1 c. à thé de sirop d'érable (optionnel)"],"instructions":["1. Verse la boisson d'amande au fond du mélangeur.","2. Ajoute la cuillère de poudre de matcha pur.","3. Ajoute la banane congelée en morceaux et le filet de sirop d'érable si désiré.","4. Mixe 45 secondes pour créer un frappé vert doux et onctueux avec la caféine douce du matcha."]},
+        {"nom":"6. Smoothie Carotte, Orange & Curcuma","type":"Immunité","macros":"~180 kcal | 5g Protéines | 39g Glucides | 1g Lipides","ingredients":["1 tasse de jus de carotte pur (ou 2 carottes râpées très fines)","1 orange pelée sans pépins","1/4 tasse yogourt grec 0%","Une pincée de curcuma","Glaçons"],"instructions":["1. Si tu utilises des carottes entières, râpe-les d'abord et liquéfie-les avec un peu d'eau. Sinon, verse le jus de carotte.","2. Ajoute les quartiers d'orange (sans la peau blanche qui est amère).","3. Ajoute le yogourt grec et le curcuma.","4. Mixe à haute vitesse pendant 45 secondes en ajoutant des glaçons pour qu'il soit bien froid."]},
+        {"nom":"7. Smoothie Avoine, Pomme & Cannelle","type":"Petit-Déjeuner Liquide","macros":"~260 kcal | 6g Protéines | 48g Glucides | 5g Lipides","ingredients":["1 pomme entière coupée en dés (avec la peau)","1/3 tasse de flocons d'avoine secs","1.5 tasse de boisson d'amande","1/2 c. à thé de cannelle","1 c. à s. de graines de lin ou chia"],"instructions":["1. Verse l'avoine sec et les graines dans le blender. Mixe 10 secondes à sec pour les pulvériser en farine.","2. Verse la boisson d'amande par-dessus.","3. Ajoute les dés de pomme et la cannelle.","4. Mixe 50 secondes à puissance maximale. Ça goûte la tarte aux pommes à boire !"]},
+        {"nom":"8. Smoothie Avocat, Kiwi & Lime","type":"Textures Soyeuse Verdes","macros":"~240 kcal | 3g Protéines | 32g Glucides | 12g Lipides","ingredients":["1 kiwi épluché","1/4 d'avocat mûr","1 grosse poignée d'épinards","1 tasse d'eau ou eau de coco","Jus d'une demi-lime"],"instructions":["1. Verse l'eau et les épinards, liquéfie 15 secondes.","2. Coupe le kiwi en deux et ajoute-le dans le bol.","3. Ajoute la chair du quart d'avocat et presse la lime.","4. Mixe 40 secondes. L'avocat rend ce smoothie incroyablement lisse comme un milkshake."]},
+        {"nom":"9. Smoothie Pêche, Kéfir & Graines de Chia","type":"Probiotique Doux","macros":"~220 kcal | 10g Protéines | 35g Glucides | 5g Lipides","ingredients":["1 tasse de pêches en tranches (surgelées)","1 tasse de kéfir nature (lait fermenté probiotique)","1 c. à s. de graines de chia","1 c. à thé de miel (optionnel)"],"instructions":["1. Verse le kéfir nature au fond du récipient.","2. Ajoute les tranches de pêches surgelées et le miel.","3. Mixe pendant 40 secondes.","4. Ajoute les graines de chia à la fin et mixe 2 secondes juste pour les répartir. Laisse reposer 2 minutes pour épaissir."]},
+        {"nom":"10. Smoothie Citron, Basilic & Poire","type":"Fraîcheur Surprenante","macros":"~190 kcal | 4g Protéines | 40g Glucides | 2g Lipides","ingredients":["1 poire bien mûre épépinée","Jus d'un demi-citron","4-5 feuilles de basilic frais","1/2 tasse yogourt grec nature 0%","1/2 tasse d'eau glacée"],"instructions":["1. Mets le yogourt grec et l'eau glacée dans le blender.","2. Lave et ajoute les feuilles de basilic frais et le jus de citron.","3. Ajoute la poire coupée en gros dés.","4. Mixe 45 secondes : la douceur de la poire contrebalance l'acidité du citron et le basilic donne un parfum unique."]},
+        {"nom":"11. Smoothie Ananas, Concombre Frais & Menthe","type":"Spa Détox","macros":"~160 kcal | 2g Protéines | 38g Glucides | 1g Lipides","ingredients":["1 tasse de morceaux d'ananas (frais ou surgelés)","1/2 concombre pelé","5 feuilles de menthe fraîche","1 tasse d'eau très froide","1 c. à thé de jus de lime"],"instructions":["1. Verse l'eau très froide et les morceaux de concombre.","2. Ajoute l'ananas, la menthe fraîche et le jus de lime.","3. Mixe 45 secondes à puissance maximale. Très riche en eau, il désaltère intensément sans alourdir."]},
+        {"nom":"12. Smoothie Patate Douce, Érable & Cannelle","type":"Réconfort d'Automne","macros":"~230 kcal | 4g Protéines | 45g Glucides | 4g Lipides","ingredients":["1/2 tasse de purée de patate douce cuite et refroidie","1 banane","1.5 tasse de boisson d'amande","1 c. à s. de sirop d'érable","Cannelle et muscade"],"instructions":["1. Si tu fais de la purée de patate douce pour le repas, gardes-en une demi-tasse (sans sel) au frigo.","2. Dans le mélangeur, verse la boisson d'amande, la purée froide et la banane.","3. Ajoute le sirop d'érable et les épices.","4. Mixe 45 secondes pour un breuvage hyper crémeux et riche en bons glucides lents."]},
+        {"nom":"13. Smoothie Kale, Mangue & Lait de Coco","type":"Vert Tropical","macros":"~195 kcal | 3g Protéines | 38g Glucides | 4g Lipides","ingredients":["1 tasse de chou kale sans les tiges dures","1 tasse de mangue surgelée","1 tasse de boisson de coco allégée","Jus d'un demi-citron"],"instructions":["1. Verse la boisson de coco. Ajoute le chou kale bien tassé et mixe 20 secondes pour détruire les feuilles coriaces.","2. Ajoute les dés de mangue surgelée et le citron (qui aide à assimiler le fer du kale).","3. Mixe encore 40 secondes jusqu'à ce que la texture soit complètement lisse."]},
+        {"nom":"14. Smoothie Melon d'eau, Fraise & Lime","type":"Hydratation Estivale","macros":"~150 kcal | 2g Protéines | 34g Glucides | 1g Lipides","ingredients":["2 tasses de cubes de melon d'eau (sans pépins)","1/2 tasse de fraises surgelées","Jus d'une lime entière","Glaçons (facultatif)"],"instructions":["1. Mets les cubes de melon d'eau au fond du mélangeur. Ils vont fondre instantanément pour faire le liquide (pas besoin d'eau !).","2. Ajoute les fraises surgelées et presse la lime entière.","3. Mixe 30 secondes. Un pur jus de fruit frais, ultra-léger et rafraîchissant."]},
+        {"nom":"15. Smoothie Cerise, Beurre d'Amande & Cacao","type":"Forêt Noire Douce","macros":"~280 kcal | 6g Protéines | 42g Glucides | 10g Lipides","ingredients":["1 tasse de cerises douces surgelées","1 c. à s. de beurre d'amande naturel","1 c. à thé de cacao pur non sucré","1.5 tasse de boisson d'amande","1/2 banane"],"instructions":["1. Verse la boisson d'amande dans le bol.","2. Ajoute la cuillère de beurre d'amande et la poudre de cacao pur.","3. Ajoute les cerises surgelées et la demi-banane.","4. Mixe 50 secondes à fond pour créer un délice au bon goût de Forêt-Noire, avec de bons lipides nourrissants."]}
       ]
     };
 
@@ -892,7 +464,7 @@
 
             <div class="card-actions">
               <button class="btn-card btn-cook" onclick="launchCookingMode('${activeCat}', ${origIdx})">
-                <span>👨‍🍳 Cuisiner</span>
+                <span>👨‍🍳 Préparer</span>
               </button>
               <button class="btn-card btn-add ${isPlanned ? 'in-plan' : ''}" onclick="toggleMealPlan('${activeCat}', ${origIdx})">
                 <span>${isPlanned ? '✓ Dans le plan' : '+ Planifier'}</span>
@@ -925,7 +497,6 @@
             plannedMeals.splice(planIndex, 1);
             updateDashboard();
           }
-
           updateCategoryBadges();
           renderCards();
         } else {
@@ -1009,7 +580,6 @@
         const m = parseMacros(recipe.macros);
         plannedMeals.push({ key, cat, idx, ...m, ingredients: recipe.ingredients });
       }
-
       updateDashboard();
       renderCards();
     }
@@ -1043,12 +613,7 @@
 
     function parseIngredientString(str) {
       let cleaned = str.trim();
-      cleaned = cleaned.replace(/^1\/2\b/, '0.5')
-                       .replace(/^1\/3\b/, '0.33')
-                       .replace(/^1\/4\b/, '0.25')
-                       .replace(/^3\/4\b/, '0.75')
-                       .replace(/^1\.5\b/, '1.5');
-
+      cleaned = cleaned.replace(/^1\/2\b/, '0.5').replace(/^1\/3\b/, '0.33').replace(/^1\/4\b/, '0.25').replace(/^3\/4\b/, '0.75').replace(/^1\.5\b/, '1.5');
       const regex = /^([\d\.,]+)\s*(g|ml|tasses?|tranches?|œufs?|boîtes?|scoops?|mesures?|c\.\s*à\s*soupe|c\.\s*à\s*s\.|c\.\s*à\s*thé|grosses?|petits?|moyennes?)?\s*(?:de\s+|d'|du\s+|des\s+)?(.*)$/i;
       const match = cleaned.match(regex);
 
@@ -1056,13 +621,7 @@
         const qty = parseFloat(match[1].replace(',', '.'));
         const unit = (match[2] || '').trim().toLowerCase();
         let name = (match[3] || '').trim();
-
-        let key = name.toLowerCase()
-                      .replace(/\s+/g, ' ')
-                      .replace(/^(de\s+|d'|du\s+|des\s+)/, '')
-                      .replace(/\(.*?\)/g, '')
-                      .trim();
-
+        let key = name.toLowerCase().replace(/\s+/g, ' ').replace(/^(de\s+|d'|du\s+|des\s+)/, '').replace(/\(.*?\)/g, '').trim();
         return { qty: isNaN(qty) ? null : qty, unit, name, key, raw: str };
       }
       return { qty: null, unit: '', name: str, key: str.toLowerCase().trim(), raw: str };
@@ -1070,19 +629,13 @@
 
     function consolidateIngredients(ingredientList) {
       const grouped = {};
-
       ingredientList.forEach(itemStr => {
         const parsed = parseIngredientString(itemStr);
         const groupKey = `${parsed.unit}_${parsed.key}`;
 
         if (parsed.qty !== null) {
           if (!grouped[groupKey]) {
-            grouped[groupKey] = {
-              qty: parsed.qty,
-              unit: parsed.unit,
-              name: parsed.name,
-              count: 1
-            };
+            grouped[groupKey] = { qty: parsed.qty, unit: parsed.unit, name: parsed.name, count: 1 };
           } else {
             grouped[groupKey].qty += parsed.qty;
             grouped[groupKey].count += 1;
@@ -1090,12 +643,7 @@
         } else {
           const rawKey = `raw_${parsed.key}`;
           if (!grouped[rawKey]) {
-            grouped[rawKey] = {
-              qty: null,
-              unit: '',
-              name: itemStr,
-              count: 1
-            };
+            grouped[rawKey] = { qty: null, unit: '', name: itemStr, count: 1 };
           }
         }
       });
@@ -1113,40 +661,26 @@
     function openGroceryModal() {
       const gList = document.getElementById('gList');
       const sub = document.getElementById('grocerySub');
-
       if (plannedMeals.length === 0) {
         sub.innerText = "0 repas sélectionné";
         gList.innerHTML = "<p style='color: var(--text-dim); text-align: center; padding: 2rem;'>Aucune recette sélectionnée dans ton plan. Clique sur <strong>+ Planifier</strong> sur tes recettes pour générer la liste additionnée !</p>";
       } else {
         sub.innerText = `${plannedMeals.length} repas sélectionné(s) • Quantités consolidées automatiquement`;
-
         let rawList = [];
-        plannedMeals.forEach(m => {
-          rawList = rawList.concat(m.ingredients);
-        });
-
+        plannedMeals.forEach(m => { rawList = rawList.concat(m.ingredients); });
         const consolidated = consolidateIngredients(rawList);
-
         gList.innerHTML = consolidated.map(item => `
-          <label class="check-row">
-            <input type="checkbox" onchange="toggleDone(this)">
-            <span>${item}</span>
-          </label>
+          <label class="check-row"><input type="checkbox" onchange="toggleDone(this)"><span>${item}</span></label>
         `).join('');
       }
       document.getElementById('groceryModal').style.display = 'flex';
     }
 
     function copyGroceryToClipboard() {
-      const items = Array.from(document.querySelectorAll('#gList .check-row span'))
-                         .map(s => `• ${s.innerText}`)
-                         .join('\n');
-      if (!items) {
-        alert("La liste d'épicerie est vide.");
-        return;
-      }
-      navigator.clipboard.writeText(`🛒 LISTE D'ÉPICERIE MEAL PREP (~2300 kcal)\n\n${items}`).then(() => {
-        alert("✓ Liste d'épicerie copiée dans le presse-papier ! Tu peux la coller dans tes Notes.");
+      const items = Array.from(document.querySelectorAll('#gList .check-row span')).map(s => `• ${s.innerText}`).join('\n');
+      if (!items) { alert("La liste d'épicerie est vide."); return; }
+      navigator.clipboard.writeText(`🛒 LISTE D'ÉPICERIE MEAL PREP\n\n${items}`).then(() => {
+        alert("✓ Liste copiée ! Tu peux la coller dans tes Notes.");
       }).catch(() => {
         alert("Impossible de copier automatiquement.");
       });
@@ -1154,9 +688,7 @@
 
     function triggerQuickTimer() {
       const min = prompt("Combien de minutes pour le minuteur ?", "15");
-      if (min && !isNaN(min)) {
-        startTimer(parseInt(min) * 60);
-      }
+      if (min && !isNaN(min)) startTimer(parseInt(min) * 60);
     }
 
     function startTimer(sec) {
