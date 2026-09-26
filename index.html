@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meal Prep Hub — recettes détaillées pas-à-pas, planificateur de journée et liste d'épicerie intelligente.">
+  <meta name="theme-color" content="#040813">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E">
+  <title>Meal Prep Hub • Recettes Détaillées • ~2300 kcal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <header class="navbar">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-title">Meal Prep Hub</div>
+          <div class="brand-sub">Objectif : <span id="goalCalBrand">~2300</span> kcal • <span id="brandCount">…</span></div>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-top" onclick="surpriseMe()">🎲 Surprise</button>
+        <button class="btn-top" onclick="openGoals()">⚙️ Objectifs</button>
+        <button class="btn-top" onclick="triggerQuickTimer()">⏱️ Minuteur</button>
+        <button class="btn-top active-plan" onclick="openGroceryModal()">
+          <span>📅 Mon Plan Jour</span>
+          <span class="pill-badge" id="planBadge">0</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="dashboard">
+      <div class="dash-top">
+        <div>
+          <div class="dash-label">Suivi en direct — <span id="dashDate"></span></div>
+          <h2 class="dash-heading">Équilibre Nutritionnel Journalier</h2>
+        </div>
+        <div class="dash-actions-right">
+          <button class="btn-top btn-gen" onclick="generateDay()">✨ Composer ma journée</button>
+          <button class="btn-reset" onclick="restoreDeletedRecipes()">↺ Restaurer recettes masquées</button>
+          <button class="btn-reset" onclick="resetDayPlan()">↺ Réinitialiser la journée</button>
+        </div>
+      </div>
+      <div class="macro-grid">
+        <div class="macro-box">
+          <div class="macro-box-title"><span>Calories</span><span class="macro-numbers"><strong id="valCal">0</strong> / <span id="goalCal">2300 kcal</span></span></div>
+          <div class="progress-track"><div id="barCal" class="progress-bar bar-cal"></div></div>
+          <div class="macro-rem" id="remCal"></div>
+        </div>
+        <div class="macro-box">
+          <div class="macro-box-title"><span>Protéines</span><span class="macro-numbers"><strong id="valProt">0</strong> / <span id="goalProt">170 g</span></span></div>
+          <div class="progress-track"><div id="barProt" class="progress-bar bar-prot"></div></div>
+          <div class="macro-rem" id="remProt"></div>
+        </div>
+        <div class="macro-box">
+          <div class="macro-box-title"><span>Glucides</span><span class="macro-numbers"><strong id="valCarb">0</strong> / <span id="goalCarb">235 g</span></span></div>
+          <div class="progress-track"><div id="barCarb" class="progress-bar bar-carb"></div></div>
+          <div class="macro-rem" id="remCarb"></div>
+        </div>
+        <div class="macro-box">
+          <div class="macro-box-title"><span>Lipides</span><span class="macro-numbers"><strong id="valFat">0</strong> / <span id="goalFat">65 g</span></span></div>
+          <div class="progress-track"><div id="barFat" class="progress-bar bar-fat"></div></div>
+          <div class="macro-rem" id="remFat"></div>
+        </div>
+      </div>
+      <div class="week-wrap">
+        <div class="week-title">📈 7 derniers jours <em>— kcal enregistrées automatiquement à chaque visite</em></div>
+        <div class="week-chart" id="weekChart"></div>
+      </div>
+    </section>
+
+    <section class="controls-wrapper">
+      <div class="search-input-group">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Rechercher par nom ou ingrédient (ex : porc, patate douce, riz…) — raccourci : /" oninput="filterCards()">
+      </div>
+      <nav class="nav-pills">
+        <button class="pill-btn active" data-cat="dejeuners" onclick="switchCategory('dejeuners')"><span>Déjeuners</span> <span class="pill-badge" id="count-dejeuners">0</span></button>
+        <button class="pill-btn" data-cat="diners" onclick="switchCategory('diners')"><span>Dîners</span> <span class="pill-badge" id="count-diners">0</span></button>
+        <button class="pill-btn" data-cat="soupers" onclick="switchCategory('soupers')"><span>Soupers</span> <span class="pill-badge" id="count-soupers">0</span></button>
+        <button class="pill-btn" data-cat="shakes" onclick="switchCategory('shakes')"><span>Shakes Protéinés</span> <span class="pill-badge" id="count-shakes">0</span></button>
+        <button class="pill-btn" data-cat="smoothies" onclick="switchCategory('smoothies')"><span>Smoothies Santé</span> <span class="pill-badge" id="count-smoothies">0</span></button>
+      </nav>
+      <div class="toolbar-row">
+        <div class="filter-chips">
+          <button class="chip" id="chipFav" onclick="toggleFilter('onlyFav', this)">❤️ Favoris</button>
+          <button class="chip" id="chipProt" onclick="toggleFilter('highProt', this)">💪 40 g+ Protéines</button>
+        </div>
+        <div class="sort-group">
+          <label for="sortSelect">Trier :</label>
+          <select id="sortSelect" class="sort-select" onchange="setSort(this.value)">
+            <option value="pertinence">Pertinence</option>
+            <option value="prot">Protéines ↓</option>
+            <option value="calDesc">Calories ↓</option>
+            <option value="calAsc">Calories ↑</option>
+            <option value="note">Ma note ↓</option>
+            <option value="az">A → Z</option>
+          </select>
+          <span class="result-count" id="resultCount"></span>
+        </div>
+      </div>
+    </section>
+
+    <div id="cardsContainer" class="recipes-grid"></div>
+
+    <div id="emptyState" class="empty-state" style="display:none;">
+      <span class="big">🍳</span>
+      <h3>Aucune recette trouvée</h3>
+      <p id="emptyMsg">Essaie un autre mot-clé, ou désactive les filtres actifs.</p>
+      <button id="emptyResetBtn" onclick="clearFilters()">Réinitialiser les filtres</button>
+    </div>
+
+    <footer class="app-footer">
+      Tes données (plan, favoris, notes, objectifs, historique) sont sauvegardées automatiquement dans ton navigateur — rien ne quitte cet appareil.<br>
+      Astuce : appuie sur <strong>/</strong> pour chercher, <strong>Échap</strong> pour fermer les fenêtres, et ajuste les portions <strong>(×N)</strong> de chaque repas dans ton plan — l'épicerie se recalcule toute seule.
+    </footer>
+  </div>
+
+  <div class="modal-overlay" id="cookModal" onclick="if(event.target===this)closeModal('cookModal')">
+    <div class="modal-window">
+      <div class="modal-header-row">
+        <div>
+          <h2 class="modal-title" id="mTitle">Recette</h2>
+          <div class="modal-sub" id="mMacros">Macros</div>
+        </div>
+        <button class="btn-close-modal" onclick="closeModal('cookModal')">&times;</button>
+      </div>
+      <div class="modal-actions-row">
+        <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(15,23,42,0.8); padding:0.3rem 0.8rem; border-radius:8px; border:1px solid var(--border);">
+          <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Portions :</span>
+          <input type="number" id="portionInput" value="1" min="1" max="20" style="width:50px; background:transparent; border:none; color:var(--primary); font-family:'JetBrains Mono', monospace; font-size:1rem; font-weight:800; outline:none; text-align:center;" oninput="updatePortions()">
+        </div>
+        <button class="timer-chip" onclick="printRecipe()">🖨️ Imprimer</button>
+        <button class="timer-chip" onclick="copyRecipe()">📋 Copier</button>
+        <span class="step-prog" id="stepProg">0/0 étapes</span>
+      </div>
+      <div class="timer-ribbon">
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Minuteurs :</span>
+        <div class="ribbon-btns">
+          <button class="timer-chip" onclick="startTimer(5*60)">5 min</button>
+          <button class="timer-chip" onclick="startTimer(10*60)">10 min</button>
+          <button class="timer-chip" onclick="startTimer(15*60)">15 min</button>
+          <button class="timer-chip" onclick="startTimer(20*60)">20 min</button>
+          <button class="timer-chip" onclick="startTimer(25*60)">25 min</button>
+          <input type="number" id="customMin" min="1" max="180" placeholder="min" class="timer-input" onkeydown="if(event.key==='Enter')customTimer()">
+          <button class="timer-chip" onclick="customTimer()">▶</button>
+        </div>
+      </div>
+      <div>
+        <div class="modal-section-title">Ingrédients Requis (Checklist)</div>
+        <div class="checklist-container" id="mIngredients"></div>
+      </div>
+      <div>
+        <div class="modal-section-title">Étapes de Préparation Détaillées (Guide Pas-à-Pas)</div>
+        <div class="checklist-container" id="mSteps"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="groceryModal" onclick="if(event.target===this)closeModal('groceryModal')">
+    <div class="modal-window">
+      <div class="modal-header-row">
+        <div>
+          <h2 class="modal-title">📅 Mon Plan du Jour</h2>
+          <div class="modal-sub" id="planTotals">0 kcal</div>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <button class="btn-top" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="generateDay()">✨ Générer auto</button>
+          <button class="btn-top" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="copyGroceryToClipboard()">📋 Copier la liste</button>
+          <button class="btn-close-modal" onclick="closeModal('groceryModal')">&times;</button>
+        </div>
+      </div>
+      <div id="planMeals"></div>
+      <div>
+        <div class="modal-section-title">Liste d'Épicerie Consolidée <span id="groceryCount" style="color:var(--text-dim);text-transform:none;letter-spacing:0;"></span></div>
+        <div id="gList"></div>
+      </div>
+      <div class="plan-footer">
+        <button class="btn-reset" onclick="resetDayPlan(); renderPlanModal();">🧹 Vider le plan</button>
+        <button class="btn-reset" onclick="toggleGroceryClearChecks()">☐ Décocher tout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="quickTimerModal" onclick="if(event.target===this)closeModal('quickTimerModal')">
+    <div class="modal-window" style="max-width:480px;">
+      <div class="modal-header-row">
+        <div>
+          <h2 class="modal-title">⏱️ Minuteur Rapide</h2>
+          <div class="modal-sub">Trois bips sonores à la fin</div>
+        </div>
+        <button class="btn-close-modal" onclick="closeModal('quickTimerModal')">&times;</button>
+      </div>
+      <div class="ribbon-btns">
+        <button class="timer-chip" onclick="startTimer(60)">1 min</button>
+        <button class="timer-chip" onclick="startTimer(3*60)">3 min</button>
+        <button class="timer-chip" onclick="startTimer(5*60)">5 min</button>
+        <button class="timer-chip" onclick="startTimer(10*60)">10 min</button>
+        <button class="timer-chip" onclick="startTimer(15*60)">15 min</button>
+        <button class="timer-chip" onclick="startTimer(20*60)">20 min</button>
+        <button class="timer-chip" onclick="startTimer(30*60)">30 min</button>
+      </div>
+      <div class="custom-timer-row">
+        <input type="number" id="customMinQuick" min="1" max="180" placeholder="min" class="timer-input" onkeydown="if(event.key==='Enter')customTimerQuick()">
+        <button class="timer-chip" onclick="customTimerQuick()">▶ Démarrer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="goalsModal" onclick="if(event.target===this)closeModal('goalsModal')">
+    <div class="modal-window" style="max-width:480px;">
+      <div class="modal-header-row">
+        <div>
+          <h2 class="modal-title">⚙️ Mes Objectifs</h2>
+          <div class="modal-sub">Ajuste tes cibles quotidiennes</div>
+        </div>
+        <button class="btn-close-modal" onclick="closeModal('goalsModal')">&times;</button>
+      </div>
+      <div class="goals-grid">
+        <label>Calories (kcal)<input type="number" id="gCal" min="1000" max="6000"></label>
+        <label>Protéines (g)<input type="number" id="gProt" min="40" max="400"></label>
+        <label>Glucides (g)<input type="number" id="gCarb" min="40" max="800"></label>
+        <label>Lipides (g)<input type="number" id="gFat" min="20" max="300"></label>
+      </div>
+      <div class="plan-footer" style="justify-content:flex-end;">
+        <button class="btn-top" onclick="saveGoals()">💾 Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="timer-float" id="timerBar" style="display:none;">
+    <span class="timer-clock" id="timerClock">00:00</span>
+    <button class="timer-chip" onclick="addTimerSeconds(60)" title="Ajouter une minute">+1 min</button>
+    <button class="timer-stop-btn" onclick="stopTimer()">Arrêter</button>
+  </div>
+
+  <div id="toasts"></div>
+  <div id="printArea"></div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
